@@ -2,6 +2,11 @@ package ec.edu.ups.en;
 
 import java.util.Date;
 
+/**
+ * Clase Geolocalizacion que permite obtener y manipular los datos de la localizacion
+ * @author angel
+ *
+ */
 public class GeoLocalizacion {
 	private int id;
 	private Double latitud;

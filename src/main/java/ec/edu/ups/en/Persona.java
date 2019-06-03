@@ -1,7 +1,11 @@
 package ec.edu.ups.en;
 
 import java.util.Date;
-
+/**
+ * Clase Persona que contine datos comunes de Docentes y estudiantes
+ * @author angel
+ *
+ */
 public class Persona {
 	private int id;
 	private String nombre;

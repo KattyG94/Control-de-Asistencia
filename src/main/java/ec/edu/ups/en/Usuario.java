@@ -1,7 +1,11 @@
 package ec.edu.ups.en;
 
 import java.util.Date;
-
+/**
+ * Clase usuario que permite manipular el acceso al sistema
+ * @author angel
+ *
+ */
 public class Usuario {
 	private int id;
 	private String usuario;

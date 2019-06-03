@@ -1,7 +1,11 @@
 package ec.edu.ups.en;
 
 import java.util.Date;
-
+/**
+ * Clase Dispositivo con 5 atributos para obtener y manipular los datos del dispositivo
+ * @author angel
+ *
+ */
 public class Dispositivo {
 	private int id;
 	private String serie;
@@ -9,6 +13,9 @@ public class Dispositivo {
 	private GeoLocalizacion geo;
 	private Usuario usuario;
 	
+	/**
+	 * Medodo Constructor
+	 */
 	public Dispositivo() {
 		// TODO Auto-generated constructor stub
 	}

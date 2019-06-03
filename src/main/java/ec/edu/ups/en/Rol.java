@@ -1,5 +1,9 @@
 package ec.edu.ups.en;
-
+/**
+ * Clase rol que permite manipular los roles que cada docente posee
+ * @author angel
+ *
+ */
 public class Rol {
 	private int id;
 	private String descripcion;
