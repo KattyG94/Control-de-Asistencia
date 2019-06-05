@@ -32,56 +32,56 @@ public class Asignatura {
 	}
 	/**
 	 * Metodo que permite retornar el identificador de la asignatura
-	 * @return
+	 * @return id Identificador unico
 	 */
 	public int getId() {
 		return id;
 	}
 	/**
 	 * Metodo para el envio de un id de atributos
-	 * @param id
+	 * @param id Valor del atributo
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 	/**
 	 * Metodo que permite retornar el codigo de asignatura
-	 * @return
+	 * @return Codigo unico de asignatura
 	 */
 	public String getCodigo() {
 		return codigo;
 	}
 	/**
 	 * Metodo de que permite enviar por parametro un codigo de tipo string
-	 * @param codigo
+	 * @param codigo Codigo unico de asignatura
 	 */
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 	/**
 	 * Metodo que permite retornar en nombre de la asignatura
-	 * @return
+	 * @return nombre de la asignatura
 	 */
 	public String getNombre() {
 		return nombre;
 	}
 	/**
 	 * Metodo que permite enviar por parametro el nombre de la asignatura de tipo texto
-	 * @param nombre
+	 * @param Nombrede la asignatura
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 	/**
 	 * Metodo que permite retornar el numero de creditos de la asignatura
-	 * @return
+	 * @return Numero de creditos
 	 */
 	public int getCreditos() {
 		return creditos;
 	}
 	/**
 	 * Metodo que permite enviar el numero de creditos por parametros 
-	 * @param creditos
+	 * @param creditos Numero de creditos
 	 */
 	public void setCreditos(int creditos) {
 		this.creditos = creditos;
