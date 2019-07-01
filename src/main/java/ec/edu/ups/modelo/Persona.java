@@ -1,32 +1,47 @@
-package ec.edu.ups.en;
+package ec.edu.ups.modelo;
 
 import java.util.Date;
-/**
- * Clase Persona que contine datos comunes de Docentes y estudiantes
- * @author angel
- *
- */
-public class Persona {
-	private int id;
+
+import javax.persistence.Column;
+
+import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
+
+@MappedSuperclass
+public abstract class Persona {
+
+	@NotNull
+	@Column(name = "nombre")
 	private String nombre;
+
+	@NotNull
+	@Column(name = "apellido")
 	private String apellido;
+
+	@NotNull
+//	@Column(name = "cedula", length = 10)
 	private String cedula;
-	private Date fechaNacimiento;
+
+	@NotNull
+	@Column(name = "fechaNacimiento")
+	private Date fechaNac;
+
+	@NotNull
+//	@Column(name = "sexo", length = 2)
 	private String sexo;
+
+	@NotNull
+//	@Column(name = "telefono",length = 10)
 	private String telefono;
+
+	@NotNull
+//	@Size(min = 1, max = 80)
+	@Column(name = "direccion")
 	private String direccion;
-	private Usuario usuario;
+
 
 	public Persona() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getNombre() {
@@ -53,12 +68,12 @@ public class Persona {
 		this.cedula = cedula;
 	}
 
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
+	public Date getFechaNac() {
+		return fechaNac;
 	}
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
+	public void setFechaNac(Date fechaNac) {
+		this.fechaNac = fechaNac;
 	}
 
 	public String getSexo() {
@@ -85,12 +100,10 @@ public class Persona {
 		this.direccion = direccion;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	@Override
+	public String toString() {
+		return "Persona [nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + ", fechaNac=" + fechaNac
+				+ ", sexo=" + sexo + ", telefono=" + telefono + ", direccion=" + direccion + "]";
 	}
 
 }
