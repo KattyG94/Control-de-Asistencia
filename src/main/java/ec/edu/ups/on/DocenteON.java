@@ -7,9 +7,13 @@ import javax.inject.Inject;
 
 import ec.edu.ups.dao.DocenteDAO;
 import ec.edu.ups.modelo.Docente;
+import ec.edu.ups.modelo.Profesion;
 
 @Stateless
 public class DocenteON {
+	
+	@Inject
+	private Instalacion inst;
 	@Inject
 	private DocenteDAO dao;
 	
@@ -17,6 +21,10 @@ public class DocenteON {
 		
 //		if(d.getNombre().length()<2)
 //			throw new Exception("Dimencion Corta");
+//		List<Profesion>profesiones=inst.getListaProfesion();
+//		for (Profesion p : d.getProfesiones()) {
+//			
+//		}
 		dao.save(d);
 	}
 	public List<Docente> getListaDocentes(){
