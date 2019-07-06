@@ -13,8 +13,6 @@ import ec.edu.ups.modelo.Profesion;
 public class DocenteON {
 	
 	@Inject
-	private Instalacion inst;
-	@Inject
 	private DocenteDAO dao;
 	
 	public void guardar(Docente d)throws Exception{
