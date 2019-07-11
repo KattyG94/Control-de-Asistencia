@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam id="id" name="id"
+			value="#{estudianteBean.id}" />
+		<f:viewAction action="#{estudianteBean.loadData()}" />
+	</f:metadata>
+</h:head>
+<body>
+	<br />
+	<h2 align="center">Datos del Estudiante</h2>
+	<br />
+	<h:form>
+		<h:panelGrid columns="3" cellpadding="10">
+		
+			<h:outputLabel value="ID" style="display:none;" />
+			<h:inputHidden value="#{estudianteBean.newEstudiante.id}" id="txtid" />
+			<h:message for="txtid" />
+		
+			<h:outputLabel value="Cedula" />
+			<h:inputText value="#{estudianteBean.newEstudiante.cedula}"
+				id="txtcedula" />
+			<h:message for="txtcedula" />
+
+			<h:outputLabel value="Nombre" />
+			<h:inputText value="#{estudianteBean.newEstudiante.nombre}"
+				id="txtnombre" />
+			<h:message for="txtnombre" />
+
+			<h:outputLabel value="Apellido" />
+			<h:inputText value="#{estudianteBean.newEstudiante.apellido}"
+				id="txtapellido" />
+			<h:message for="txtapellido" />
+
+			<h:outputLabel value="Fecha de nacimiento" />
+			<h:inputText value="#{estudianteBean.newEstudiante.fechanac}"
+				id="txtfecnacimiento" />
+			<h:message for="txtfecnacimiento" />
+
+			<h:outputLabel value="Genero" />
+			<h:inputText value="#{estudianteBean.newEstudiante.genero}"
+				id="txtgenero" />
+			<h:message for="txtgenero" />
+
+			<h:outputLabel value="Telefono" />
+			<h:inputText value="#{estudianteBean.newEstudiante.telefono}"
+				id="txttelefono" />
+			<h:message for="txttelefono" />
+
+			<h:outputLabel value="Dirección" />
+			<h:inputText value="#{estudianteBean.newEstudiante.direccion}"
+				id="txtdireccion" />
+			<h:message for="txtdireccion" />
+
+			<h:outputLabel value="Usuario" />
+			<h:inputText value="#{estudianteBean.newEstudiante.usuario}"
+				id="txtusuario" />
+			<h:message for="txtusuario" />
+
+			<h:outputLabel value="Clave" />
+			<h:inputText value="#{estudianteBean.newEstudiante.clave}"
+				id="txtclave" />
+			<h:message for="txtclave" />
+		</h:panelGrid>
+		<h:commandButton action="#{estudianteBean.guardar()}" value="Guardar" />
+		<h:inputHidden value="#{estudianteBean.editing}" />
+		<h:messages globalOnly="true" />
+	</h:form>
+</body>
+</html>
