@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
+<<<<<<< HEAD
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
@@ -25,4 +26,36 @@
 		</div>
 	</h:form>
 </body>
+=======
+	xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://xmlns.jcp.org/jsf/html">
+<h:outputStylesheet library="css" name="cssLogin.css"></h:outputStylesheet>
+
+<h:head>
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+	<!--JavaScript at end of body for optimized loading-->
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<!-- Compiled and minified JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</h:head>
+<h:body>
+
+<b:form horizontal="true">
+  <b:formGroup>
+    <b:selectOneMenu value="#{flip.listaDocente}" colMd="2" required="true" label="Select your car's brand:" labelColMd="2">
+      <f:selectItem itemLabel="(Please select)" itemValue="" />
+      <f:selectItem itemLabel="Fiat" itemValue="1" />
+    </b:selectOneMenu>
+    <b:message for="@previous" colMd="2" />
+    <b:inputText value="#{flip.docente.apellido}" disabled="true" colMd="4" label="Last submitted value:" labelColMd="2" />
+  </b:formGroup>
+</b:form>
+
+	
+</h:body>
+>>>>>>> e93974608917b4d2a08f88b61d2ec159f5a4f433
 </html>

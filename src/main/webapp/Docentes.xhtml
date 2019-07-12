@@ -1,122 +1,117 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://java.sun.com/jsf/html">
+<!-- <h:outputStylesheet library="css" name="cssdocente.css"></h:outputStylesheet> -->
+<h:head>
+<f:metadata>
+		<f:viewParam name="id" value="#{docenteControlador.id}"></f:viewParam>
+		<f:viewAction action="#{docenteControlador.loadData()}"/>
+	</f:metadata>
+	<!-- Compiled and minified CSS -->
+	<!-- 	<link rel="stylesheet" -->
+	<!-- 		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" /> -->
+	<!--JavaScript at end of body for optimized loading -->
+	<!-- 	<script type="text/javascript" src="js/materialize.min.js"></script> -->
+	<!-- Compiled and minified JavaScript -->
+	<!-- 	<script -->
+	<!-- 		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+	<!-- 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
+	<!-- Compiled and minified JavaScript -->
+	<!-- 	<script -->
+	<!-- 		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/js/materialize.min.js"></script> -->
+</h:head>
+<h:body>
+			<h:form id="form">
+				<div id="formulario">
+					<h:panelGrid columns="3" cellpadding="5">
 
-<h:head></h:head> 
-<body> 
-<h:form>
-		<h:panelGrid columns="3">
-			<p:outputLabel value="Codigo:" />
-			<p:inputText value="#{controlador.docente.id}" id="txtId" />
-			<p:message for="txtId" />
-			<p:outputLabel value="Nombres:" />
-			<p:inputText value="#{controlador.docente.nombre}" id="txtNombre" />
-			<p:message for="txtNombre" />
-			<p:outputLabel value="Apellidos:" />
-			<p:inputText value="#{controlador.docente.apellido}" id="txtApe" />
-			<p:message for="txtApe" />
-			<p:outputLabel value="Cedula:" />
-			<p:inputText value="#{controlador.docente.cedula}" id="txtCedula" />
-			<p:message for="txtCedula" />
-			<p:outputLabel for="button" value="Fecha Nac." />
-			<p:calendar id="button" value="#{controlador.docente.fechaNac}"
-				showOn="button" style="width:105px" />
-			<p:message for="button" />
-			<p:outputLabel for="console" value="Sexo:" />
-			<p:selectOneMenu id="console" value="#{controlador.docente.sexo}"
-				style="width:185px">
-				<f:selectItem itemLabel="Seleccione:" itemValue="" />
-				<f:selectItem itemLabel="Masculino" itemValue="M" />
-				<f:selectItem itemLabel="Femenino" itemValue="F" />
-			</p:selectOneMenu>
-			<p:message for="console" />
-			<p:outputLabel value="Telefono:" />
-			<p:inputText value="#{controlador.docente.telefono}" id="txtTel" />
-			<p:message for="txtTel" />
-			<p:outputLabel value="Direccion:" />
-			<p:inputText value="#{controlador.docente.direccion}" id="txtDir" />
-			<p:message for="txtDir" />
-			<p:outputLabel for="profesion" value="Profesion:" />
-			<p:selectOneMenu id="profesion"
-				value="#{controlador.docente.profesion}" style="width:185px">
-				<f:selectItem itemLabel="Seleccione:" itemValue="" />
-				<f:selectItem itemLabel="Abogado" itemValue="Abogado" />
-				<f:selectItem itemLabel="Arquitecto" itemValue="Arquitecto" />
-				<f:selectItem itemLabel="Ingeniero" itemValue="Ingeniero" />
-				<f:selectItem itemLabel="Licenciado" itemValue="Licenciado" />
-			</p:selectOneMenu>
-			<p:message for="profesion" />
-			<p:outputLabel for="txtNE" value="Nivel Estudio:" />
-			<p:selectOneMenu id="txtNE"
-				value="#{controlador.docente.nivelEstudio}" style="width:185px">
-				<f:selectItem itemLabel="Seleccione:" itemValue="" />
-				<f:selectItem itemLabel="Primaria" itemValue="Primaria" />
-				<f:selectItem itemLabel="Secundaria" itemValue="Secundaria" />
-				<f:selectItem itemLabel="Medio-Superior" itemValue="Medio-Superior" />
-				<f:selectItem itemLabel="Superior" itemValue="Superior" />
-			</p:selectOneMenu>
-			<p:message for="txtNE" />
-			<p:outputLabel value="Usuario:" />
-			<p:inputText value="#{controlador.docente.usuario}" id="txtUsr" />
-			<p:message for="txtUsr" />
-			<p:outputLabel value="Contrasenia:" />
-			<p:inputText value="#{controlador.docente.clave}" id="txtPass" />
-			<p:message for="txtPass" />
+						<p:outputLabel value="Nombres" />
+						<p:inputText value="#{docenteControlador.docente.nombre}"
+							id="txtNombre" placeholder="Nombres" />
+						<p:message for="txtNombre" />
+
+						<p:outputLabel value="Apellidos:" />
+						<p:inputText value="#{docenteControlador.docente.apellido}"
+							id="txtApe" placeholder="Apellidos" />
+						<p:message for="txtApe" />
+
+						<p:outputLabel value="Cedula:" />
+						<p:inputText value="#{docenteControlador.docente.cedula}"
+							id="txtCedula" placeholder="Cedula" />
+						<p:message for="txtCedula" />
+
+						<p:outputLabel for="button" value="Fecha Nac." />
+						<p:calendar id="button"
+							value="#{docenteControlador.docente.fechaNac}" showOn="button"
+							style="width:50px" />
+						<p:message for="button" />
+
+						<p:outputLabel for="console" value="Sexo:" />
+						<p:selectOneMenu id="console"
+							value="#{docenteControlador.docente.sexo}" style="width:185px">
+							<f:selectItem itemLabel="--Seleccione--" itemValue="" />
+							<f:selectItem itemLabel="Masculino" itemValue="M" />
+							<f:selectItem itemLabel="Femenino" itemValue="F" />
+						</p:selectOneMenu>
+						<p:message for="console" />
+
+						<p:outputLabel value="Telefono:" />
+						<p:inputText value="#{docenteControlador.docente.telefono}"
+							id="txtTel" placeholder="Telefono" />
+						<p:message for="txtTel" />
+
+						<p:outputLabel value="Direccion:" />
+						<p:inputText value="#{docenteControlador.docente.direccion}"
+							id="txtDir" placeholder="Direccion" />
+						<p:message for="txtDir" />
+
+						<p:outputLabel for="nivEstudio" value="Nivel Estdio" />
+						<p:selectOneMenu id="nivEstudio"
+							value="#{docenteControlador.docente.nivelEstudio}"
+							style="width:185px">
+							<f:selectItem itemLabel="--Seleccione--" itemValue="" />
+							<f:selectItem itemLabel="Bachillerato" itemValue="Bachillerato" />
+							<f:selectItem itemLabel="Tercer Niver" itemValue="Tercer Niver" />
+							<f:selectItem itemLabel="Cuarto Nivel" itemValue="Cuarto Nivel" />
+						</p:selectOneMenu>
+						<p:message for="nivEstudio" />
+
+						<p:outputLabel for="prof" value="Profesion:" />
+						<p:selectOneMenu id="prof"
+							value="#{docenteControlador.docente.profesion}"
+							style="width:185px">
+							<f:selectItem itemLabel="--Seleccione--" itemValue="" />
+							<f:selectItem itemLabel="Ingeniero" itemValue="Ingeniero" />
+							<f:selectItem itemLabel="Abogado" itemValue="Abogado" />
+							<f:selectItem itemLabel="Medico" itemValue="Medico" />
+							<f:selectItem itemLabel="Arquitecto" itemValue="Arquitecto" />
+						</p:selectOneMenu>
+						<p:message for="prof" />
+
+						<p:outputLabel value="Usuario:" />
+						<p:inputText value="#{docenteControlador.docente.usuario}"
+							id="txtUsr" placeholder="Usuario" />
+						<p:message for="txtUsr" />
+
+						<p:outputLabel value="Contrasenia:" />
+						<p:inputText value="#{docenteControlador.docente.clave}"
+							id="txtPass" placeholder="Contraseña" />
+						<p:message for="txtPass" />
+					</h:panelGrid>
+					<h:panelGrid columns="3">
+						<h:commandButton action="#{docenteControlador.cargarDatos()}"
+							value="GUARDAR" />
+						<h:commandButton action="#{docenteControlador.listadoDocentes()}"
+							value="LISTAR" immediate="true" />
+					</h:panelGrid>
+				</div>
 
 
-		</h:panelGrid>
+			</h:form>
 
-		<h:panelGrid columns="7">
-			<h:commandButton value="REGISTRAR" 
-				action="#{controlador.cargarDatos()}" style="margin-right:20px;"/>
-		</h:panelGrid>
-
-		<p:dataTable value="#{controlador.listaDocente}" var="docente"
-			border="1">
-			<p:column headerText="Codigo">
-				#{docente.id}
-			</p:column>
-			<p:column headerText="Nombre">
-				#{docente.nombre}
-			</p:column>
-			<p:column headerText="Apellido">
-				#{docente.apellido}
-			</p:column>
-			<p:column headerText="Cedula">
-				#{docente.cedula}
-			</p:column>
-			<p:column headerText="Telefono">
-				#{docente.telefono}
-			</p:column>
-			<p:column headerText="Pofesion">
-				#{docente.profesion}
-			</p:column>
-			<p:column headerText="Nivel Estudio">
-				#{docente.nivelEstudio}
-			</p:column>
-			<p:column headerText="Fecha Nacimiento">
-				#{docente.fechaNac}
-			</p:column>
-			<p:column headerText="Sexo">
-				#{docente.sexo}
-			</p:column>
-			<p:column headerText="Usuario">
-				#{docente.usuario}
-			</p:column>
-			<p:column headerText="Clave">
-				#{docente.clave}
-			</p:column>
-			<p:column headerText="Acciones">
-				<h:commandButton action="#{controlador.editar(docente.id)}"
-					value="Editar" immediate="true" />
-				<h:commandButton action="#{controlador.borrar(docente.id)}"
-					value="Borrar" immediate="true" />
-			</p:column>
-		</p:dataTable>
-	</h:form>
-
-</body> 
+</h:body>
 </html>
