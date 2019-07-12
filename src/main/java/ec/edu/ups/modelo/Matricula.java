@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Matricula {
@@ -14,6 +18,11 @@ public class Matricula {
 	@Column(name = "id")
 	private int id;
 
+	@OneToOne
+	@JoinColumn(name = "id")
+	@JsonIgnore
+	private Carrera carrera;
+
 	public int getId() {
 		return id;
 	}
@@ -21,5 +30,13 @@ public class Matricula {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
+	public Carrera getCarrera() {
+		return carrera;
+	}
+
+	public void setCarrera(Carrera carrera) {
+		this.carrera = carrera;
+	}
+
 }

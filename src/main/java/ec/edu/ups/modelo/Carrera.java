@@ -35,7 +35,7 @@ public class Carrera {
 	private int numCiclos;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "matricula_codigo")
+	@JoinColumn(name = "carrera_codigo")
 	private List<Matricula> matriculas;
 
 	public int getId() {
