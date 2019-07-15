@@ -7,8 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -18,24 +16,23 @@ import javax.validation.constraints.NotNull;
 public class Carrera {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
+	@Column(name = "carrera_codigo")
 	private int id;
 
 	@NotNull
-	@Column(name = "nombre")
+	@Column(name = "carrera_nombre")
 	private String nombre;
 
 	@NotNull
-	@Column(name = "descripcion")
+	@Column(name = "carrera_descripcion")
 	private String descripcion;
 
 	@NotNull
-	@Column(name = "numCiclos")
+	@Column(name = "carrera_numero_ciclos")
 	private int numCiclos;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "carrera_codigo")
+	@JoinColumn(name = "carrera_matricula")
 	private List<Matricula> matriculas;
 
 	public int getId() {
@@ -78,17 +75,18 @@ public class Carrera {
 		this.matriculas = matriculas;
 	}
 
-	public void addMatriculas(Matricula matricula) {
-		if (matriculas == null) {
-			matriculas = new ArrayList<>();
-		}
-		this.matriculas.add(matricula);
-	}
-
 	@Override
 	public String toString() {
-		return "Carrera [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", numCiclos=" + numCiclos
-				+ ", matriculas=" + matriculas + "]";
+		return "Carrera [codigo=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", numCiclos="
+				+ numCiclos + ", matriculas=" + matriculas + "]";
+	}
+
+	public void addMatricula(Matricula matricula) {
+		if(matriculas==null) {
+			matriculas=new ArrayList<>();
+		}else {
+			this.matriculas.add(matricula);
+		}
 	}
 
 }

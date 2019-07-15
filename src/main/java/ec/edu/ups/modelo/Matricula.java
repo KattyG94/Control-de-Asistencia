@@ -2,11 +2,11 @@ package ec.edu.ups.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -14,29 +14,33 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Matricula {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
+	@Column(name = "matricula_codigo")
 	private int id;
 
 	@OneToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "carrera_matricula")
 	@JsonIgnore
-	private Carrera carrera;
+	private Matricula matricula;
 
 	public int getId() {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int codigo) {
+		this.id = codigo;
 	}
 
-	public Carrera getCarrera() {
-		return carrera;
+	public Matricula getMatricula() {
+		return matricula;
 	}
 
-	public void setCarrera(Carrera carrera) {
-		this.carrera = carrera;
+	public void setMatricula(Matricula matricula) {
+		this.matricula = matricula;
+	}
+
+	@Override
+	public String toString() {
+		return "Matricula [codigo=" + id + ", matricula=" + matricula + "]";
 	}
 
 }

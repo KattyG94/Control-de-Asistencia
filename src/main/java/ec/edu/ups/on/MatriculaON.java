@@ -14,8 +14,8 @@ public class MatriculaON {
 	@Inject
 	private MatriculaDAO matriculaDAO;
 
-	public void guardar(Matricula matricula) throws Exception {
-		matriculaDAO.save(matricula);
+	public void guardar(Matricula matricula) {
+		matriculaDAO.create(matricula);
 	}
 
 	public List<Matricula> getListaMatriculas() {

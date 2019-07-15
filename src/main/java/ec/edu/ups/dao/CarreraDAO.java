@@ -18,35 +18,35 @@ public class CarreraDAO {
 	public void save(Carrera carrera) {
 		if (this.read(carrera.getId()) != null) {
 			this.update(carrera);
-		}else {
+		} else {
 			this.create(carrera);
 		}
 	}
-	
+
 	public void create(Carrera carrera) {
 		manager.persist(carrera);
 	}
-	
+
 	public Carrera read(int id) {
 		return manager.find(Carrera.class, id);
 	}
-	
+
 	public void update(Carrera carrera) {
 		manager.merge(carrera);
 	}
-	
+
 	public void delete(int id) {
 		Carrera carrera = read(id);
 		manager.remove(carrera);
 	}
-	
+
 	public List<Carrera> getCarreras() {
 		String jpql = "SELECT carrera FROM Carrera carrera";
 		Query query = manager.createQuery(jpql, Carrera.class);
 		List<Carrera> carreras = query.getResultList();
 		return carreras;
 	}
-	
+
 	public Carrera getCarrera(int id) {
 		String jpql = "SELECT carrera FROM Carrera carrera WHERE carrera.id =: id";
 		Query query = manager.createQuery(jpql, Carrera.class);

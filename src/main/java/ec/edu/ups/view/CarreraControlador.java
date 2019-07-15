@@ -1,4 +1,4 @@
-package ec.edu.ups.view;
+package ec.edu.ups.est.view;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
-import ec.edu.ups.modelo.Carrera;
-import ec.edu.ups.on.CarreraON;
+import ec.edu.ups.est.modelo.Carrera;
+import ec.edu.ups.est.on.CarreraON;
 
 @ManagedBean
 public class CarreraControlador {
@@ -73,6 +73,7 @@ public class CarreraControlador {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		return null;
 	}
 
 	public String editar(int id) {
