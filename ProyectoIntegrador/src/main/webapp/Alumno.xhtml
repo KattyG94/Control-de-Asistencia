@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{alumnoController.codigo}"></f:viewParam>
+		<f:viewAction action="#{alumnoController.loadDatos()}"/>
+	</f:metadata>
+
+</h:head> 
+
+<body> 
+
+<h:form>
+
+	<h:messages globalOnly="true"/>
+
+	<h:panelGrid columns="3">
+		<h:outputLabel value="Codigo" />
+		<h:inputText value="#{alumnoController.alumno.codigo}" id="txtCodigo"/>
+		<h:message for="txtCodigo"/>
+		
+		<h:outputLabel value="Nombres" />
+		<h:inputText value="#{alumnoController.alumno.nombres}" id="txtNombres" />
+		<h:message for="txtNombres"/>
+		
+		<h:outputLabel value="Apellidos" />
+		<h:inputText value="#{alumnoController.alumno.apellidos}" id="txtApellidos" />
+		<h:message for="txtApellidos"/>
+		
+
+		<h:commandButton action="#{alumnoController.cargarDatos()}" value="Guardar" />
+		
+		
+	
+	</h:panelGrid>
+	
+	
+	<h:dataTable value="#{alumnoController.listadoAlumnos}" var="alumno">
+		<h:column>
+			<f:facet name="header">Código</f:facet>
+			#{alumno.codigo}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Nombres</f:facet>
+			#{alumno.nombres}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Apellidos</f:facet>
+			#{alumno.apellidos}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Acciones</f:facet>
+			<h:commandButton action="#{alumnoController.editar(alumno.codigo)}" immediate="true" value="Editar" />
+			<h:commandButton action="#{alumnoController.borrar(alumno.codigo)}" immediate="true" value="Borrar" />
+			
+		</h:column>
+	
+	</h:dataTable>
+
+
+</h:form>
+
+
+</body> 
+</html>

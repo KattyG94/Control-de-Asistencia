@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{temaController.codigo}"></f:viewParam>
+		<f:viewAction action="#{temaController.loadDatos()}"/>
+	</f:metadata>
+
+</h:head> 
+
+<body> 
+
+<h:form>
+
+	<h:messages globalOnly="true"/>
+
+	<h:panelGrid columns="3">
+		<h:outputLabel value="Codigo" />
+		<h:inputText value="#{temaController.tema.codigo}" id="txtCodigo"/>
+		<h:message for="txtCodigo"/>
+		
+		<h:outputLabel value="Nombre" />
+		<h:inputText value="#{temaController.tema.descripcion}" id="txtDescripcion" />
+		<h:message for="txtDescripcion"/>
+		
+
+		<h:commandButton action="#{temaController.cargarDatos()}" value="Guardar" />
+		
+		
+	
+	</h:panelGrid>
+	
+	
+	<h:dataTable value="#{temaController.listadoTemas}" var="tema">
+		<h:column>
+			<f:facet name="header">Código</f:facet>
+			#{tema.codigo}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Descripcion</f:facet>
+			#{tema.descripcion}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Acciones</f:facet>
+			<h:commandButton action="#{temaController.editar(tema.codigo)}" immediate="true" value="Editar" />
+			<h:commandButton action="#{temaController.borrar(tema.codigo)}" immediate="true" value="Borrar" />
+			
+		</h:column>
+	
+	</h:dataTable>
+
+
+</h:form>
+
+
+</body> 
+</html>
