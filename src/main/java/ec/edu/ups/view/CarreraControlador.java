@@ -99,5 +99,9 @@ public class CarreraControlador {
 		carrera = new Carrera();
 		return "Carrera";
 	}
+	
+	public String redirectCarrera() {
+		return "Carrera";
+	}
 
 }

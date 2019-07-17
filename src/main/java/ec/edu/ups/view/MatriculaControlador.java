@@ -99,4 +99,8 @@ public class MatriculaControlador {
 		matricula = new Matricula();
 		return "Matriculas";
 	}
+	
+	public String redirectMatricula() {
+		return "Matricula";
+	}
 }

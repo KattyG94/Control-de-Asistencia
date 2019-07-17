@@ -4,20 +4,11 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
-<h:head></h:head>
 <body>
-	<h:form>
-		<div id="componentes">
-			<h:commandLink action="/RegistroDocente" value="Registro de Docentes" /><br />
-			<h:commandLink action="/RegistroDocente" value="Registro de Estudiantes" /><br />
-			<h:commandLink action="/RegistroDocente" value="Administración de Periodos" /><br />
-			<h:commandLink action="/RegistroDocente" value="Administración de Carreras" /><br />
-			<h:commandLink action="/RegistroDocente" value="Administración de Materias" /><br />
-			<h:commandLink action="/RegistroDocente" value="Administración de Asistencia" /><br />
-			<h:commandLink action="/RegistroDocente" value="Administración de Grupos" /><br />
-			<h:commandLink action="/RegistroDocente" value="Administración de Roles" /><br />
-			<h:commandLink action="/RegistroDocente" value="Administración de Encuestas" /><br />
-		</div>
-	</h:form>
+	<ui:composition>
+		<h3 class="text-center">
+			<h:outputLabel value="Bienvenido Al Sistema" />
+		</h3>
+	</ui:composition>
 </body>
 </html>
