@@ -27,8 +27,5 @@ public class Alumno extends Usuario {
 	public String toString() {
 		return "Alumno [grupos=" + grupos + "]";
 	}
-	
-	
-	
 
 }
