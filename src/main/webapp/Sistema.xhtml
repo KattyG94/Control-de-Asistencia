@@ -23,14 +23,14 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-2 col-md-2 d-none d-md-block bg-light sidebar border">
+			<div class="col-2 col-md-2 d-none d-md-block sidebar border border-secondary" style='background-color:#999999;'>
 				<div id="Menu" class="sidebar-sticky">
 					<ui:insert name="menus">
 						<ui:include src="/comun/Menu.xhtml" />
 					</ui:insert>
 				</div>
 			</div>
-			<div class="col-10">
+			<div class="col-10 border border-secondary">
 				<div id="Cuerpo">
 					<ui:insert name="body">
 						<ui:include src="/comun/Cuerpo.xhtml" />
@@ -38,8 +38,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-12">
+		<div class="row text-center navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow">
+			<div class="col-12 ">
 				<div id="Pie">
 					<ui:insert name="footer">
 						<ui:include src="/comun/Pie.xhtml" />
