@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://java.sun.com/jsf/html">
+<h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
+
+
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{docenteControlador.id}"></f:viewParam>
+		<f:viewAction action="#{docenteControlador.loadData()}" />
+	</f:metadata>
+</h:head>
+<h:body >
+<div id="page-top">
+<div id="wrapper">
+	<h:form id="form">
+		<div id="formulario">
+			<h:panelGrid columns="3" cellpadding="5">
+
+				<p:outputLabel value="Nombres" />
+				<p:inputText value="#{docenteControlador.docente.nombres}"
+					id="txtNombre" placeholder="Nombres" />
+				<p:message for="txtNombre" />
+
+				<p:outputLabel value="Apellidos:" />
+				<p:inputText value="#{docenteControlador.docente.apellidos}"
+					id="txtApe" placeholder="Apellidos" />
+				<p:message for="txtApe" />
+
+				<p:outputLabel value="Cedula:" />
+				<p:inputText value="#{docenteControlador.docente.cedula}"
+					id="txtCedula" placeholder="Cedula" />
+				<p:message for="txtCedula" />
+
+				<p:outputLabel for="button" value="Fecha Nac." />
+				<p:calendar id="button"
+					value="#{docenteControlador.docente.fechaNac}" showOn="button"
+					style="width:50px" />
+				<p:message for="button" />
+
+				<p:outputLabel for="console" value="Sexo:" />
+				<p:selectOneMenu id="console"
+					value="#{docenteControlador.docente.genero}" style="width:185px">
+					<f:selectItem itemLabel="--Seleccione--" itemValue="" />
+					<f:selectItem itemLabel="Masculino" itemValue="M" />
+					<f:selectItem itemLabel="Femenino" itemValue="F" />
+				</p:selectOneMenu>
+				<p:message for="console" />
+
+				<p:outputLabel value="Telefono:" />
+				<p:inputText value="#{docenteControlador.docente.telefono}"
+					id="txtTel" placeholder="Telefono" />
+				<p:message for="txtTel" />
+
+				<p:outputLabel value="Direccion:" />
+				<p:inputText value="#{docenteControlador.docente.direccion}"
+					id="txtDir" placeholder="Direccion" />
+				<p:message for="txtDir" />
+
+				<p:outputLabel for="nivEstudio" value="Nivel Estdio" />
+				<p:selectOneMenu id="nivEstudio"
+					value="#{docenteControlador.docente.nivelEstudio}"
+					style="width:185px">
+					<f:selectItem itemLabel="--Seleccione--" itemValue="" />
+					<f:selectItem itemLabel="Bachillerato" itemValue="Bachillerato" />
+					<f:selectItem itemLabel="Tercer Niver" itemValue="Tercer Niver" />
+					<f:selectItem itemLabel="Cuarto Nivel" itemValue="Cuarto Nivel" />
+				</p:selectOneMenu>
+				<p:message for="nivEstudio" />
+
+				<p:outputLabel for="prof" value="Profesion:" />
+				<p:selectOneMenu id="prof"
+					value="#{docenteControlador.docente.profesion}" style="width:185px">
+					<f:selectItem itemLabel="--Seleccione--" itemValue="" />
+					<f:selectItem itemLabel="Ingeniero" itemValue="Ingeniero" />
+					<f:selectItem itemLabel="Abogado" itemValue="Abogado" />
+					<f:selectItem itemLabel="Medico" itemValue="Medico" />
+					<f:selectItem itemLabel="Arquitecto" itemValue="Arquitecto" />
+				</p:selectOneMenu>
+				<p:message for="prof" />
+
+				<p:outputLabel value="Usuario:" />
+				<p:inputText value="#{docenteControlador.docente.correo}"
+					id="txtUsr" placeholder="Usuario" />
+				<p:message for="txtUsr" />
+
+				<p:outputLabel value="Contrasenia:" />
+				<p:inputText value="#{docenteControlador.docente.contrasena}"
+					id="txtPass" placeholder="Contraseña" />
+				<p:message for="txtPass" />
+			</h:panelGrid>
+
+			<h:panelGrid columns="2">
+				<h:outputText value="" />
+				<h:commandButton action="#{docenteControlador.addRol()}"
+					value="+ Rol" immediate="true"/>
+
+			</h:panelGrid>
+
+			<h:dataTable value="#{docenteControlador.docente.roles}" var="rol">
+				<h:column>
+					<f:facet name="header">Código</f:facet>
+					<h:inputText value="#{rol.codigo}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Rol</f:facet>
+					<h:inputText value="#{rol.codigoTemRol}" id="txtAutorLibro">
+						<f:ajax render="lblAutorNombre" execute="txtAutorLibro" listener="#{docenteControlador.buscarRol(rol)}" event="keyup" />
+					</h:inputText>
+					<h:outputText id="lblAutorNombre" value="#{rol.rol.nombreRol}" />
+				    <h:message for="txtAutorLibro"/>
+				</h:column>
+
+			</h:dataTable>
+
+			<h:panelGrid columns="3">
+				<h:commandButton action="#{docenteControlador.cargarDatos()}"
+					value="GUARDAR" />
+				<h:commandButton action="#{docenteControlador.listadoDocentes()}"
+					value="LISTAR" immediate="true" />
+			</h:panelGrid>
+			
+		</div>
+	</h:form>
+	</div>
+	</div>
+</h:body>
+</html>
+	
