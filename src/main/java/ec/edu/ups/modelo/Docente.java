@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
-
+//Prueba de funcionamiento
 
 @Entity
 public class Docente extends Usuario{
