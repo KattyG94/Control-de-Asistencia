@@ -1,0 +1,18 @@
+@charset "ISO-8859-1";
+body{
+	margin: 0;
+	padding: 0;
+	
+}
+h3{
+	text-align: center;
+	color: red;
+	
+}
+.ui-float-label {
+
+  
+}
+.ui-panelgrid{
+	background: aqua;
+}

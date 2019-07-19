@@ -131,8 +131,4 @@ public class DocenteControlador {
 	public void setListaDocente(List<Docente> listaDocente) {
 		this.listaDocente = listaDocente;
 	}
-	public static void Mamin(String []args) {
-		
-		
-	}
 }

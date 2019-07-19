@@ -18,7 +18,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @MappedSuperclass
 public class Usuario {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 	@Size(min = 1, max = 10)
 	private String cedula;
