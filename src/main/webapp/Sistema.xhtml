@@ -2,7 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://java.sun.com/jsf/html">
 
 <h:head>
 	<meta name="viewport"
@@ -23,7 +25,9 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-2 col-md-2 d-none d-md-block sidebar border border-secondary" style='background-color:#999999;'>
+			<div
+				class="col-2 col-md-2 d-none d-md-block sidebar border border-secondary"
+				style='background-color: #999999;'>
 				<div id="Menu" class="sidebar-sticky">
 					<ui:insert name="menus">
 						<ui:include src="/comun/Menu.xhtml" />
@@ -38,7 +42,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="row text-center navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow">
+		<div
+			class="row text-center navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow">
 			<div class="col-12 ">
 				<div id="Pie">
 					<ui:insert name="footer">

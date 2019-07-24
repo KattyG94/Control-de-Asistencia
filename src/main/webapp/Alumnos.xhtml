@@ -8,8 +8,8 @@
 <h:head>
 
 	<f:metadata>
-		<f:viewParam name="id" value="#{docenteControlador.id}"></f:viewParam>
-		<f:viewAction action="#{docenteControlador.loadData()}" />
+		<f:viewParam name="id" value="#{alunmoControlador.id}"></f:viewParam>
+		<f:viewAction action="#{alunmoControlador.loadData()}" />
 	</f:metadata>
 </h:head>
 <body>
@@ -21,39 +21,39 @@
 		xmlns:b="http://java.sun.com/jsf/html" template="/Sistema.xhtml">
 		<ui:define name="body">
 			<div class="row" style="height: 728px;">
-				<!-- Crear Docente-->
+				<!-- Crear Alumno-->
 				<div class="col-5">
 					<div class=" border border-dark m-2 p-2 rounded"
 						style="height: 710px;">
 						<h:form>
 							<h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
-							<h:outputLabel value="Agregar Docente" styleClass="text-info" />
+							<h:outputLabel value="Agregar Alumno" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
 							<h:panelGrid columns="3" cellpadding="5">
 								<p:outputLabel value="Nombres:" />
-								<p:inputText value="#{docenteControlador.docente.nombres}"
+								<p:inputText value="#{alunmoControlador.alumno.nombres}"
 									id="txtNombre" placeholder="Nombres" />
 								<p:message for="txtNombre" />
 
 								<p:outputLabel value="Apellidos:" />
-								<p:inputText value="#{docenteControlador.docente.apellidos}"
+								<p:inputText value="#{alunmoControlador.alumno.apellidos}"
 									id="txtApe" placeholder="Apellidos" />
 								<p:message for="txtApe" />
 
 								<p:outputLabel value="Cedula:" />
-								<p:inputText value="#{docenteControlador.docente.cedula}"
+								<p:inputText value="#{alunmoControlador.alumno.cedula}"
 									id="txtCedula" placeholder="Cedula" />
 								<p:message for="txtCedula" />
 
 								<p:outputLabel for="fNaci" value="Fec. Nacimiento" />
 								<p:calendar id="fNaci"
 									requiredMessage="Fecha de nacimiento requerida"
-									value="#{docenteControlador.docente.fechaNac}" locale="es"
+									value="#{alunmoControlador.alumno.fechaNac}" locale="es"
 									required="true" />
 								<p:message for="fNaci" />
 
 								<p:outputLabel value="Sexo:" />
-								<h:selectOneMenu value="#{docenteControlador.docente.genero}"
+								<h:selectOneMenu value="#{alunmoControlador.alumno.genero}"
 									id="txtgenero">
 									<f:selectItem itemValue="" itemLabel="    --Seleccione--    " />
 									<f:selectItem itemValue="Masculino" itemLabel="Masculino" />
@@ -62,68 +62,31 @@
 								<p:message for="txtgenero" />
 
 								<p:outputLabel value="Telefono:" />
-								<p:inputText value="#{docenteControlador.docente.telefono}"
+								<p:inputText value="#{alunmoControlador.alumno.telefono}"
 									id="txtTel" placeholder="Telefono" />
 								<p:message for="txtTel" />
 
 								<p:outputLabel value="Direccion:" />
-								<p:inputText value="#{docenteControlador.docente.direccion}"
+								<p:inputText value="#{alunmoControlador.alumno.direccion}"
 									id="txtDir" placeholder="Direccion" />
 								<p:message for="txtDir" />
 
-								<p:outputLabel value="Profesion" />
-								<p:inputText value="#{docenteControlador.docente.profesion}"
-									id="txtProf" placeholder="Profesion" />
-								<p:message for="txtProf" />
-
 								<p:outputLabel value="Usuario:" />
-								<p:inputText value="#{docenteControlador.docente.correo}"
+								<p:inputText value="#{alunmoControlador.alumno.correo}"
 									id="txtUsr" placeholder="Usuario" />
 								<p:message for="txtUsr" />
 
 								<p:outputLabel value="Contrasenia:" />
-								<p:inputText value="#{docenteControlador.docente.contrasena}"
+								<p:inputText value="#{alunmoControlador.alumno.contrasena}"
 									id="txtPass" placeholder="Contraseña" />
 								<p:message for="txtPass" />
 							</h:panelGrid>
 
-<!-- 							<b:panelGrid columns="3"> -->
-<!-- 								<h:outputLabel value="Rol" /> -->
-<!-- 								<b:selectOneMenu value="#{docenteControlador.idRolTemp}" required="true" style="width: 200px"> -->
-<!-- 									<f:selectItem itemLabel="(Please select)" itemValue="" /> -->
-<!-- 									<f:selectItems value="#{docenteControlador.selectOneItemRol}"/> -->
-<!-- 								</b:selectOneMenu> -->
-<!-- 							</b:panelGrid> -->
 
 							<h:panelGrid columns="2">
-								<h:outputText value="" />
-								<h:commandButton action="#{docenteControlador.addRol()}"
-									value="+ Rol" immediate="true" />
-
-							</h:panelGrid>
-
-
-							<h:dataTable value="#{docenteControlador.docente.roles}"
-								var="rol">
-								<h:column>
-									<f:facet name="header">Código</f:facet>
-								</h:column>
-								<h:column>
-									<f:facet name="header">Rol</f:facet>
-									<h:inputText value="#{rol.nombreTemRol}" id="txtAutorLibro">
-										<f:ajax render="lblAutorNombre" execute="txtAutorLibro"
-											listener="#{docenteControlador.buscarRolCodigo(rol)}" event="keyup" />
-									</h:inputText>
-									<h:outputText id="lblAutorNombre" value="#{rol.rol.codigo}" />
-									<h:message for="txtAutorLibro" />
-								</h:column>
-
-							</h:dataTable>
-
-							<h:panelGrid columns="2">
-								<h:commandButton action="#{docenteControlador.cargarDatos()}"
+								<h:commandButton action="#{alunmoControlador.cargarDatos()}"
 									value="GUARDAR" />
-								<h:commandButton action="#{docenteControlador.nuevo()}"
+								<h:commandButton action="#{alunmoControlador.nuevo()}"
 									value="CANCELAR" immediate="true" />
 							</h:panelGrid>
 
@@ -140,7 +103,7 @@
 							<h:outputLabel value="Lista de Docentes" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
 
-							<p:dataTable var="car" value="#{docenteControlador.listaDocente}"
+							<p:dataTable var="car" value="#{alunmoControlador.listaAlumnos}"
 								rows="10" paginator="true"
 								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 								rowsPerPageTemplate="5,10,15">
@@ -156,9 +119,7 @@
 								<p:column headerText="Cedula">
 									<h:outputText value="#{car.cedula}" />
 								</p:column>
-								<p:column headerText="Profesion">
-									<h:outputText value="#{car.profesion}" />
-								</p:column>
+
 								<p:column headerText="Usuario">
 									<h:outputText value="#{car.correo}" />
 								</p:column>
@@ -167,9 +128,9 @@
 								</p:column>
 								<p:column>
 									<f:facet name="header">Acciones</f:facet>
-									<h:commandButton action="#{docenteControlador.editar(car.id)}"
+									<h:commandButton action="#{alunmoControlador.editar(car.id)}"
 										immediate="true" value="Editar" />
-									<h:commandButton action="#{docenteControlador.borrar(car.id)}"
+									<h:commandButton action="#{alunmoControlador.borrar(car.id)}"
 										immediate="true" value="Borrar" />
 
 								</p:column>

@@ -26,15 +26,15 @@ public class ContextoWSRSoa {
 	public Docente listaDocente(int id) {
 		return dON.getDocente(id);
 	}
-	@WebMethod
-	public List<ListadoNombreDocente> getDocenteNombre(){
-		List<ListadoNombreDocente>nombre=new ArrayList<>();
-		List<Docente> listado = dON.getListaDocentes();
-		for (Docente docente : listado) {
-			nombre.add(new ListadoNombreDocente(docente.getNombres(),docente.getApellidos()));
-		}
-		return nombre;
-	}
+//	@WebMethod
+//	public List<ListadoNombreDocente> getDocenteNombre(){
+//		List<ListadoNombreDocente>nombre=new ArrayList<>();
+//		List<Docente> listado = dON.getListaDocentes();
+//		for (Docente docente : listado) {
+//			nombre.add(new ListadoNombreDocente(docente.getNombres(),docente.getApellidos()));
+//		}
+//		return nombre;
+//	}
 	@WebMethod
 	public Response insertDocente(DocenteRol dr) {
 		ResponseBuilder builder=null;

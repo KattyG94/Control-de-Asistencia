@@ -45,17 +45,17 @@ public class ContextoWSRest extends Application {
 		List<Docente> listado = dON.getListaDocentes();
 		return listado;
 	}
-	@GET
-	@Path("listadoDocenteNombreApe")
-	@Produces("application/json")
-	public List<ListadoNombreDocente> getDocenteNombre(){
-		List<ListadoNombreDocente>nombre=new ArrayList<>();
-		List<Docente> listado = dON.getListaDocentes();
-		for (Docente docente : listado) {
-			nombre.add(new ListadoNombreDocente(docente.getNombres() ,docente.getApellidos()));
-		}
-		return nombre;
-	}
+//	@GET
+//	@Path("listadoDocenteNombreApe")
+//	@Produces("application/json")
+//	public List<ListadoNombreDocente> getDocenteNombre(){
+//		List<ListadoNombreDocente>nombre=new ArrayList<>();
+//		List<Docente> listado = dON.getListaDocentes();
+//		for (Docente docente : listado) {
+//			nombre.add(new ListadoNombreDocente(docente.getNombres() ,docente.getApellidos()));
+//		}
+//		return nombre;
+//	}
 	
 	@POST
 	@Path("/saveDocente")
@@ -74,7 +74,7 @@ public class ContextoWSRest extends Application {
 			e.printStackTrace();
 			data.put("code","99");
 			data.put("message", e.getMessage());
-			builder=Response.status(Response.Status.BAD_REQUEST).entity(data);
+			builder=Response.status(Response.Status.OK).entity(data);
 		}
 		return builder.build();
 	}
@@ -94,7 +94,7 @@ public class ContextoWSRest extends Application {
 			e.printStackTrace();
 			data.put("code","99");
 			data.put("message", e.getMessage());
-			builder=Response.status(Response.Status.BAD_REQUEST).entity(data);
+			builder=Response.status(Response.Status.OK).entity(data);
 		}
 		return builder.build();
 	}
