@@ -41,8 +41,8 @@ public class DocenteON {
 	public Rol getRol(int codigo) {
 		return rdao.read(codigo);
 	}
-	public Rol getRolCodigo(String nombreRol) {
-		return rdao.getRolCodigo(nombreRol);
+	public Rol getRolCodigo(int nombreRol) {
+		return rdao.read(nombreRol);
 	}
 	
 	public List<Rol> getRoles(){
@@ -65,4 +65,38 @@ public class DocenteON {
 			throw new Exception("Código no corresponde");
 		}
 	}
+//	public boolean docenteLogin(Docente d)  throws Exception {
+//		boolean bandera=false;
+//		Docente doc=null;
+//		try {
+//			doc=dao.getUsuarioDocente(d);
+//			if(doc!=null) {
+//				bandera =true;
+//			}else {
+//				bandera=false;
+//			}
+//			
+//		} catch (Exception e) {
+//			throw e;
+//		}
+//		return bandera;
+//	}
+	
+	public Docente docenteLogin(String us,String pas)  throws Exception {
+//	boolean bandera=false;
+	Docente doc=null;
+	try {
+		doc=dao.getUsuarioDocente(us,pas);
+		
+//		if(doc!=null) {
+//			bandera =true;
+//		}else {
+//			bandera=false;
+//		}
+		
+	} catch (Exception e) {
+		throw e;
+	}
+	return doc;
+}
 }

@@ -2,6 +2,8 @@ package ec.edu.ups.modelo;
 
 
 
+import java.util.Date;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -27,7 +29,7 @@ public class Usuario {
 	@NotEmpty
 	private String apellidos;
 	@NotNull
-	private String fechaNac;
+	private Date fechaNac;
 	@NotNull
 	@NotEmpty
 	private String genero;
@@ -67,10 +69,10 @@ public class Usuario {
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
-	public String getFechaNac() {
+	public Date getFechaNac() {
 		return fechaNac;
 	}
-	public void setFechaNac(String fechaNac) {
+	public void setFechaNac(Date fechaNac) {
 		this.fechaNac = fechaNac;
 	}
 	public String getGenero() {

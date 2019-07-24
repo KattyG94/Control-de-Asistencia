@@ -11,6 +11,7 @@
 		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="signin.css" />
+	<f:event listener="#{plantillaControler.verificarSesion()}" type="preRenderView"></f:event>
 	<title>Sistema</title>
 </h:head>
 <h:body>
@@ -27,7 +28,7 @@
 		<div class="row">
 			<div
 				class="col-2 col-md-2 d-none d-md-block sidebar border border-secondary"
-				style='background-color: #999999;'>
+				style='background-color: #fff;'>
 				<div id="Menu" class="sidebar-sticky">
 					<ui:insert name="menus">
 						<ui:include src="/comun/Menu.xhtml" />

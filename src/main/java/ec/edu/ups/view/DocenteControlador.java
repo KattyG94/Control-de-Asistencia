@@ -146,7 +146,7 @@ public class DocenteControlador {
 	public String buscarRolCodigo(DocenteRol drol) {
 		System.out.println("buscando Rol " + drol);
 		try {
-			Rol rol = dON.getRolCodigo(drol.getNombreTemRol());
+			Rol rol = dON.getRolCodigo(drol.getCodigoTemRol());
 			drol.setRol(rol);
 		} catch (Exception e) {
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_FATAL, e.getMessage(), "Error");
@@ -154,6 +154,22 @@ public class DocenteControlador {
 		}
 
 		return null;
+	}
+	public String iniciarSesion() throws Exception {
+		boolean doc;
+		String redireccion=null;
+		try {
+			if (doc=dON.docenteLogin(docente.getCorreo(),docente.getContrasena())!=null) {
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", doc);
+				redireccion="Sistema";
+			}else {
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Aviso","Usuario Incorrecto"));
+			}
+			
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Aviso","Error"));
+		}
+		return redireccion;
 	}
 
 	public String addRol() {

@@ -4,7 +4,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:b="http://java.sun.com/jsf/html">
+	xmlns:b="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
 
 	<f:metadata>
@@ -30,70 +31,59 @@
 							<h:outputLabel value="Agregar Docente" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
 							<h:panelGrid columns="3" cellpadding="5">
-								<p:outputLabel value="Nombres:" />
-								<p:inputText value="#{docenteControlador.docente.nombres}"
-									id="txtNombre" placeholder="Nombres" />
-								<p:message for="txtNombre" />
+								
+								<h:outputLabel value="Nombres:" />
+								<h:inputText value="#{docenteControlador.docente.nombres}" id="txtNombre" styleClass="form-control" a:placeholder="Nobres"/>
+								<h:message for="txtNombre" />
 
-								<p:outputLabel value="Apellidos:" />
-								<p:inputText value="#{docenteControlador.docente.apellidos}"
-									id="txtApe" placeholder="Apellidos" />
-								<p:message for="txtApe" />
+								<h:outputLabel value="Apellidos:" />
+								<h:inputText value="#{docenteControlador.docente.apellidos}" id="txtApe"  styleClass="form-control" a:placeholder="Apellidos" />
+								<h:message for="txtApe" />
 
-								<p:outputLabel value="Cedula:" />
-								<p:inputText value="#{docenteControlador.docente.cedula}"
-									id="txtCedula" placeholder="Cedula" />
-								<p:message for="txtCedula" />
+								<h:outputLabel value="Cedula:" />
+								<h:inputText value="#{docenteControlador.docente.cedula}" id="txtCedula"  styleClass="form-control" a:placeholder="Cedula" />
+								<h:message for="txtCedula" />
 
-								<p:outputLabel for="fNaci" value="Fec. Nacimiento" />
+								<h:outputLabel for="fNaci" value="Fec. Nacimiento" />
 								<p:calendar id="fNaci"
 									requiredMessage="Fecha de nacimiento requerida"
 									value="#{docenteControlador.docente.fechaNac}" locale="es"
 									required="true" />
 								<p:message for="fNaci" />
 
-								<p:outputLabel value="Sexo:" />
+								<h:outputLabel value="Sexo:" />
 								<h:selectOneMenu value="#{docenteControlador.docente.genero}"
 									id="txtgenero">
 									<f:selectItem itemValue="" itemLabel="    --Seleccione--    " />
 									<f:selectItem itemValue="Masculino" itemLabel="Masculino" />
 									<f:selectItem itemValue="Femenino" itemLabel="Femenino" />
 								</h:selectOneMenu>
-								<p:message for="txtgenero" />
+								<h:message for="txtgenero" />
 
-								<p:outputLabel value="Telefono:" />
-								<p:inputText value="#{docenteControlador.docente.telefono}"
-									id="txtTel" placeholder="Telefono" />
-								<p:message for="txtTel" />
+								<h:outputLabel value="Telefono:" />
+								<h:inputText value="#{docenteControlador.docente.telefono}" id="txtTel" styleClass="form-control" a:placeholder="Telefono" />
+								<h:message for="txtTel" />
 
-								<p:outputLabel value="Direccion:" />
-								<p:inputText value="#{docenteControlador.docente.direccion}"
-									id="txtDir" placeholder="Direccion" />
-								<p:message for="txtDir" />
+								<h:outputLabel value="Direccion:" />
+								<h:inputText value="#{docenteControlador.docente.direccion}"
+									id="txtDir" styleClass="form-control" a:placeholder="Direccion"  />
+								<h:message for="txtDir" />
 
-								<p:outputLabel value="Profesion" />
-								<p:inputText value="#{docenteControlador.docente.profesion}"
-									id="txtProf" placeholder="Profesion" />
-								<p:message for="txtProf" />
+								<h:outputLabel value="Profesion:" />
+								<h:inputText value="#{docenteControlador.docente.profesion}"
+									id="txtProf" styleClass="form-control" a:placeholder="Profesion" />
+								<h:message for="txtProf" />
 
-								<p:outputLabel value="Usuario:" />
-								<p:inputText value="#{docenteControlador.docente.correo}"
-									id="txtUsr" placeholder="Usuario" />
-								<p:message for="txtUsr" />
+								<h:outputLabel value="Correo:" />
+								<h:inputText value="#{docenteControlador.docente.correo}"
+									id="txtUsr" styleClass="form-control" a:placeholder="Correo" />
+								<h:message for="txtUsr" />
 
-								<p:outputLabel value="Contrasenia:" />
-								<p:inputText value="#{docenteControlador.docente.contrasena}"
-									id="txtPass" placeholder="Contraseña" />
-								<p:message for="txtPass" />
+								<h:outputLabel value="Contraseña:" />
+								<h:inputText value="#{docenteControlador.docente.contrasena}"
+									id="txtPass" styleClass="form-control" a:placeholder="Contraseña"/>
+								<h:message for="txtPass" />
 							</h:panelGrid>
-
-<!-- 							<b:panelGrid columns="3"> -->
-<!-- 								<h:outputLabel value="Rol" /> -->
-<!-- 								<b:selectOneMenu value="#{docenteControlador.idRolTemp}" required="true" style="width: 200px"> -->
-<!-- 									<f:selectItem itemLabel="(Please select)" itemValue="" /> -->
-<!-- 									<f:selectItems value="#{docenteControlador.selectOneItemRol}"/> -->
-<!-- 								</b:selectOneMenu> -->
-<!-- 							</b:panelGrid> -->
 
 							<h:panelGrid columns="2">
 								<h:outputText value="" />
@@ -110,11 +100,11 @@
 								</h:column>
 								<h:column>
 									<f:facet name="header">Rol</f:facet>
-									<h:inputText value="#{rol.nombreTemRol}" id="txtAutorLibro">
+									<h:inputText value="#{rol.codigoTemRol}" id="txtAutorLibro">
 										<f:ajax render="lblAutorNombre" execute="txtAutorLibro"
 											listener="#{docenteControlador.buscarRolCodigo(rol)}" event="keyup" />
 									</h:inputText>
-									<h:outputText id="lblAutorNombre" value="#{rol.rol.codigo}" />
+									<h:outputText id="lblAutorNombre" value="#{rol.rol.nombreRol}" />
 									<h:message for="txtAutorLibro" />
 								</h:column>
 
