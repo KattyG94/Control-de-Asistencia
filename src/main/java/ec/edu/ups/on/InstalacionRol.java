@@ -23,12 +23,10 @@ public class InstalacionRol {
 		listaRol=dao.getRoles();
 		if(listaRol.size()==0) {
 			Rol r=new Rol();
-			r.setCodigo(1);
 			r.setNombreRol("Docente");
 			dao.create(r);
 			Rol r1=new Rol();
-			r1.setCodigo(2);
-			r1.setNombreRol("Director de carrera");
+			r1.setNombreRol("Jefe de Area");
 			dao.create(r1);
 			listaRol=dao.getRoles();
 		}	else {

@@ -41,6 +41,9 @@ public class DocenteON {
 	public Rol getRol(int codigo) {
 		return rdao.read(codigo);
 	}
+	public Rol getRolCodigo(String nombreRol) {
+		return rdao.getRolCodigo(nombreRol);
+	}
 	
 	public List<Rol> getRoles(){
 		return rdao.getRoles();

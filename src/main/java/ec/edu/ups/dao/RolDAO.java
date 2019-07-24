@@ -22,6 +22,15 @@ public class RolDAO {
 	public Rol read(int id) {
 		return manager.find(Rol.class, id);
 	}
+	public Rol getRolCodigo(String nombreRol){
+		String jpql="SELECT r FROM Rol p.nombreRol LIKE :filtro";
+		Query q=manager.createQuery(jpql,Rol.class);
+		q.setParameter("filtro", "%"+nombreRol+"%");
+		Rol personas=(Rol) q.getResultList();
+		
+		return personas;
+		
+	}
 	public List<Rol> getRoles(){
 		String jpql = "SELECT r FROM Rol r ";
 		Query q = manager.createQuery(jpql, Rol.class);

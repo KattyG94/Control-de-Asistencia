@@ -1,5 +1,6 @@
 package ec.edu.ups.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -7,6 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import ec.edu.ups.modelo.Docente;
@@ -18,20 +20,26 @@ import ec.edu.ups.on.DocenteON;
 @ViewScoped
 public class DocenteControlador {
 
-	private Docente docente = new Docente();
+	private Docente docente;
 	private List<Docente> listaDocente;
+	private List<Rol>listaRoles;
+	private List<SelectItem> selectOneItemRol;
 
 	@Inject
 	private DocenteON dON;
 
 	private int id;
+	
+	private int idRolTemp;
 
 	@Inject
 	private FacesContext fc;
 
 	@PostConstruct
 	public void init() {
-		setListaDocente(dON.getListaDocentes());
+		docente=new Docente();
+		listaDocente=dON.getListaDocentes();
+		listaRoles=dON.getRoles();
 	}
 
 	public void loadData() {
@@ -101,7 +109,7 @@ public class DocenteControlador {
 
 	public String nuevo() {
 		docente = new Docente();
-		return "Docentes";
+		return null;
 	}
 
 	public String buscarRol(DocenteRol drol) {
@@ -117,10 +125,39 @@ public class DocenteControlador {
 		return null;
 	}
 
+	
+	
+	public void setSelectOneItemRol(List<SelectItem> selectOneItemRol) {
+		this.selectOneItemRol = selectOneItemRol;
+	}
+
+	public List<SelectItem> getSelectOneItemRol(){
+		this.selectOneItemRol=new ArrayList<>();
+		List<Rol>roles=listaRoles;
+		for (Rol rol : roles) {
+			SelectItem selectItem=new SelectItem(rol.getCodigo(), rol.getNombreRol());
+			Rol rol1 = dON.getRol(this.getIdRolTemp());
+			DocenteRol drol=new DocenteRol();
+			drol.setRol(rol1);
+			this.selectOneItemRol.add(selectItem);
+		}
+		return selectOneItemRol;
+	}
+	public String buscarRolCodigo(DocenteRol drol) {
+		System.out.println("buscando Rol " + drol);
+		try {
+			Rol rol = dON.getRolCodigo(drol.getNombreTemRol());
+			drol.setRol(rol);
+		} catch (Exception e) {
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_FATAL, e.getMessage(), "Error");
+			fc.addMessage(null, msg);
+		}
+
+		return null;
+	}
+
 	public String addRol() {
-		System.out.println("jav");
 		docente.addDocenteRol(new DocenteRol());
-		System.out.println("size 2: " + docente.getRoles().size());
 		return null;
 	}
 
@@ -130,5 +167,17 @@ public class DocenteControlador {
 
 	public void setListaDocente(List<Docente> listaDocente) {
 		this.listaDocente = listaDocente;
+	}
+
+	public List<Rol> getListaRoles() {
+		return listaRoles;
+	}
+
+	public void setListaRoles(List<Rol> listaRoles) {
+		this.listaRoles = listaRoles;
+	}
+
+	public int getIdRolTemp() {
+		return idRolTemp;
 	}
 }

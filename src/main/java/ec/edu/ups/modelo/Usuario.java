@@ -1,10 +1,8 @@
 package ec.edu.ups.modelo;
 
 
-import java.util.Date;
 
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
@@ -18,7 +16,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @MappedSuperclass
 public class Usuario {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue
 	private int id;
 	@Size(min = 1, max = 10)
 	private String cedula;
@@ -29,7 +27,7 @@ public class Usuario {
 	@NotEmpty
 	private String apellidos;
 	@NotNull
-	private Date fechaNac;
+	private String fechaNac;
 	@NotNull
 	@NotEmpty
 	private String genero;
@@ -69,10 +67,10 @@ public class Usuario {
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
-	public Date getFechaNac() {
+	public String getFechaNac() {
 		return fechaNac;
 	}
-	public void setFechaNac(Date fechaNac) {
+	public void setFechaNac(String fechaNac) {
 		this.fechaNac = fechaNac;
 	}
 	public String getGenero() {

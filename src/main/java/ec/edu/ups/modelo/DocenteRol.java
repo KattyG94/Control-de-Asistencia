@@ -20,6 +20,8 @@ public class DocenteRol {
 	
 	@Transient
 	private int codigoTemRol;
+	@Transient
+	private String nombreTemRol;
 	
 	public int getCodigo() {
 		return codigo;
@@ -44,6 +46,12 @@ public class DocenteRol {
 	}
 	public void setCodigoTemRol(int codigoTemRol) {
 		this.codigoTemRol = codigoTemRol;
+	}
+	public String getNombreTemRol() {
+		return nombreTemRol;
+	}
+	public void setNombreTemRol(String nombreTemRol) {
+		this.nombreTemRol = nombreTemRol;
 	}
 	
 	

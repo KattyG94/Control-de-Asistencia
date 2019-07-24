@@ -20,10 +20,6 @@ public class Docente extends Usuario{
 	@NotNull
 	@Column(name = "profesion")
 	private String profesion;
-
-	@NotNull
-	@Column(name = "nivelEstudio")
-	private String nivelEstudio;
 	
 	
 	@OneToMany(cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
@@ -42,16 +38,6 @@ public class Docente extends Usuario{
 	}
 
 
-
-	public String getNivelEstudio() {
-		return nivelEstudio;
-	}
-
-
-
-	public void setNivelEstudio(String nivelEstudio) {
-		this.nivelEstudio = nivelEstudio;
-	}
 	public List<DocenteRol> getRoles() {
 		return roles;
 	}
@@ -73,7 +59,7 @@ public class Docente extends Usuario{
 
 	@Override
 	public String toString() {
-		return "Docente [profesion=" + profesion + ", nivelEstudio=" + nivelEstudio + ", roles=" + roles + "]";
+		return "Docente [profesion=" + profesion + ", roles=" + roles + "]";
 	}
 
 
