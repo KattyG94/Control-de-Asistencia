@@ -5,33 +5,50 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:b="http://java.sun.com/jsf/html">
-
 <h:head>
-	<meta name="viewport"
-		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<h:outputStylesheet library="css" name="bootstrap.min.css" />
-	<h:outputStylesheet library="css" name="signin.css" />
-	<title>Carreras</title>
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{carreraControlador.id}"></f:viewParam>
+		<f:viewAction action="#{carreraControlador.loadData()}" />
+	</f:metadata>
 </h:head>
 <body>
-	<ui:composition template="/Sistema.xhtml">
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:b="http://java.sun.com/jsf/html" template="/Sistema.xhtml">
 		<ui:define name="body">
 			<div class="row" style="height: 728px;">
-				<!-- Crear Docente-->
+				<!-- Crear Carrera-->
 				<div class="col-5">
 					<div class=" border border-dark m-2 p-2 rounded"
 						style="height: 710px;">
-
 						<h:form>
+							<h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
 							<h:outputLabel value="Agregar Carrera" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
+							<h:panelGrid columns="3" cellpadding="5">
+								<p:outputLabel value="Nombre:" />
+								<p:inputText value="#{carreraControlador.carrera.nombre}"
+									id="txtNombre" placeholder="Nombre" />
+								<p:message for="txtNombre" />
+							</h:panelGrid>
 
+
+							<h:panelGrid columns="2">
+								<h:commandButton action="#{carreraControlador.cargarDatos()}"
+									value="GUARDAR" styleClass="btn btn-success"/>
+								<h:commandButton action="#{carreraControlador.nuevo()}"
+									value="CANCELAR" immediate="true" styleClass="btn btn-danger"/>
+							</h:panelGrid>
 
 
 						</h:form>
 					</div>
 				</div>
-				<!-- Listar Docentes -->
+				<!-- Listar Carreras -->
 				<div class="col-7">
 					<div class=" border border-dark m-2 p-2 rounded"
 						style="height: 710px;">
@@ -40,6 +57,24 @@
 							<h:outputLabel value="Lista de Carreras" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
 
+							<p:dataTable var="car"
+								value="#{carreraControlador.listaCarreras}" rows="10"
+								paginator="true"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								rowsPerPageTemplate="5,10,15">
+
+								<p:column headerText="Nombre">
+									<h:outputText value="#{car.nombre}" />
+								</p:column>
+
+								<p:column>
+									<f:facet name="header">Acciones</f:facet>
+									<h:commandButton action="#{carreraControlador.editar(car.id)}"
+										immediate="true" value="Editar" styleClass="btn btn-primary"/>
+									<h:commandButton action="#{carreraControlador.borrar(car.id)}"
+										immediate="true" value="Borrar" styleClass="btn btn-danger"/>
+								</p:column>
+							</p:dataTable>
 
 
 						</h:form>
@@ -48,8 +83,8 @@
 			</div>
 		</ui:define>
 	</ui:composition>
-
 	<h:outputScript library="js" name="jquery-3.4.1.min.js" />
 	<h:outputScript library="js" name="bootstrap.min.js" />
+
 </body>
 </html>

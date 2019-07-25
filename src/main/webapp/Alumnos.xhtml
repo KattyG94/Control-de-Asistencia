@@ -4,7 +4,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:b="http://java.sun.com/jsf/html">
+	xmlns:b="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
 
 	<f:metadata>
@@ -20,11 +21,11 @@
 		xmlns:p="http://primefaces.org/ui"
 		xmlns:b="http://java.sun.com/jsf/html" template="/Sistema.xhtml">
 		<ui:define name="body">
-			<div class="row" style="height: 728px;">
+			<div class="row" style="min-height: 728px;">
 				<!-- Crear Alumno-->
 				<div class="col-5">
 					<div class=" border border-dark m-2 p-2 rounded"
-						style="height: 710px;">
+						style="min-height: 710px;">
 						<h:form>
 							<h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
 							<h:outputLabel value="Agregar Alumno" styleClass="text-info" />
@@ -32,17 +33,17 @@
 							<h:panelGrid columns="3" cellpadding="5">
 								<p:outputLabel value="Nombres:" />
 								<p:inputText value="#{alunmoControlador.alumno.nombres}"
-									id="txtNombre" placeholder="Nombres" />
+									id="txtNombre" placeholder="Nombres" styleClass="form-control" />
 								<p:message for="txtNombre" />
 
 								<p:outputLabel value="Apellidos:" />
 								<p:inputText value="#{alunmoControlador.alumno.apellidos}"
-									id="txtApe" placeholder="Apellidos" />
+									id="txtApe" placeholder="Apellidos" styleClass="form-control" />
 								<p:message for="txtApe" />
 
 								<p:outputLabel value="Cedula:" />
 								<p:inputText value="#{alunmoControlador.alumno.cedula}"
-									id="txtCedula" placeholder="Cedula" />
+									id="txtCedula" placeholder="Cedula" styleClass="form-control" />
 								<p:message for="txtCedula" />
 
 								<p:outputLabel for="fNaci" value="Fec. Nacimiento" />
@@ -63,44 +64,45 @@
 
 								<p:outputLabel value="Telefono:" />
 								<p:inputText value="#{alunmoControlador.alumno.telefono}"
-									id="txtTel" placeholder="Telefono" />
+									id="txtTel" placeholder="Telefono" styleClass="form-control" />
 								<p:message for="txtTel" />
 
 								<p:outputLabel value="Direccion:" />
 								<p:inputText value="#{alunmoControlador.alumno.direccion}"
-									id="txtDir" placeholder="Direccion" />
+									id="txtDir" placeholder="Direccion" styleClass="form-control" />
 								<p:message for="txtDir" />
 
 								<p:outputLabel value="Usuario:" />
 								<p:inputText value="#{alunmoControlador.alumno.correo}"
-									id="txtUsr" placeholder="Usuario" />
+									id="txtUsr" placeholder="Usuario" styleClass="form-control" />
 								<p:message for="txtUsr" />
 
 								<p:outputLabel value="Contrasenia:" />
-								<p:inputText value="#{alunmoControlador.alumno.contrasena}"
-									id="txtPass" placeholder="Contraseña" />
+								<h:inputSecret value="#{alunmoControlador.alumno.contrasena}"
+									id="txtPass" a:placeholder="Contraseña"
+									styleClass="form-control" />
 								<p:message for="txtPass" />
 							</h:panelGrid>
 
 
 							<h:panelGrid columns="2">
 								<h:commandButton action="#{alunmoControlador.cargarDatos()}"
-									value="GUARDAR" />
+									value="GUARDAR" styleClass="btn btn-success" />
 								<h:commandButton action="#{alunmoControlador.nuevo()}"
-									value="CANCELAR" immediate="true" />
+									value="CANCELAR" immediate="true" styleClass="btn btn-danger" />
 							</h:panelGrid>
 
 
 						</h:form>
 					</div>
 				</div>
-				<!-- Listar Docentes -->
+				<!-- Listar Alumnos -->
 				<div class="col-7">
 					<div class=" border border-dark m-2 p-2 rounded"
 						style="height: 710px;">
 
 						<h:form>
-							<h:outputLabel value="Lista de Docentes" styleClass="text-info" />
+							<h:outputLabel value="Lista de Alumnos" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
 
 							<p:dataTable var="car" value="#{alunmoControlador.listaAlumnos}"
@@ -129,9 +131,9 @@
 								<p:column>
 									<f:facet name="header">Acciones</f:facet>
 									<h:commandButton action="#{alunmoControlador.editar(car.id)}"
-										immediate="true" value="Editar" />
+										immediate="true" value="Editar" styleClass="btn btn-primary"/>
 									<h:commandButton action="#{alunmoControlador.borrar(car.id)}"
-										immediate="true" value="Borrar" />
+										immediate="true" value="Borrar" styleClass="btn btn-danger"/>
 
 								</p:column>
 							</p:dataTable>

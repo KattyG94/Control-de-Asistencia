@@ -5,60 +5,48 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
-import ec.edu.ups.modelo.Alumno;
-import ec.edu.ups.on.AlumnoON;
+import ec.edu.ups.modelo.Carrera;
+import ec.edu.ups.on.CarreraON;
 
 @ManagedBean
 @ViewScoped
-public class AlunmoControlador {
+public class CarreraControlador {
 
-	private Alumno alumno;
-	private List<Alumno> listaAlumnos;
+	private Carrera carrera;
+	private List<Carrera> listaCarreras;
 
 	@Inject
-	private AlumnoON alON;
+	private CarreraON carreraON;
 
 	private int id;
 
-	@Inject
-	private FacesContext fc;
-
 	@PostConstruct
 	public void init() {
-		alumno = new Alumno();
-		listaAlumnos = alON.getAlumnos();
+		carrera = new Carrera();
+		listaCarreras = carreraON.getCarreras();
 	}
 
 	public void loadData() {
 		if (id == 0) {
 			return;
 		} else {
-			alumno = alON.getAlumno(id);
+			carrera = carreraON.getCarrera(id);
 		}
 	}
 
-	public void mostrarData(int ida) {
-		if (ida == 0) {
-			return;
-		} else {
-			alumno = alON.getAlumno(ida);
-		}
+	public Carrera getCarrera() {
+		return carrera;
 	}
 
-	public Alumno getAlumno() {
-		return alumno;
-	}
-
-	public void setAlumno(Alumno alumno) {
-		this.alumno = alumno;
+	public void setCarrera(Carrera carrera) {
+		this.carrera = carrera;
 	}
 
 	public String cargarDatos() {
 		try {
-			alON.guardar(alumno);
+			carreraON.guardar(carrera);
 			init();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -67,12 +55,12 @@ public class AlunmoControlador {
 	}
 
 	public String editar(int id) {
-		return "Alumnos?faces-redirect=true&id=" + id;
+		return "Carreras?faces-redirect=true&id=" + id;
 	}
 
 	public String borrar(int codigo) {
 		try {
-			alON.borra(codigo);
+			carreraON.borra(codigo);
 			init();
 		} catch (Exception e) {
 			System.out.println("Error " + e.getMessage());
@@ -96,16 +84,16 @@ public class AlunmoControlador {
 	}
 
 	public String nuevo() {
-		alumno = new Alumno();
+		carrera = new Carrera();
 		return null;
 	}
 
-	public List<Alumno> getListaAlumnos() {
-		return listaAlumnos;
+	public List<Carrera> getListaCarreras() {
+		return listaCarreras;
 	}
 
-	public void setListaAlumnos(List<Alumno> listaAlumnos) {
-		this.listaAlumnos = listaAlumnos;
+	public void setListaCarreras(List<Carrera> listaCarreras) {
+		this.listaCarreras = listaCarreras;
 	}
 
 }
