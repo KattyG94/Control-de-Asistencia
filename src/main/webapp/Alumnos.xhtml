@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{alunmoControlador.id}"></f:viewParam>
+		<f:viewAction action="#{alunmoControlador.loadData()}" />
+	</f:metadata>
+</h:head>
+<body>
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:b="http://java.sun.com/jsf/html" template="/Sistema.xhtml">
+		<ui:define name="body">
+			<div class="row" style="min-height: 728px;">
+				<!-- Crear Alumno-->
+				<div class="col-5">
+					<div class=" border border-dark m-2 p-2 rounded"
+						style="min-height: 710px;">
+						<h:form>
+							<h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
+							<h:outputLabel value="Agregar Alumno" styleClass="text-info" />
+							<hr style="background-color: #999999;" />
+							<h:panelGrid columns="3" cellpadding="5">
+								<p:outputLabel value="Nombres:" />
+								<p:inputText value="#{alunmoControlador.alumno.nombres}"
+									id="txtNombre" placeholder="Nombres" styleClass="form-control" />
+								<p:message for="txtNombre" />
+
+								<p:outputLabel value="Apellidos:" />
+								<p:inputText value="#{alunmoControlador.alumno.apellidos}"
+									id="txtApe" placeholder="Apellidos" styleClass="form-control" />
+								<p:message for="txtApe" />
+
+								<p:outputLabel value="Cedula:" />
+								<p:inputText value="#{alunmoControlador.alumno.cedula}"
+									id="txtCedula" placeholder="Cedula" styleClass="form-control" />
+								<p:message for="txtCedula" />
+
+								<p:outputLabel for="fNaci" value="Fec. Nacimiento" />
+								<p:calendar id="fNaci"
+									requiredMessage="Fecha de nacimiento requerida"
+									value="#{alunmoControlador.alumno.fechaNac}" locale="es"
+									required="true" />
+								<p:message for="fNaci" />
+
+								<p:outputLabel value="Sexo:" />
+								<h:selectOneMenu value="#{alunmoControlador.alumno.genero}"
+									id="txtgenero" styleClass="custom-select">
+									<f:selectItem itemValue="" itemLabel="    --Seleccione--    " />
+									<f:selectItem itemValue="Masculino" itemLabel="Masculino" />
+									<f:selectItem itemValue="Femenino" itemLabel="Femenino" />
+								</h:selectOneMenu>
+								<p:message for="txtgenero" />
+
+								<p:outputLabel value="Telefono:" />
+								<p:inputText value="#{alunmoControlador.alumno.telefono}"
+									id="txtTel" placeholder="Telefono" styleClass="form-control" />
+								<p:message for="txtTel" />
+
+								<p:outputLabel value="Direccion:" />
+								<p:inputText value="#{alunmoControlador.alumno.direccion}"
+									id="txtDir" placeholder="Direccion" styleClass="form-control" />
+								<p:message for="txtDir" />
+
+								<p:outputLabel value="Usuario:" />
+								<p:inputText value="#{alunmoControlador.alumno.correo}"
+									id="txtUsr" placeholder="Usuario" styleClass="form-control" />
+								<p:message for="txtUsr" />
+
+								<p:outputLabel value="Contrasenia:" />
+								<h:inputSecret value="#{alunmoControlador.alumno.contrasena}"
+									id="txtPass" a:placeholder="Contraseña"
+									styleClass="form-control" />
+								<p:message for="txtPass" />
+							</h:panelGrid>
+
+
+							<h:panelGrid columns="2">
+								<h:commandButton action="#{alunmoControlador.cargarDatos()}"
+									value="GUARDAR" styleClass="btn btn-success" />
+								<h:commandButton action="#{alunmoControlador.nuevo()}"
+									value="CANCELAR" immediate="true" styleClass="btn btn-danger" />
+							</h:panelGrid>
+
+
+						</h:form>
+					</div>
+				</div>
+				<!-- Listar Alumnos -->
+				<div class="col-7">
+					<div class="border border-dark m-2 p-2 rounded"
+						style="height: 710px;">
+
+						<h:form>
+							<h:outputLabel value="Lista de Alumnos" styleClass="text-info" />
+							<hr style="background-color: #999999;" />
+
+							<p:dataTable var="car" value="#{alunmoControlador.listaAlumnos}"
+								rows="10" paginator="true"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								rowsPerPageTemplate="5,10,15"
+								styleClass="table table-hover table-bordered">
+
+								<p:column headerText="Nombre">
+									<h:outputText value="#{car.nombres}" />
+								</p:column>
+
+								<p:column headerText="Apellido">
+									<h:outputText value="#{car.apellidos}" />
+								</p:column>
+
+								<p:column headerText="Cedula">
+									<h:outputText value="#{car.cedula}" />
+								</p:column>
+
+								<p:column headerText="Usuario">
+									<h:outputText value="#{car.correo}" />
+								</p:column>
+								<p:column headerText="Password">
+									<h:outputText value="#{car.contrasena}" />
+								</p:column>
+								<p:column>
+									<f:facet name="header">Acciones</f:facet>
+									<h:commandButton action="#{alunmoControlador.editar(car.id)}"
+										immediate="true" value="Editar" styleClass="btn btn-primary" />
+									<h:commandButton action="#{alunmoControlador.borrar(car.id)}"
+										immediate="true" value="Borrar" styleClass="btn btn-danger" />
+
+								</p:column>
+							</p:dataTable>
+
+
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+	<h:outputScript library="js" name="jquery-3.4.1.min.js" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
+
+</body>
+</html>
