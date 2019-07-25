@@ -1,6 +1,5 @@
 package ec.edu.ups.services;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +16,6 @@ import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 
-import ec.edu.ups.fachadaNegocio.ListadoNombreDocente;
 import ec.edu.ups.modelo.Docente;
 import ec.edu.ups.modelo.DocenteRol;
 import ec.edu.ups.on.DocenteON;

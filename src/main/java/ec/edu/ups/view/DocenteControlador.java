@@ -46,17 +46,12 @@ public class DocenteControlador {
 		if (id == 0)
 			return;
 		docente = dON.getDocente(id);
-		System.out.println("Estoy aqui");
-		System.out.println(docente.toString());
 	}
 
 	public void mostrarData(int ids) {
-		System.out.println("codigo editar " + ids);
 		if (ids == 0)
 			return;
 		docente = dON.getDocente(ids);
-		System.out.println("Estoy aqui");
-		System.out.println(docente.toString());
 	}
 
 	public void setDocente(Docente docente) {
@@ -78,7 +73,6 @@ public class DocenteControlador {
 	}
 
 	public String editar(int id) {
-		System.out.println("dddd  " + id);
 		return "Docentes?faces-redirect=true&id=" + id;
 	}
 
@@ -94,7 +88,6 @@ public class DocenteControlador {
 	}
 
 	public String listadoDocentes() {
-		System.out.println("Hola");
 		return "ListarDocente";
 
 	}

@@ -109,13 +109,22 @@
 								</h:column>
 
 							</h:dataTable>
+							
+							<p:panelGrid style="width: 100%;margin-top:30px;">
+								<p:row>
+									<p:column rowspan="6">
+										<h:commandButton value="REGISTRAR"
+											action="#{docenteControlador.cargarDatos()}"
+											styleClass="btn btn-lg btn-success btn-block" />
+									</p:column>
+									<p:column rowspan="6">
+										<h:commandButton value="CANCELAR"
+											action="#{docenteControlador.nuevo()}"
+											styleClass="btn btn-lg btn-danger btn-block" />
+									</p:column>
 
-							<h:panelGrid columns="2">
-								<h:commandButton action="#{docenteControlador.cargarDatos()}"
-									value="GUARDAR" />
-								<h:commandButton action="#{docenteControlador.nuevo()}"
-									value="CANCELAR" immediate="true" />
-							</h:panelGrid>
+								</p:row>
+							</p:panelGrid>
 
 
 						</h:form>
