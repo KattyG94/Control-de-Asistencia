@@ -55,7 +55,7 @@
 
 								<p:outputLabel value="Sexo:" />
 								<h:selectOneMenu value="#{alunmoControlador.alumno.genero}"
-									id="txtgenero">
+									id="txtgenero" styleClass="custom-select">
 									<f:selectItem itemValue="" itemLabel="    --Seleccione--    " />
 									<f:selectItem itemValue="Masculino" itemLabel="Masculino" />
 									<f:selectItem itemValue="Femenino" itemLabel="Femenino" />
@@ -98,7 +98,7 @@
 				</div>
 				<!-- Listar Alumnos -->
 				<div class="col-7">
-					<div class=" border border-dark m-2 p-2 rounded"
+					<div class="border border-dark m-2 p-2 rounded"
 						style="height: 710px;">
 
 						<h:form>
@@ -108,7 +108,8 @@
 							<p:dataTable var="car" value="#{alunmoControlador.listaAlumnos}"
 								rows="10" paginator="true"
 								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-								rowsPerPageTemplate="5,10,15">
+								rowsPerPageTemplate="5,10,15"
+								styleClass="table table-hover table-bordered">
 
 								<p:column headerText="Nombre">
 									<h:outputText value="#{car.nombres}" />
@@ -131,9 +132,9 @@
 								<p:column>
 									<f:facet name="header">Acciones</f:facet>
 									<h:commandButton action="#{alunmoControlador.editar(car.id)}"
-										immediate="true" value="Editar" styleClass="btn btn-primary"/>
+										immediate="true" value="Editar" styleClass="btn btn-primary" />
 									<h:commandButton action="#{alunmoControlador.borrar(car.id)}"
-										immediate="true" value="Borrar" styleClass="btn btn-danger"/>
+										immediate="true" value="Borrar" styleClass="btn btn-danger" />
 
 								</p:column>
 							</p:dataTable>

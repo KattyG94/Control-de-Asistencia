@@ -5,6 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:b="http://java.sun.com/jsf/html">
+
 <h:head>
 
 	<f:metadata>
@@ -39,9 +40,9 @@
 
 							<h:panelGrid columns="2">
 								<h:commandButton action="#{carreraControlador.cargarDatos()}"
-									value="GUARDAR" styleClass="btn btn-success"/>
+									value="GUARDAR" styleClass="btn btn-success" />
 								<h:commandButton action="#{carreraControlador.nuevo()}"
-									value="CANCELAR" immediate="true" styleClass="btn btn-danger"/>
+									value="CANCELAR" immediate="true" styleClass="btn btn-danger" />
 							</h:panelGrid>
 
 
@@ -61,7 +62,8 @@
 								value="#{carreraControlador.listaCarreras}" rows="10"
 								paginator="true"
 								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-								rowsPerPageTemplate="5,10,15">
+								rowsPerPageTemplate="5,10,15"
+								styleClass="table table-hover table-bordered">
 
 								<p:column headerText="Nombre">
 									<h:outputText value="#{car.nombre}" />
@@ -69,10 +71,11 @@
 
 								<p:column>
 									<f:facet name="header">Acciones</f:facet>
+
 									<h:commandButton action="#{carreraControlador.editar(car.id)}"
-										immediate="true" value="Editar" styleClass="btn btn-primary"/>
+										immediate="true" value="Editar" styleClass="btn btn-primary" />
 									<h:commandButton action="#{carreraControlador.borrar(car.id)}"
-										immediate="true" value="Borrar" styleClass="btn btn-danger"/>
+										immediate="true" value="Borrar" styleClass="btn btn-danger" />
 								</p:column>
 							</p:dataTable>
 
