@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{docenteControlador.id}"></f:viewParam>
+		<f:viewAction action="#{docenteControlador.loadData()}" />
+	</f:metadata>
+</h:head>
+<body>
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:b="http://java.sun.com/jsf/html" template="/Sistema.xhtml">
+		<ui:define name="body">
+			<div class="row" style="height: 728px;">
+				<!-- Crear Docente-->
+				<div class="col-5">
+					<div class=" border border-dark m-2 p-2 rounded"
+						style="height: 710px;">
+						<h:form>
+							<h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
+							<h:outputLabel value="Agregar Docente" styleClass="text-info" />
+							<hr style="background-color: #999999;" />
+							<h:panelGrid columns="3" cellpadding="5">
+								
+								<h:outputLabel value="Nombres:" />
+								<h:inputText value="#{docenteControlador.docente.nombres}" id="txtNombre" styleClass="form-control" a:placeholder="Nobres"/>
+								<h:message for="txtNombre" />
+
+								<h:outputLabel value="Apellidos:" />
+								<h:inputText value="#{docenteControlador.docente.apellidos}" id="txtApe"  styleClass="form-control" a:placeholder="Apellidos" />
+								<h:message for="txtApe" />
+
+								<h:outputLabel value="Cedula:" />
+								<h:inputText value="#{docenteControlador.docente.cedula}" id="txtCedula"  styleClass="form-control" a:placeholder="Cedula" />
+								<h:message for="txtCedula" />
+
+								<h:outputLabel for="fNaci" value="Fec. Nacimiento" />
+								<p:calendar id="fNaci"
+									requiredMessage="Fecha de nacimiento requerida"
+									value="#{docenteControlador.docente.fechaNac}" locale="es"
+									required="true" />
+								<p:message for="fNaci" />
+
+								<h:outputLabel value="Sexo:" />
+								<h:selectOneMenu value="#{docenteControlador.docente.genero}"
+									id="txtgenero">
+									<f:selectItem itemValue="" itemLabel="    --Seleccione--    " />
+									<f:selectItem itemValue="Masculino" itemLabel="Masculino" />
+									<f:selectItem itemValue="Femenino" itemLabel="Femenino" />
+								</h:selectOneMenu>
+								<h:message for="txtgenero" />
+
+								<h:outputLabel value="Telefono:" />
+								<h:inputText value="#{docenteControlador.docente.telefono}" id="txtTel" styleClass="form-control" a:placeholder="Telefono" />
+								<h:message for="txtTel" />
+
+								<h:outputLabel value="Direccion:" />
+								<h:inputText value="#{docenteControlador.docente.direccion}"
+									id="txtDir" styleClass="form-control" a:placeholder="Direccion"  />
+								<h:message for="txtDir" />
+
+								<h:outputLabel value="Profesion:" />
+								<h:inputText value="#{docenteControlador.docente.profesion}"
+									id="txtProf" styleClass="form-control" a:placeholder="Profesion" />
+								<h:message for="txtProf" />
+
+								<h:outputLabel value="Correo:" />
+								<h:inputText value="#{docenteControlador.docente.correo}"
+									id="txtUsr" styleClass="form-control" a:placeholder="Correo" />
+								<h:message for="txtUsr" />
+
+								<h:outputLabel value="Contraseña:" />
+								<h:inputText value="#{docenteControlador.docente.contrasena}"
+									id="txtPass" styleClass="form-control" a:placeholder="Contraseña"/>
+								<h:message for="txtPass" />
+							</h:panelGrid>
+
+							<h:panelGrid columns="2">
+								<h:outputText value="" />
+								<h:commandButton action="#{docenteControlador.addRol()}"
+									value="+ Rol" immediate="true" />
+
+							</h:panelGrid>
+
+
+							<h:dataTable value="#{docenteControlador.docente.roles}"
+								var="rol">
+								<h:column>
+									<f:facet name="header">Código</f:facet>
+								</h:column>
+								<h:column>
+									<f:facet name="header">Rol</f:facet>
+									<h:inputText value="#{rol.codigoTemRol}" id="txtAutorLibro">
+										<f:ajax render="lblAutorNombre" execute="txtAutorLibro"
+											listener="#{docenteControlador.buscarRolCodigo(rol)}" event="keyup" />
+									</h:inputText>
+									<h:outputText id="lblAutorNombre" value="#{rol.rol.nombreRol}" />
+									<h:message for="txtAutorLibro" />
+								</h:column>
+
+							</h:dataTable>
+							
+							<p:panelGrid style="width: 100%;margin-top:30px;">
+								<p:row>
+									<p:column rowspan="6">
+										<h:commandButton value="REGISTRAR"
+											action="#{docenteControlador.cargarDatos()}"
+											styleClass="btn btn-lg btn-success btn-block" />
+									</p:column>
+									<p:column rowspan="6">
+										<h:commandButton value="CANCELAR"
+											action="#{docenteControlador.nuevo()}"
+											styleClass="btn btn-lg btn-danger btn-block" />
+									</p:column>
+
+								</p:row>
+							</p:panelGrid>
+
+
+						</h:form>
+					</div>
+				</div>
+				<!-- Listar Docentes -->
+				<div class="col-7">
+					<div class=" border border-dark m-2 p-2 rounded"
+						style="height: 710px;">
+
+						<h:form>
+							<h:outputLabel value="Lista de Docentes" styleClass="text-info" />
+							<hr style="background-color: #999999;" />
+
+							<p:dataTable var="car" value="#{docenteControlador.listaDocente}"
+								rows="10" paginator="true"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								rowsPerPageTemplate="5,10,15">
+
+								<p:column headerText="Nombre">
+									<h:outputText value="#{car.nombres}" />
+								</p:column>
+
+								<p:column headerText="Apellido">
+									<h:outputText value="#{car.apellidos}" />
+								</p:column>
+
+								<p:column headerText="Cedula">
+									<h:outputText value="#{car.cedula}" />
+								</p:column>
+								<p:column headerText="Profesion">
+									<h:outputText value="#{car.profesion}" />
+								</p:column>
+								<p:column headerText="Usuario">
+									<h:outputText value="#{car.correo}" />
+								</p:column>
+								<p:column headerText="Password">
+									<h:outputText value="#{car.contrasena}" />
+								</p:column>
+								<p:column>
+									<f:facet name="header">Acciones</f:facet>
+									<h:commandButton action="#{docenteControlador.editar(car.id)}"
+										immediate="true" value="Editar" />
+									<h:commandButton action="#{docenteControlador.borrar(car.id)}"
+										immediate="true" value="Borrar" />
+
+								</p:column>
+							</p:dataTable>
+
+
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+	<h:outputScript library="js" name="jquery-3.4.1.min.js" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
+
+</body>
+</html>

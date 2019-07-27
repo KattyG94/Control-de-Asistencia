@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="signin.css" />
+<h:head>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<!-- 	<h:outputStylesheet library="css" name="bootstrap.min.css" /> -->
+<!-- 	<h:outputStylesheet library="css" name="signin.css" /> -->
+	<title>Iniciar Sesion</title>
+</h:head>
+
+<h:body styleClass="text-center">
+
+	<h:form styleClass="form-signin">
+		<h:graphicImage library="img" name="logoAsistencia.png"
+			styleClass="mb-4" alt="Control de Asistencia" width="150" height="150" />
+		<h1 class="h3 mb-3 font-weight-normal">Iniciar Sesión</h1>
+	
+		<h:outputLabel value="Usuario" for="txtUsuario" styleClass="sr-only" />
+		<h:inputText value="#{docenteControlador.docente.correo}" id="txtUsuario" styleClass="form-control"
+			a:placeholder="Usuario" required="true"/>
+		<h:outputLabel value="Usuario" for="txtContasena" styleClass="sr-only" />
+		<h:inputSecret value="#{docenteControlador.docente.contrasena}" id="txtContasena" styleClass="form-control"
+			a:placeholder="Contaseña" required="true"/>
+		<div class="checkbox mb-3">
+			<h:selectBooleanCheckbox value="Recordar Contraseña" />
+			<h:outputLabel value="Recordar Contraseña" styleClass="ml-2" />
+		</div>
+		<h:commandButton value="Ingresar" action="#{docenteControlador.iniciarSesion()}"
+			styleClass="btn btn-lg btn-primary btn-block"/>
+		<h:outputLabel value="Aplicaciones Distribuidas"
+			styleClass="mt-5 mb-3 text-muted" />
+	</h:form>
+
+	<h:outputScript library="js" name="jquery-3.4.1.min.js" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
+</h:body>
+</html>
