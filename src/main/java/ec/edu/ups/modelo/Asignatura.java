@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,9 +24,9 @@ public class Asignatura {
 	private int id;
 	private String nombre;
 	private int num_creditos;
-//	
-//	@ManyToMany(cascade = {CascadeType.ALL},mappedBy = "asignaturas")
-//    private Set<Grupo> grupos=new HashSet<>();
+
+	@OneToMany(mappedBy = "asignatura", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Grupo> grupos;
 	@ManyToOne
 	@JoinColumn(name = "periodo_codigo")
 	private Periodo periodo;
@@ -53,18 +54,19 @@ public class Asignatura {
 	public void setPeriodo(Periodo periodo) {
 		this.periodo = periodo;
 	}
-//	public Set<Grupo> getGrupos() {
-//		return grupos;
-//	}
-//	public void setGrupos(Set<Grupo> grupos) {
-//		this.grupos = grupos;
-//	}
+
+	public List<Grupo> getGrupos() {
+		return grupos;
+	}
+	public void setGrupos(List<Grupo> grupos) {
+		this.grupos = grupos;
+	}
 	@Override
 	public String toString() {
-		return "Asignatura [id=" + id + ", nombre=" + nombre + ", num_creditos=" + num_creditos 
+		return "Asignatura [id=" + id + ", nombre=" + nombre + ", num_creditos=" + num_creditos + ", grupos=" + grupos
 				+ ", periodo=" + periodo + "]";
 	}
-
+	
 	
 	
 

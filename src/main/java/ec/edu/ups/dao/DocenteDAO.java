@@ -54,27 +54,35 @@ public class DocenteDAO {
 		System.out.println(docentes.toString());
 		return docentes;
 	}
-	public Docente getDocente1(Docente id) {
-		String jpql = "SELECT d FROM Docente d WHERE d.profesion =: id";
+	public Docente getDocenteDNI(Docente docente) {
+		String jpql = "SELECT d FROM Docente d WHERE d.cedula =: id";
 		Query q = manager.createQuery(jpql, Docente.class);
-		q.setParameter("id", id.getProfesion());
+		q.setParameter("id", docente.getCedula());
 		Docente docentes = (Docente) q.getSingleResult();
 		System.out.println(docentes.toString());
 		return docentes;
 	}
 	public Docente getDocenteCedula(String cedula) {
-		String jpql = "SELECT d FROM Docente d WHERE d.cedula =: cedula";
-		Query q = manager.createQuery(jpql, Docente.class);
-		q.setParameter("cedula",cedula);
-		Docente docentes = (Docente) q.getSingleResult();
-		return docentes;
+		Docente docente =null;
+		try {
+			String jpql = "SELECT d FROM Docente d WHERE d.cedula =: cedula";
+			Query q = manager.createQuery(jpql, Docente.class);
+			q.setParameter("cedula",cedula);
+			List<Docente> results = q.getResultList();
+			if (!results.isEmpty())
+				docente = read(0);
+			
+		} catch (Exception e) {
+			System.out.println(e.getLocalizedMessage());
+			throw e;
+		}
+		return docente;
 	}
 	
 	
 	public Docente getUsuarioDocente(String user,String pass) {
 	Docente docenteV=null;
 	try {
-		System.out.println("Prsente");
 		String jpql="SELECT d FROM Docente d WHERE d.correo =: user AND d.contrasena =: pass";
 		Query q = manager.createQuery(jpql,Docente.class);
 		q.setParameter("user", user);

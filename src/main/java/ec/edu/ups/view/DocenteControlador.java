@@ -1,7 +1,6 @@
     
 package ec.edu.ups.view;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -9,7 +8,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import ec.edu.ups.modelo.Docente;
@@ -24,7 +22,6 @@ public class DocenteControlador {
 	private Docente docente;
 	private List<Docente> listaDocente;
 //	private List<Rol>listaRoles;
-	private List<SelectItem> selectOneItemRol;
 
 	@Inject
 	private DocenteON dON;
@@ -47,17 +44,15 @@ public class DocenteControlador {
 		if (id == 0)
 			return;
 		docente = dON.getDocente(id);
-		System.out.println("Estoy aqui");
-		System.out.println(docente.toString());
+		for(DocenteRol t : docente.getRoles()) {
+			System.out.println("\t"+t);
+		}
 	}
 
 	public void mostrarData(int ids) {
-		System.out.println("codigo editar " + ids);
 		if (ids == 0)
 			return;
 		docente = dON.getDocente(ids);
-		System.out.println("Estoy aqui");
-		System.out.println(docente.toString());
 	}
 
 	public void setDocente(Docente docente) {
@@ -125,11 +120,21 @@ public class DocenteControlador {
 
 		return null;
 	}
-
-	
-	
-	public void setSelectOneItemRol(List<SelectItem> selectOneItemRol) {
-		this.selectOneItemRol = selectOneItemRol;
+	public String iniciarSesion() throws Exception {
+		boolean doc;
+		String redireccion=null;
+		try {
+			if (doc=dON.docenteLogin(docente.getCorreo(),docente.getContrasena())!=null) {
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", doc);
+				redireccion="Sistema";
+			}else {
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Aviso","Usuario Incorrecto"));
+			}
+			
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Aviso","Error"));
+		}
+		return redireccion;
 	}
 
 //	public List<SelectItem> getSelectOneItemRol(){

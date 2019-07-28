@@ -26,21 +26,17 @@
 						<h:form>
 							<h:outputLabel value="Agregar Grupo" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
-							<p:panelGrid style="width: 30%;">
-								<p:row>
-									<p:column rowspan="4">
-										<h:outputLabel value="Num.Grupo" />
-									</p:column>
-									<p:column rowspan="4">
-										<h:inputText value="#{grupoControler.grupo.numero}"
-											id="txtNumero" size="20" />
-									</p:column>
-									<p:column rowspan="4">
-										<h:message for="txtNumero" />
-									</p:column>
-								</p:row>
+							<h:panelGrid columns="3" cellpadding="5" styleClass="ui-grid">
+								<h:outputLabel for="basic" value="Periodo: " />
+								<p:spinner id="txtPeriodo" value="#{grupoControler.grupo.numero}" />
+								<h:message for="txtPeriodo" />
+								
+								<h:outputLabel value="Num.Grupo" />
+								<p:spinner id="txtNumGrupo" value="#{grupoControler.grupo.numero}" size="20" />
+								<h:message for="txtNumero" />
+							</h:panelGrid>
+					
 
-							</p:panelGrid>
 							<p:panelGrid style="width: 100%;">
 								<p:row>
 									<p:column>
@@ -48,12 +44,14 @@
 									</p:column>
 									<p:column>
 										<h:inputText size="20"
-											value="#{grupoControler.docente.cedula}" id="txtTipoTelefono" />
+											value="#{grupoControler.docente.cedula}" id="txtTipoTelefono"
+											styleClass="form-control" a:placeholder="Digite la cedula" />
 									</p:column>
 									<p:column>
 										<p:commandButton value="Buscar" icon="ui-icon-search"
 											actionListener="#{grupoControler.buscarDocenteCedula()}"
-											update="datosTipoTelefono" styleClass="btn btn-lg btn-success"/>
+											update="datosTipoTelefono"
+											 />
 									</p:column>
 								</p:row>
 								<p:row>
@@ -61,31 +59,43 @@
 										<h:outputLabel id="datosTipoTelefono"
 											value="#{grupoControler.docente.nombres}" />
 									</p:column>
-									
+
 								</p:row>
 
 								<p:row>
-									<p:column>g</p:column>
-									<p:column>ggg</p:column>
+									<p:column>Carrera</p:column>
+									<p:column colspan="15">
+										<h:selectOneMenu value="#{grupoControler.carrera.id}"
+											styleClass="custom-select" style="text-align:center;">
+											<f:selectItem itemValue=""
+												itemLabel="    --Seleccione carrera--    " />
+											<f:selectItems value="#{grupoControler.listaCarrera}"
+												var="cl" itemValue="#{cl.id}" itemLabel="#{cl.nombre}"
+												noSelectionOption="" id="carrera" />
+											<p:ajax event="change"
+												listener="#{grupoControler.elegirCarrera()}" />
+
+										</h:selectOneMenu>
+									</p:column>
 								</p:row>
 
 								<p:row>
-									<p:column>h</p:column>
+									<p:column>Asignatura</p:column>
+									<p:column colspan="15">
+										<h:selectOneMenu value="#{grupoControler.asignatura.id}"
+											styleClass="custom-select" style="text-align:center;">
+											<f:selectItem itemValue=""
+												itemLabel="    --Seleccione asignatura--    " />
+											<f:selectItems value="#{grupoControler.listaAsignatura}"
+												var="asig" itemValue="#{asig.id}" itemLabel="#{asig.nombre}"
+												noSelectionOption="" id="asignatura" />
+											<p:ajax event="change"
+												listener="#{grupoControler.elegirAsignatura()}" />
+
+										</h:selectOneMenu>
+									</p:column>
 								</p:row>
 
-								<p:row>
-									<p:column>i</p:column>
-								</p:row>
-
-								<p:row>
-									<p:column>c</p:column>
-									<p:column>j</p:column>
-								</p:row>
-
-								<p:row>
-									<p:column colspan="20">d</p:column>
-
-								</p:row>
 
 							</p:panelGrid>
 							<p:panelGrid style="width: 100%;margin-top:30px;">

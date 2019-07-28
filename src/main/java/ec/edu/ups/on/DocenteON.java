@@ -35,8 +35,8 @@ public class DocenteON {
 	public List<Docente> getListaDocentes() {
 		return dao.getDocentes();
 	}
-	public Docente getDocenteCedula(String docente) {
-		Docente doc=dao.getDocenteCedula(docente);
+	public Docente getDocenteCedula(Docente docente) {
+		Docente doc=dao.getDocenteDNI(docente);
 		return doc;
 	}
 	public Docente getDocente(int id) {
@@ -74,7 +74,19 @@ public class DocenteON {
 	public Docente docenteLogin(String us,String pas)  throws Exception {
 	Docente doc=null;
 	try {
-		doc=dao.getUsuarioDocente(us,pas);
+		
+		
+		if(dao.getUsuarioDocente(us,pas)!=null) {
+			
+			
+		}
+//		while (dao.getUsuarioDocente(us,pas)!=null) {
+//			doc=dao.getUsuarioDocente(us,pas);
+//			List<Rol> listaRol=dao.
+//			if(doc.get)
+//			
+//		}
+//		
 	} catch (Exception e) {
 		throw e;
 	}

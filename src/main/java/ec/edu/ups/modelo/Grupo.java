@@ -33,6 +33,9 @@ public class Grupo implements Serializable {
 	@JoinColumn(name = "carrera_codigo")
 	private Carrera carrera;
 	
+	@ManyToOne
+	@JoinColumn(name = "asignatura_codigo")
+	private Asignatura asignatura;
 	
 	public int getId() {
 		return id;
@@ -65,10 +68,24 @@ public class Grupo implements Serializable {
 	public void setCedula(String cedula) {
 		this.cedula = cedula;
 	}
+	
+	public Carrera getCarrera() {
+		return carrera;
+	}
+	public void setCarrera(Carrera carrera) {
+		this.carrera = carrera;
+	}
+	
+	public Asignatura getAsignatura() {
+		return asignatura;
+	}
+	public void setAsignatura(Asignatura asignatura) {
+		this.asignatura = asignatura;
+	}
 	@Override
 	public String toString() {
 		return "Grupo [id=" + id + ", numero=" + numero + ", docenteIdTemp=" + docenteIdTemp + ", cedula=" + cedula
-				+ ", docente=" + docente + "]";
+				+ ", docente=" + docente + ", carrera=" + carrera + ", asignatura=" + asignatura + "]";
 	}
 	
 
