@@ -85,12 +85,19 @@
 							</h:panelGrid>
 
 
-							<h:panelGrid columns="2">
+							<p:panelGrid style="width: 100%;margin-top:120px;">
+								<p:row>
+									<p:column rowspan="6">
 								<h:commandButton action="#{alunmoControlador.cargarDatos()}"
-									value="GUARDAR" styleClass="btn btn-success" />
+									value="REGISTRAR" styleClass="btn btn-lg btn-success btn-block" />
+									</p:column>
+									<p:column rowspan="6">
 								<h:commandButton action="#{alunmoControlador.nuevo()}"
-									value="CANCELAR" immediate="true" styleClass="btn btn-danger" />
-							</h:panelGrid>
+									value="CANCELAR" immediate="true" styleClass="btn btn-lg btn-danger btn-block" />
+									</p:column>
+
+								</p:row>
+							</p:panelGrid>
 
 
 						</h:form>

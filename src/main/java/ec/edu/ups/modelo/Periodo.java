@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,6 +23,9 @@ public class Periodo {
 	private Date fin;
 //	@OneToMany(mappedBy = "periodo", cascade = CascadeType.ALL)
 //	private List<Asignatura> asignaturas;
+	
+	@OneToMany(mappedBy = "periodo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Grupo> grupos;
 	
 	public int getId() {
 		return id;
@@ -47,21 +51,18 @@ public class Periodo {
 	public void setFin(Date fin) {
 		this.fin = fin;
 	}
-//	public List<Asignatura> getAsignaturas() {
-//		return asignaturas;
-//	}
-//	public void setAsignaturas(List<Asignatura> asignaturas) {
-//		this.asignaturas = asignaturas;
-//	}
-//	@Override
-//	public String toString() {
-//		return "Periodo [id=" + id + ", periodo=" + periodo + ", inicio=" + inicio + ", fin=" + fin + ", asignaturas="
-//				+ asignaturas + "]";
-//	}
+	public List<Grupo> getGrupos() {
+		return grupos;
+	}
+	public void setGrupos(List<Grupo> grupos) {
+		this.grupos = grupos;
+	}
 	@Override
 	public String toString() {
-		return "Periodo [id=" + id + ", periodo=" + periodo + ", inicio=" + inicio + ", fin=" + fin + "]";
+		return "Periodo [id=" + id + ", periodo=" + periodo + ", inicio=" + inicio + ", fin=" + fin + ", grupos="
+				+ grupos + "]";
 	}
+
 
 	
 
