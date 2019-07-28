@@ -40,8 +40,11 @@ public class LoginDocente  extends Application{
 	@Produces("application/json")
 	public boolean inisiarSesion1(@QueryParam("usr") String usr,@QueryParam("passw") String passw) {
 		boolean bandera=false;
+		Docente docente=null;
 		try {
-			if(dON.docenteLogin(usr,passw)!=null) {
+			docente=dON.docenteLogin(usr,passw);
+			System.out.println(docente.toString());
+			if(docente.getRol().equals("Docente")) {
 				bandera=true;
 			}
 		} catch (Exception e) {

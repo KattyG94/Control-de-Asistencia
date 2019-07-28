@@ -21,10 +21,12 @@ public class Docente extends Usuario {
 	@Column(name = "profesion")
 	private String profesion;
 	
+	private String rol;
 	
-	@OneToMany(cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
-	@JoinColumn(name="docente_codigo")
-	private List<DocenteRol> roles;
+	
+//	@OneToMany(cascade = {CascadeType.ALL}, fetch=FetchType.EAGER)
+//	@JoinColumn(name="docente_codigo")
+//	private List<DocenteRol> roles;
 	
 
 	public String getProfesion() {
@@ -37,29 +39,29 @@ public class Docente extends Usuario {
 		this.profesion = profesion;
 	}
 
+//
+//	public void addDocenteRol(DocenteRol dRl) {
+//		if(roles==null)
+//		   roles = new ArrayList<>();
+//		
+//		this.roles.add(dRl);
+//	}
 
-	public List<DocenteRol> getRoles() {
-		return roles;
+	public String getRol() {
+		return rol;
 	}
 
 
 
-	public void setRoles(List<DocenteRol> roles) {
-		this.roles = roles;
+	public void setRol(String rol) {
+		this.rol = rol;
 	}
 
 
-
-	public void addDocenteRol(DocenteRol dRl) {
-		if(roles==null)
-		   roles = new ArrayList<>();
-		
-		this.roles.add(dRl);
-	}
 
 	@Override
 	public String toString() {
-		return "Docente [profesion=" + profesion + ", roles=" + roles + ",Nombre= "+getApellidos()+ "]";
+		return "Docente [profesion=" + profesion + ", rol=" + rol + "]";
 	}
 
 	

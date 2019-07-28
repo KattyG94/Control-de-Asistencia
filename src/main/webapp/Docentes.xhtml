@@ -98,32 +98,17 @@
 									id="txtPass" styleClass="form-control"
 									a:placeholder="Contraseña" />
 								<h:message for="txtPass" />
+								
+								<h:outputLabel value="Rol" />
+								<h:selectOneMenu value="#{docenteControlador.docente.rol}"
+									id="txtRol" styleClass="custom-select">
+									<f:selectItem itemValue="" itemLabel="--Seleccione--" />
+									<f:selectItem itemValue="Docente" itemLabel="Docente" />
+									<f:selectItem itemValue="Jefe de Area" itemLabel="Jefe de Area" />
+								</h:selectOneMenu>
+								<h:message for="txtRol" />
 
 							</h:panelGrid>
-
-							<h:dataTable value="#{docenteControlador.docente.roles}"
-								var="rol">
-								<h:column>
-									<f:facet name="header">Código</f:facet>
-								</h:column>
-								<h:column>
-									<f:facet name="header">Rol</f:facet>
-									<h:inputText value="#{rol.codigoTemRol}" id="txtAutorLibro">
-										<f:ajax render="lblAutorNombre" execute="txtAutorLibro"
-											listener="#{docenteControlador.buscarRolCodigo(rol)}"
-											event="keyup" />
-									</h:inputText>
-									<h:outputText id="lblAutorNombre" value="#{rol.rol.nombreRol}" />
-									<h:message for="txtAutorLibro" />
-
-								</h:column>
-
-							</h:dataTable>
-
-
-
-
-
 							<p:panelGrid style="width: 100%;margin-top:30px;">
 								<p:row>
 									<p:column rowspan="6">
@@ -135,11 +120,6 @@
 										<h:commandButton value="CANCELAR"
 											action="#{docenteControlador.nuevo()}"
 											styleClass="btn btn-lg btn-danger btn-block" />
-									</p:column>
-									<p:column>
-										<h:commandButton value="+ ROL"
-											action="#{docenteControlador.addRol()}"
-											styleClass="btn btn-lg btn-danger btn-block" immediate="true" />
 									</p:column>
 
 								</p:row>

@@ -44,9 +44,6 @@ public class DocenteControlador {
 		if (id == 0)
 			return;
 		docente = dON.getDocente(id);
-		for(DocenteRol t : docente.getRoles()) {
-			System.out.println("\t"+t);
-		}
 	}
 
 	public void mostrarData(int ids) {
@@ -158,11 +155,6 @@ public class DocenteControlador {
 			fc.addMessage(null, msg);
 		}
 
-		return null;
-	}
-
-	public String addRol() {
-		docente.addDocenteRol(new DocenteRol());
 		return null;
 	}
 

@@ -16,26 +16,27 @@ public class InstalacionRol {
 	@Inject
 	private RolDAO dao;
 	
-	private List<Rol>listaRol;
+//	private List<Rol>listaRol;
 	
 	@PostConstruct
 	public void init() {
-		listaRol=dao.getRoles();
-		if(listaRol.size()==0) {
-			Rol r=new Rol();
-			r.setNombreRol("Docente");
-			dao.create(r);
-			Rol r1=new Rol();
-			r1.setNombreRol("Jefe de Area");
-			dao.create(r1);
-			listaRol=dao.getRoles();
-		}	else {
-			listaRol=dao.getRoles();
-		}
-	}
+//		listaRol=dao.getRoles();
+//		if(listaRol.size()==0) {
+//			Rol r=new Rol();
+//			r.setNombreRol("Docente");
+//			dao.create(r);
+//			Rol r1=new Rol();
+//			r1.setNombreRol("Jefe de Area");
+//			dao.create(r1);
+//			listaRol=dao.getRoles();
+//		}	else {
+//			listaRol=dao.getRoles();
+//		}
+//	}
+//
+//	public List<Rol> getListaRol() {
+//		return listaRol;
+//	}
 
-	public List<Rol> getListaRol() {
-		return listaRol;
-	}
-
+}
 }
