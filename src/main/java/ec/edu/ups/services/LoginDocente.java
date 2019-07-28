@@ -28,9 +28,7 @@ public class LoginDocente  extends Application{
 				//Docente logueado satisfactoriamente
 			}
 		} catch (Exception e) {
-			Respuesta r = new Respuesta();
-			r.setCodigo(99);
-			r.setMensaje(e.getMessage());
+		
 		}
 		return validar;
 		
@@ -48,9 +46,7 @@ public class LoginDocente  extends Application{
 				bandera=true;
 			}
 		} catch (Exception e) {
-			Respuesta r = new Respuesta();
-			r.setCodigo(99);
-			r.setMensaje(e.getMessage());
+			bandera =false;
 		}
 		return bandera;
 		

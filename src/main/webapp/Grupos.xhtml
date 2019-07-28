@@ -26,16 +26,13 @@
 						<h:form>
 							<h:outputLabel value="Agregar Grupo" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
+
 							<h:panelGrid columns="3" cellpadding="5" styleClass="ui-grid">
-								<h:outputLabel for="basic" value="Periodo: " />
-								<p:spinner id="txtPeriodo" value="#{grupoControler.grupo.numero}" />
-								<h:message for="txtPeriodo" />
-								
 								<h:outputLabel value="Num.Grupo" />
-								<p:spinner id="txtNumGrupo" value="#{grupoControler.grupo.numero}" size="20" />
+								<p:spinner id="txtNumGrupo"
+									value="#{grupoControler.grupo.numero}" size="20" />
 								<h:message for="txtNumero" />
 							</h:panelGrid>
-					
 
 							<p:panelGrid style="width: 100%;">
 								<p:row>
@@ -50,8 +47,7 @@
 									<p:column>
 										<p:commandButton value="Buscar" icon="ui-icon-search"
 											actionListener="#{grupoControler.buscarDocenteCedula()}"
-											update="datosTipoTelefono"
-											 />
+											update="datosTipoTelefono" />
 									</p:column>
 								</p:row>
 								<p:row>
@@ -95,6 +91,22 @@
 										</h:selectOneMenu>
 									</p:column>
 								</p:row>
+								<p:row>
+									<p:column>Periodo</p:column>
+									<p:column colspan="15">
+										<h:selectOneMenu value="#{grupoControler.periodo.id}"
+											styleClass="custom-select" style="text-align:center;">
+											<f:selectItem itemValue=""
+												itemLabel="    --Seleccione periodo--    " />
+											<f:selectItems value="#{grupoControler.listaPeriodo}"
+												var="per" itemValue="#{per.id}" itemLabel="#{per.periodo}"
+												noSelectionOption="" id="periodo" />
+											<p:ajax event="change"
+												listener="#{grupoControler.elegirPeriodo()}" />
+
+										</h:selectOneMenu>
+									</p:column>
+								</p:row>
 
 
 							</p:panelGrid>
@@ -123,7 +135,29 @@
 						<h:form>
 							<h:outputLabel value="Lista de Grupos" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
+							<p:dataTable var="car" value="#{grupoControler.listaGrupo}"
+								rows="10" paginator="true"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								rowsPerPageTemplate="5,10,15">
 
+								<p:column headerText="Periodo">
+									<h:outputText value="#{car.periodo.periodo}" />
+								</p:column>
+
+								<p:column headerText="Grupo">
+									<h:outputText value="#{car.id}" />
+								</p:column>
+
+								<p:column headerText="Docente">
+									<h:outputText value="#{car.docente.nombres}" />
+								</p:column>
+								<p:column headerText="Carrera">
+									<h:outputText value="#{car.carrera.nombre}" />
+								</p:column>
+								<p:column headerText="Asignatura">
+									<h:outputText value="#{car.asignatura.nombre}" />
+								</p:column>
+							</p:dataTable>
 
 
 						</h:form>
