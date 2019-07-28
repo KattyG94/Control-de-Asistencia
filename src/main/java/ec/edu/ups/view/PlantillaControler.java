@@ -14,11 +14,11 @@ public class PlantillaControler implements Serializable{
 
 	public void verificarSesion() {
 		try {
-//			FacesContext context=FacesContext.getCurrentInstance();
-//			Docente doc=(Docente) context.getExternalContext().getSessionMap().get("usuario");
-//			if(doc==null) {
-//				context.getExternalContext().redirect("index.xhtml");
-//			}
+			FacesContext context=FacesContext.getCurrentInstance();
+			Docente doc=(Docente) context.getExternalContext().getSessionMap().get("usuario");
+			if(doc==null) {
+				context.getExternalContext().redirect("index.xhtml");
+			}
 		} catch (Exception e) {
 			
 		}
