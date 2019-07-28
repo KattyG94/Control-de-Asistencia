@@ -1,6 +1,6 @@
+    
 package ec.edu.ups.view;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -8,7 +8,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import ec.edu.ups.modelo.Docente;
@@ -22,8 +21,7 @@ public class DocenteControlador {
 
 	private Docente docente;
 	private List<Docente> listaDocente;
-	private List<Rol>listaRoles;
-	private List<SelectItem> selectOneItemRol;
+//	private List<Rol>listaRoles;
 
 	@Inject
 	private DocenteON dON;
@@ -39,13 +37,16 @@ public class DocenteControlador {
 	public void init() {
 		docente=new Docente();
 		listaDocente=dON.getListaDocentes();
-		listaRoles=dON.getRoles();
+//		listaRoles=dON.getRoles();
 	}
 
 	public void loadData() {
 		if (id == 0)
 			return;
 		docente = dON.getDocente(id);
+		for(DocenteRol t : docente.getRoles()) {
+			System.out.println("\t"+t);
+		}
 	}
 
 	public void mostrarData(int ids) {
@@ -73,6 +74,7 @@ public class DocenteControlador {
 	}
 
 	public String editar(int id) {
+		System.out.println("dddd  " + id);
 		return "Docentes?faces-redirect=true&id=" + id;
 	}
 
@@ -88,6 +90,7 @@ public class DocenteControlador {
 	}
 
 	public String listadoDocentes() {
+		System.out.println("Hola");
 		return "ListarDocente";
 
 	}
@@ -117,37 +120,6 @@ public class DocenteControlador {
 
 		return null;
 	}
-
-	
-	
-	public void setSelectOneItemRol(List<SelectItem> selectOneItemRol) {
-		this.selectOneItemRol = selectOneItemRol;
-	}
-
-	public List<SelectItem> getSelectOneItemRol(){
-		this.selectOneItemRol=new ArrayList<>();
-		List<Rol>roles=listaRoles;
-		for (Rol rol : roles) {
-			SelectItem selectItem=new SelectItem(rol.getCodigo(), rol.getNombreRol());
-			Rol rol1 = dON.getRol(this.getIdRolTemp());
-			DocenteRol drol=new DocenteRol();
-			drol.setRol(rol1);
-			this.selectOneItemRol.add(selectItem);
-		}
-		return selectOneItemRol;
-	}
-	public String buscarRolCodigo(DocenteRol drol) {
-		System.out.println("buscando Rol " + drol);
-		try {
-			Rol rol = dON.getRolCodigo(drol.getCodigoTemRol());
-			drol.setRol(rol);
-		} catch (Exception e) {
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_FATAL, e.getMessage(), "Error");
-			fc.addMessage(null, msg);
-		}
-
-		return null;
-	}
 	public String iniciarSesion() throws Exception {
 		boolean doc;
 		String redireccion=null;
@@ -165,6 +137,30 @@ public class DocenteControlador {
 		return redireccion;
 	}
 
+//	public List<SelectItem> getSelectOneItemRol(){
+//		this.selectOneItemRol=new ArrayList<>();
+//		List<Rol>roles=listaRoles;
+//		for (Rol rol : roles) {
+//			SelectItem selectItem=new SelectItem(rol.getCodigo(), rol.getNombreRol());
+//			Rol rol1 = dON.getRol(this.getIdRolTemp());
+//			DocenteRol drol=new DocenteRol();
+//			drol.setRol(rol1);
+//			this.selectOneItemRol.add(selectItem);
+//		}
+//		return selectOneItemRol;
+//	}
+	public String buscarRolCodigo(DocenteRol drol) {
+		try {
+			Rol rol = dON.getRol(drol.getCodigoTemRol());
+			drol.setRol(rol);
+		} catch (Exception e) {
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_FATAL, e.getMessage(), "Error");
+			fc.addMessage(null, msg);
+		}
+
+		return null;
+	}
+
 	public String addRol() {
 		docente.addDocenteRol(new DocenteRol());
 		return null;
@@ -174,17 +170,14 @@ public class DocenteControlador {
 		return listaDocente;
 	}
 
-	public void setListaDocente(List<Docente> listaDocente) {
-		this.listaDocente = listaDocente;
-	}
 
-	public List<Rol> getListaRoles() {
-		return listaRoles;
-	}
-
-	public void setListaRoles(List<Rol> listaRoles) {
-		this.listaRoles = listaRoles;
-	}
+//	public List<Rol> getListaRoles() {
+//		return listaRoles;
+//	}
+//
+//	public void setListaRoles(List<Rol> listaRoles) {
+//		this.listaRoles = listaRoles;
+//	}
 
 	public int getIdRolTemp() {
 		return idRolTemp;

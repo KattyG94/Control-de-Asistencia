@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 //Prueba de funcionamiento
 
 @Entity
-public class Docente extends Usuario{
+public class Docente extends Usuario {
 	
 	@NotNull
 	@Column(name = "profesion")

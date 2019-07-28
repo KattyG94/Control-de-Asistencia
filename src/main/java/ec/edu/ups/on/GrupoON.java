@@ -16,7 +16,7 @@ public class GrupoON {
 	private GrupoDAO grupoDao;
 	
 	public void guardarGrupo(Grupo grupo) throws Exception{
-		grupoDao.crearGrupo(grupo);
+		grupoDao.create(grupo);
 	}
 	public void eliminarGrupo(int id) throws Exception {
 		try {

@@ -4,7 +4,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:b="http://java.sun.com/jsf/html">
+	xmlns:b="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 	<meta name="viewport"
@@ -25,9 +26,92 @@
 						<h:form>
 							<h:outputLabel value="Agregar Grupo" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
+							<h:panelGrid columns="3" cellpadding="5" styleClass="ui-grid">
+								<h:outputLabel for="basic" value="Periodo: " />
+								<p:spinner id="txtPeriodo" value="#{grupoControler.grupo.numero}" />
+								<h:message for="txtPeriodo" />
+								
+								<h:outputLabel value="Num.Grupo" />
+								<p:spinner id="txtNumGrupo" value="#{grupoControler.grupo.numero}" size="20" />
+								<h:message for="txtNumero" />
+							</h:panelGrid>
+					
+
+							<p:panelGrid style="width: 100%;">
+								<p:row>
+									<p:column>
+										<h:outputLabel value="Docente" />
+									</p:column>
+									<p:column>
+										<h:inputText size="20"
+											value="#{grupoControler.docente.cedula}" id="txtTipoTelefono"
+											styleClass="form-control" a:placeholder="Digite la cedula" />
+									</p:column>
+									<p:column>
+										<p:commandButton value="Buscar" icon="ui-icon-search"
+											actionListener="#{grupoControler.buscarDocenteCedula()}"
+											update="datosTipoTelefono"
+											 />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column colspan="20" style="text-align:center;">
+										<h:outputLabel id="datosTipoTelefono"
+											value="#{grupoControler.docente.nombres}" />
+									</p:column>
+
+								</p:row>
+
+								<p:row>
+									<p:column>Carrera</p:column>
+									<p:column colspan="15">
+										<h:selectOneMenu value="#{grupoControler.carrera.id}"
+											styleClass="custom-select" style="text-align:center;">
+											<f:selectItem itemValue=""
+												itemLabel="    --Seleccione carrera--    " />
+											<f:selectItems value="#{grupoControler.listaCarrera}"
+												var="cl" itemValue="#{cl.id}" itemLabel="#{cl.nombre}"
+												noSelectionOption="" id="carrera" />
+											<p:ajax event="change"
+												listener="#{grupoControler.elegirCarrera()}" />
+
+										</h:selectOneMenu>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>Asignatura</p:column>
+									<p:column colspan="15">
+										<h:selectOneMenu value="#{grupoControler.asignatura.id}"
+											styleClass="custom-select" style="text-align:center;">
+											<f:selectItem itemValue=""
+												itemLabel="    --Seleccione asignatura--    " />
+											<f:selectItems value="#{grupoControler.listaAsignatura}"
+												var="asig" itemValue="#{asig.id}" itemLabel="#{asig.nombre}"
+												noSelectionOption="" id="asignatura" />
+											<p:ajax event="change"
+												listener="#{grupoControler.elegirAsignatura()}" />
+
+										</h:selectOneMenu>
+									</p:column>
+								</p:row>
 
 
-
+							</p:panelGrid>
+							<p:panelGrid style="width: 100%;margin-top:30px;">
+								<p:row>
+									<p:column rowspan="6">
+										<h:commandButton value="REGISTRAR"
+											action="#{grupoControler.registrarGrupo()}"
+											styleClass="btn btn-lg btn-success btn-block" />
+									</p:column>
+									<p:column rowspan="6">
+										<h:commandButton value="CANCELAR"
+											action="#{grupoControler.nuevo()}"
+											styleClass="btn btn-lg btn-danger btn-block" />
+									</p:column>
+								</p:row>
+							</p:panelGrid>
 						</h:form>
 					</div>
 				</div>

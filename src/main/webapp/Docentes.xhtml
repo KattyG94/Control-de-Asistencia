@@ -14,34 +14,32 @@
 	</f:metadata>
 </h:head>
 <body>
-	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:ui="http://java.sun.com/jsf/facelets"
-		xmlns:f="http://java.sun.com/jsf/core"
-		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:p="http://primefaces.org/ui"
-		xmlns:b="http://java.sun.com/jsf/html" template="/Sistema.xhtml">
+	<ui:composition template="./Sistema.xhtml">
 		<ui:define name="body">
 			<div class="row" style="height: 728px;">
 				<!-- Crear Docente-->
 				<div class="col-5">
 					<div class=" border border-dark m-2 p-2 rounded"
 						style="height: 710px;">
-						<h:form>
+						<h:form id="form1">
 							<h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
 							<h:outputLabel value="Agregar Docente" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
 							<h:panelGrid columns="3" cellpadding="5">
-								
+
 								<h:outputLabel value="Nombres:" />
-								<h:inputText value="#{docenteControlador.docente.nombres}" id="txtNombre" styleClass="form-control" a:placeholder="Nobres"/>
+								<h:inputText value="#{docenteControlador.docente.nombres}"
+									id="txtNombre" styleClass="form-control" a:placeholder="Nobres" />
 								<h:message for="txtNombre" />
 
 								<h:outputLabel value="Apellidos:" />
-								<h:inputText value="#{docenteControlador.docente.apellidos}" id="txtApe"  styleClass="form-control" a:placeholder="Apellidos" />
+								<h:inputText value="#{docenteControlador.docente.apellidos}"
+									id="txtApe" styleClass="form-control" a:placeholder="Apellidos" />
 								<h:message for="txtApe" />
 
 								<h:outputLabel value="Cedula:" />
-								<h:inputText value="#{docenteControlador.docente.cedula}" id="txtCedula"  styleClass="form-control" a:placeholder="Cedula" />
+								<h:inputText value="#{docenteControlador.docente.cedula}"
+									id="txtCedula" styleClass="form-control" a:placeholder="Cedula" />
 								<h:message for="txtCedula" />
 
 								<h:outputLabel for="fNaci" value="Fec. Nacimiento" />
@@ -49,11 +47,13 @@
 									requiredMessage="Fecha de nacimiento requerida"
 									value="#{docenteControlador.docente.fechaNac}" locale="es"
 									required="true" />
+
 								<p:message for="fNaci" />
+
 
 								<h:outputLabel value="Sexo:" />
 								<h:selectOneMenu value="#{docenteControlador.docente.genero}"
-									id="txtgenero">
+									id="txtgenero" styleClass="custom-select">
 									<f:selectItem itemValue="" itemLabel="    --Seleccione--    " />
 									<f:selectItem itemValue="Masculino" itemLabel="Masculino" />
 									<f:selectItem itemValue="Femenino" itemLabel="Femenino" />
@@ -61,17 +61,31 @@
 								<h:message for="txtgenero" />
 
 								<h:outputLabel value="Telefono:" />
-								<h:inputText value="#{docenteControlador.docente.telefono}" id="txtTel" styleClass="form-control" a:placeholder="Telefono" />
+								<h:inputText value="#{docenteControlador.docente.telefono}"
+									id="txtTel" styleClass="form-control" a:placeholder="Telefono" />
 								<h:message for="txtTel" />
 
 								<h:outputLabel value="Direccion:" />
 								<h:inputText value="#{docenteControlador.docente.direccion}"
-									id="txtDir" styleClass="form-control" a:placeholder="Direccion"  />
+									id="txtDir" styleClass="form-control" a:placeholder="Direccion" />
 								<h:message for="txtDir" />
 
 								<h:outputLabel value="Profesion:" />
-								<h:inputText value="#{docenteControlador.docente.profesion}"
-									id="txtProf" styleClass="form-control" a:placeholder="Profesion" />
+								<h:selectOneMenu value="#{docenteControlador.docente.profesion}"
+									id="txtProf" styleClass="custom-select">
+									<f:selectItem itemValue="" itemLabel="--Seleccione--" />
+									<f:selectItem itemValue="Arquitecto" itemLabel="Arquitecto" />
+									<f:selectItem itemValue="Biólogo/a" itemLabel="Biólogo/a" />
+									<f:selectItem itemValue="Diseñador" itemLabel="Diseñador" />
+									<f:selectItem itemValue="Médico/a" itemLabel="Médico/a" />
+									<f:selectItem itemValue="Economista" itemLabel="Economista" />
+									<f:selectItem itemValue="Ingeniero/a" itemLabel="Ingeniero/a" />
+									<f:selectItem itemValue="Periodista" itemLabel="Periodista" />
+									<f:selectItem itemValue="Abogado/a" itemLabel="Abogado/a" />
+									<f:selectItem itemValue="Mecánico/a" itemLabel="Mecánico/a" />
+									<f:selectItem itemValue="Psicólogo/a" itemLabel="Psicólogo/a" />
+									<f:selectItem itemValue="Cirujano" itemLabel="Cirujano" />
+								</h:selectOneMenu>
 								<h:message for="txtProf" />
 
 								<h:outputLabel value="Correo:" />
@@ -81,17 +95,11 @@
 
 								<h:outputLabel value="Contraseña:" />
 								<h:inputText value="#{docenteControlador.docente.contrasena}"
-									id="txtPass" styleClass="form-control" a:placeholder="Contraseña"/>
+									id="txtPass" styleClass="form-control"
+									a:placeholder="Contraseña" />
 								<h:message for="txtPass" />
-							</h:panelGrid>
-
-							<h:panelGrid columns="2">
-								<h:outputText value="" />
-								<h:commandButton action="#{docenteControlador.addRol()}"
-									value="+ Rol" immediate="true" />
 
 							</h:panelGrid>
-
 
 							<h:dataTable value="#{docenteControlador.docente.roles}"
 								var="rol">
@@ -102,14 +110,20 @@
 									<f:facet name="header">Rol</f:facet>
 									<h:inputText value="#{rol.codigoTemRol}" id="txtAutorLibro">
 										<f:ajax render="lblAutorNombre" execute="txtAutorLibro"
-											listener="#{docenteControlador.buscarRolCodigo(rol)}" event="keyup" />
+											listener="#{docenteControlador.buscarRolCodigo(rol)}"
+											event="keyup" />
 									</h:inputText>
 									<h:outputText id="lblAutorNombre" value="#{rol.rol.nombreRol}" />
 									<h:message for="txtAutorLibro" />
+
 								</h:column>
 
 							</h:dataTable>
-							
+
+
+
+
+
 							<p:panelGrid style="width: 100%;margin-top:30px;">
 								<p:row>
 									<p:column rowspan="6">
@@ -121,6 +135,11 @@
 										<h:commandButton value="CANCELAR"
 											action="#{docenteControlador.nuevo()}"
 											styleClass="btn btn-lg btn-danger btn-block" />
+									</p:column>
+									<p:column>
+										<h:commandButton value="+ ROL"
+											action="#{docenteControlador.addRol()}"
+											styleClass="btn btn-lg btn-danger btn-block" immediate="true" />
 									</p:column>
 
 								</p:row>

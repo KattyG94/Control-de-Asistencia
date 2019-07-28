@@ -17,6 +17,8 @@ public class DocenteON {
 
 	@Inject
 	private DocenteDAO dao;
+	@Inject
+	private InstalacionRol dROL;
 
 	@Inject
 	private RolDAO rdao;
@@ -33,7 +35,10 @@ public class DocenteON {
 	public List<Docente> getListaDocentes() {
 		return dao.getDocentes();
 	}
-
+	public Docente getDocenteCedula(Docente docente) {
+		Docente doc=dao.getDocenteDNI(docente);
+		return doc;
+	}
 	public Docente getDocente(int id) {
 		Docente d = dao.getDocente(id);
 		return d;
@@ -41,9 +46,9 @@ public class DocenteON {
 	public Rol getRol(int codigo) {
 		return rdao.read(codigo);
 	}
-	public Rol getRolCodigo(int nombreRol) {
-		return rdao.read(nombreRol);
-	}
+//	public Rol getRolCodigo(String nombreRol) {
+//		return rdao.getRolCodigo(nombreRol);
+//	}
 	
 	public List<Rol> getRoles(){
 		return rdao.getRoles();
@@ -65,38 +70,32 @@ public class DocenteON {
 			throw new Exception("Código no corresponde");
 		}
 	}
-//	public boolean docenteLogin(Docente d)  throws Exception {
-//		boolean bandera=false;
-//		Docente doc=null;
-//		try {
-//			doc=dao.getUsuarioDocente(d);
-//			if(doc!=null) {
-//				bandera =true;
-//			}else {
-//				bandera=false;
-//			}
-//			
-//		} catch (Exception e) {
-//			throw e;
-//		}
-//		return bandera;
-//	}
 	
 	public Docente docenteLogin(String us,String pas)  throws Exception {
-//	boolean bandera=false;
 	Docente doc=null;
 	try {
-		doc=dao.getUsuarioDocente(us,pas);
 		
-//		if(doc!=null) {
-//			bandera =true;
-//		}else {
-//			bandera=false;
+		
+		if(dao.getUsuarioDocente(us,pas)!=null) {
+			
+			
+		}
+//		while (dao.getUsuarioDocente(us,pas)!=null) {
+//			doc=dao.getUsuarioDocente(us,pas);
+//			List<Rol> listaRol=dao.
+//			if(doc.get)
+//			
 //		}
-		
+//		
 	} catch (Exception e) {
 		throw e;
 	}
 	return doc;
 }
+	public InstalacionRol getdROL() {
+		return dROL;
+	}
+	public void setdROL(InstalacionRol dROL) {
+		this.dROL = dROL;
+	}
 }

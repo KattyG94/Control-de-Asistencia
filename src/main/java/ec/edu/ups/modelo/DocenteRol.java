@@ -53,6 +53,11 @@ public class DocenteRol {
 	public void setNombreTemRol(String nombreTemRol) {
 		this.nombreTemRol = nombreTemRol;
 	}
+	@Override
+	public String toString() {
+		return "DocenteRol [codigo=" + codigo + ", docente=" + docente + ", rol=" + rol + ", codigoTemRol="
+				+ codigoTemRol + ", nombreTemRol=" + nombreTemRol + "]";
+	}
 	
 	
 }

@@ -35,4 +35,13 @@ public class AlumnoON {
 		}
 
 	}
+	public Alumno alumnoLogin(String us,String pas)  throws Exception {
+	Alumno alumno=null;
+	try {
+		alumno=dao.getUsuarioAlumno(us,pas);
+	} catch (Exception e) {
+		throw e;
+	}
+	return alumno;
+}
 }

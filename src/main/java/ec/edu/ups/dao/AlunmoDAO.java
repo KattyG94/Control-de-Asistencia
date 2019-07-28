@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import ec.edu.ups.modelo.Alumno;
-import ec.edu.ups.modelo.Docente;
 
 @Stateless
 public class AlunmoDAO {
@@ -54,6 +53,23 @@ public class AlunmoDAO {
 		q.setParameter("id", id);
 		Alumno alumno = (Alumno) q.getSingleResult();
 		return alumno;
+	}
+	
+	public Alumno getUsuarioAlumno(String user,String pass) {
+	Alumno docenteV=null;
+	try {
+		String jpql="SELECT d FROM Alumno d WHERE d.correo =: user AND d.contrasena =: pass";
+		Query q = manager.createQuery(jpql,Alumno.class);
+		q.setParameter("user", user);
+		q.setParameter("pass", pass);
+		List<Alumno> docenteLista = q.getResultList();
+		if(!docenteLista.isEmpty()) {
+			docenteV=docenteLista.get(0);
+		}
+	} catch (Exception e) {
+		throw e;
+	}
+	return docenteV;
 	}
 
 }
