@@ -9,14 +9,17 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import ec.edu.ups.modelo.Docente;
 import ec.edu.ups.modelo.Grupo;
+import ec.edu.ups.on.DocenteON;
 import ec.edu.ups.on.GrupoON;
 
 
 @ManagedBean
 @ViewScoped
-public class GrupoController {
+public class GrupoControler {
 private Grupo grupo;
+private Docente docente;
 	
 	private int id;
 	
@@ -24,12 +27,15 @@ private Grupo grupo;
 	@Inject
 	private GrupoON gruoON;
 	@Inject
+	private DocenteON docenteON;
+	@Inject
 	private FacesContext fc;
 	
 	@PostConstruct
 	public void init() {
 		grupo=new Grupo();
-		listaGrupo=gruoON.getGrupos();
+		docente=new Docente();
+//		listaGrupo=gruoON.getGrupos();
 		
 		
 	}
@@ -38,8 +44,10 @@ private Grupo grupo;
 			return;
 		grupo = gruoON.getGrupo(id);
 	}
-	public String registrarPerido() {
+	public String registrarGrupo() {
 		try {
+			System.out.println(grupo.toString());
+			grupo.setDocente(docente);
 			gruoON.guardarGrupo(grupo);
 			init();
 		} catch (Exception e) {
@@ -66,19 +74,28 @@ private Grupo grupo;
 		return null;
 	}
 	
-	
-
+	public void consultarDocente(){
+		
+		List<Docente> docentes =  docenteON.getListaDocentes();
+		for(Docente docente: docentes) {
+			if(grupo.getDocenteIdTemp()==docente.getId())
+				grupo.setDocente(docente);
+			System.out.println(docente.toString());
+		}
+		
+	}
+	public void buscarDocenteCedula(){
+		
+		docente =  docenteON.getDocenteCedula(docente.getCedula());
+		
+		System.out.println(docente.toString());
+		
+	}
 	public Grupo getGrupo() {
 		return grupo;
 	}
 	public void setGrupo(Grupo grupo) {
 		this.grupo = grupo;
-	}
-	public List<Grupo> getListaPeriodos() {
-		return listaGrupo;
-	}
-	public void setListaPeriodos(List<Grupo> listaGrupos) {
-		this.listaGrupo = listaGrupos;
 	}
 	public int getId() {
 		return id;
@@ -86,6 +103,19 @@ private Grupo grupo;
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+	public List<Grupo> getListaGrupo() {
+		return listaGrupo;
+	}
+	public void setListaGrupo(List<Grupo> listaGrupo) {
+		this.listaGrupo = listaGrupo;
+	}
+	public Docente getDocente() {
+		return docente;
+	}
+	public void setDocente(Docente docente) {
+		this.docente = docente;
+	}
+
+
 
 }

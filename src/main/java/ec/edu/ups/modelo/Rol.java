@@ -40,6 +40,10 @@ public class Rol {
 	public void setNombreRol(String nombreRol) {
 		this.nombreRol = nombreRol;
 	}
+	@Override
+	public String toString() {
+		return "Rol [codigo=" + codigo + ", nombreRol=" + nombreRol + ", roles=" + roles + "]";
+	}
 
 	
 	

@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import ec.edu.ups.modelo.Docente;
-
 @Stateless
 public class DocenteDAO {
 
@@ -63,24 +62,14 @@ public class DocenteDAO {
 		System.out.println(docentes.toString());
 		return docentes;
 	}
+	public Docente getDocenteCedula(String cedula) {
+		String jpql = "SELECT d FROM Docente d WHERE d.cedula =: cedula";
+		Query q = manager.createQuery(jpql, Docente.class);
+		q.setParameter("cedula",cedula);
+		Docente docentes = (Docente) q.getSingleResult();
+		return docentes;
+	}
 	
-//	public Docente getUsuarioDocente(Docente d) {
-//	Docente docenteV=null;
-//	try {
-//		System.out.println("Prsente");
-//		String jpql="SELECT d FROM Docente d WHERE d.correo =: user AND d.contrasena =: pass";
-//		Query q = manager.createQuery(jpql,Docente.class);
-//		q.setParameter("user", d.getCorreo());
-//		q.setParameter("pass", d.getContrasena());
-//		List<Docente> docenteLista = q.getResultList();
-//		if(!docenteLista.isEmpty()) {
-//			docenteV=docenteLista.get(0);
-//		}
-//	} catch (Exception e) {
-//		throw e;
-//	}
-//	return docenteV;
-//	}
 	
 	public Docente getUsuarioDocente(String user,String pass) {
 	Docente docenteV=null;

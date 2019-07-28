@@ -36,7 +36,7 @@ public class Carrera {
 	public void setGrupos(List<Grupo> grupos) {
 		this.grupos = grupos;
 	}
-	
+//	
 	
 
 }

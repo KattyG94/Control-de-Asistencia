@@ -4,7 +4,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:b="http://java.sun.com/jsf/html">
+	xmlns:b="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 	<meta name="viewport"
@@ -25,9 +26,82 @@
 						<h:form>
 							<h:outputLabel value="Agregar Grupo" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
+							<p:panelGrid style="width: 30%;">
+								<p:row>
+									<p:column rowspan="4">
+										<h:outputLabel value="Num.Grupo" />
+									</p:column>
+									<p:column rowspan="4">
+										<h:inputText value="#{grupoControler.grupo.numero}"
+											id="txtNumero" size="20" />
+									</p:column>
+									<p:column rowspan="4">
+										<h:message for="txtNumero" />
+									</p:column>
+								</p:row>
 
+							</p:panelGrid>
+							<p:panelGrid style="width: 100%;">
+								<p:row>
+									<p:column>
+										<h:outputLabel value="Docente" />
+									</p:column>
+									<p:column>
+										<h:inputText size="20"
+											value="#{grupoControler.docente.cedula}" id="txtTipoTelefono" />
+									</p:column>
+									<p:column>
+										<p:commandButton value="Buscar" icon="ui-icon-search"
+											actionListener="#{grupoControler.buscarDocenteCedula()}"
+											update="datosTipoTelefono" styleClass="btn btn-lg btn-success"/>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column colspan="20" style="text-align:center;">
+										<h:outputLabel id="datosTipoTelefono"
+											value="#{grupoControler.docente.nombres}" />
+									</p:column>
+									
+								</p:row>
 
+								<p:row>
+									<p:column>g</p:column>
+									<p:column>ggg</p:column>
+								</p:row>
 
+								<p:row>
+									<p:column>h</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>i</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>c</p:column>
+									<p:column>j</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column colspan="20">d</p:column>
+
+								</p:row>
+
+							</p:panelGrid>
+							<p:panelGrid style="width: 100%;margin-top:30px;">
+								<p:row>
+									<p:column rowspan="6">
+										<h:commandButton value="REGISTRAR"
+											action="#{grupoControler.registrarGrupo()}"
+											styleClass="btn btn-lg btn-success btn-block" />
+									</p:column>
+									<p:column rowspan="6">
+										<h:commandButton value="CANCELAR"
+											action="#{grupoControler.nuevo()}"
+											styleClass="btn btn-lg btn-danger btn-block" />
+									</p:column>
+								</p:row>
+							</p:panelGrid>
 						</h:form>
 					</div>
 				</div>

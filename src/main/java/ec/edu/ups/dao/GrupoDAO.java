@@ -13,13 +13,13 @@ public class GrupoDAO {
 	@Inject
 	private EntityManager manager;
 	
-	public void crearGrupo(Grupo grupo) {
-		if(this.read(grupo.getId())!=null)
-			this.update(grupo);
-		else
-			this.create(grupo);
-	}
-	private void create(Grupo p) {
+//	public void crearGrupo(Grupo grupo) {
+//		if(this.read(grupo.getId())!=null)
+//			this.update(grupo);
+//		else
+//			this.create(grupo);
+//	}
+	public void create(Grupo p) {
 		manager.persist(p);
 	}
 	private void update(Grupo p) {
