@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +17,7 @@ public class Carrera {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nombre;
-	@OneToMany(mappedBy = "carrera", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "carrera", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Grupo> grupos;
 	public int getId() {
 		return id;
@@ -36,7 +37,10 @@ public class Carrera {
 	public void setGrupos(List<Grupo> grupos) {
 		this.grupos = grupos;
 	}
-	
-	
+	@Override
+	public String toString() {
+		return "Carrera [id=" + id + ", nombre=" + nombre + ", grupos=" + grupos + "]";
+	}
+
 
 }

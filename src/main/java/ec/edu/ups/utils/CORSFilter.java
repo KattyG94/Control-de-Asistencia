@@ -1,4 +1,4 @@
-package ec.edu.ups.services;
+package ec.edu.ups.utils;
 
 import java.io.IOException;
 

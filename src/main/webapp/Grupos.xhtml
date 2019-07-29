@@ -1,10 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:rich="http://richfaces.org/rich"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:b="http://java.sun.com/jsf/html">
+	xmlns:b="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 	<meta name="viewport"
@@ -26,8 +29,103 @@
 							<h:outputLabel value="Agregar Grupo" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
 
+							<h:panelGrid columns="3" cellpadding="5" styleClass="ui-grid">
+								<h:outputLabel value="Num.Grupo" />
+								<p:spinner id="txtNumGrupo"
+									value="#{grupoControler.grupo.numero}" size="20" />
+								<h:message for="txtNumero" />
+							</h:panelGrid>
+
+							<p:panelGrid style="width: 100%;">
+								<p:row>
+									<p:column>
+										<h:outputLabel value="Docente" />
+									</p:column>
+									<p:column>
+										<h:inputText size="20"
+											value="#{grupoControler.docente.cedula}" id="txtTipoTelefono"
+											styleClass="form-control" a:placeholder="Digite la cedula" />
+									</p:column>
+									<p:column>
+										<p:commandButton value="Buscar" icon="ui-icon-search"
+											actionListener="#{grupoControler.buscarDocenteCedula()}"
+											update="datosTipoTelefono" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column colspan="20" style="text-align:center;">
+										<h:outputLabel id="datosTipoTelefono"
+											value="#{grupoControler.docente.nombres}" />
+									</p:column>
+
+								</p:row>
+
+								<p:row>
+									<p:column>Carrera</p:column>
+									<p:column colspan="15">
+										<h:selectOneMenu value="#{grupoControler.carrera.id}"
+											styleClass="custom-select" style="text-align:center;">
+											<f:selectItem itemValue=""
+												itemLabel="    --Seleccione carrera--    " />
+											<f:selectItems value="#{grupoControler.listaCarrera}"
+												var="cl" itemValue="#{cl.id}" itemLabel="#{cl.nombre}"
+												noSelectionOption="" id="carrera" />
+											<p:ajax event="change"
+												listener="#{grupoControler.elegirCarrera()}" />
+
+										</h:selectOneMenu>
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>Asignatura</p:column>
+									<p:column colspan="15">
+										<h:selectOneMenu value="#{grupoControler.asignatura.id}"
+											styleClass="custom-select" style="text-align:center;">
+											<f:selectItem itemValue=""
+												itemLabel="    --Seleccione asignatura--    " />
+											<f:selectItems value="#{grupoControler.listaAsignatura}"
+												var="asig" itemValue="#{asig.id}" itemLabel="#{asig.nombre}"
+												noSelectionOption="" id="asignatura" />
+											<p:ajax event="change"
+												listener="#{grupoControler.elegirAsignatura()}" />
+
+										</h:selectOneMenu>
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column>Periodo</p:column>
+									<p:column colspan="15">
+										<h:selectOneMenu value="#{grupoControler.periodo.id}"
+											styleClass="custom-select" style="text-align:center;">
+											<f:selectItem itemValue=""
+												itemLabel="    --Seleccione periodo--    " />
+											<f:selectItems value="#{grupoControler.listaPeriodo}"
+												var="per" itemValue="#{per.id}" itemLabel="#{per.periodo}"
+												noSelectionOption="" id="periodo" />
+											<p:ajax event="change"
+												listener="#{grupoControler.elegirPeriodo()}" />
+
+										</h:selectOneMenu>
+									</p:column>
+								</p:row>
 
 
+							</p:panelGrid>
+							<p:panelGrid style="width: 100%;margin-top:30px;">
+								<p:row>
+									<p:column rowspan="6">
+										<h:commandButton value="REGISTRAR"
+											action="#{grupoControler.registrarGrupo()}"
+											styleClass="btn btn-lg btn-success btn-block" />
+									</p:column>
+									<p:column rowspan="6">
+										<h:commandButton value="CANCELAR"
+											action="#{grupoControler.nuevo()}"
+											styleClass="btn btn-lg btn-danger btn-block" />
+									</p:column>
+								</p:row>
+							</p:panelGrid>
 						</h:form>
 					</div>
 				</div>
@@ -39,7 +137,29 @@
 						<h:form>
 							<h:outputLabel value="Lista de Grupos" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
+							<p:dataTable var="car" value="#{grupoControler.listaGrupo}"
+								rows="10" paginator="true"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								rowsPerPageTemplate="5,10,15">
 
+								<p:column headerText="Periodo">
+									<h:outputText value="#{car.periodo.periodo}" />
+								</p:column>
+
+								<p:column headerText="Grupo">
+									<h:outputText value="#{car.id}" />
+								</p:column>
+
+								<p:column headerText="Docente">
+									<h:outputText value="#{car.docente.nombres}" />
+								</p:column>
+								<p:column headerText="Carrera">
+									<h:outputText value="#{car.carrera.nombre}" />
+								</p:column>
+								<p:column headerText="Asignatura">
+									<h:outputText value="#{car.asignatura.nombre}" />
+								</p:column>
+							</p:dataTable>
 
 
 						</h:form>
@@ -48,7 +168,6 @@
 			</div>
 		</ui:define>
 	</ui:composition>
-
 	<h:outputScript library="js" name="jquery-3.4.1.min.js" />
 	<h:outputScript library="js" name="bootstrap.min.js" />
 </body>

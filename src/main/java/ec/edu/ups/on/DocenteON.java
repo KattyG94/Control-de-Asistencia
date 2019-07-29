@@ -17,15 +17,19 @@ public class DocenteON {
 
 	@Inject
 	private DocenteDAO dao;
+	@Inject
+	private InstalacionRol dROL;
 
 	@Inject
 	private RolDAO rdao;
-	
+
 	@Inject
 	private DocenteRolDAO rdDao;
+
 	public void guardar(Docente d) {
 		dao.save(d);
 	}
+
 	public void guardarDocenteRol(DocenteRol d) {
 		rdDao.save(d);
 	}
@@ -34,18 +38,24 @@ public class DocenteON {
 		return dao.getDocentes();
 	}
 
+	public Docente getDocenteCedula(Docente docente) {
+		Docente doc = dao.getDocenteDNI(docente);
+		return doc;
+	}
+
 	public Docente getDocente(int id) {
 		Docente d = dao.getDocente(id);
 		return d;
 	}
+
 	public Rol getRol(int codigo) {
 		return rdao.read(codigo);
 	}
-	public Rol getRolCodigo(String nombreRol) {
-		return rdao.getRolCodigo(nombreRol);
-	}
-	
-	public List<Rol> getRoles(){
+//	public Rol getRolCodigo(String nombreRol) {
+//		return rdao.getRolCodigo(nombreRol);
+//	}
+
+	public List<Rol> getRoles() {
 		return rdao.getRoles();
 	}
 
@@ -57,12 +67,43 @@ public class DocenteON {
 		}
 
 	}
+
 	public Rol buscarRol(int codigo) throws Exception {
 		try {
 			Rol a = rdao.read(codigo);
 			return a;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			throw new Exception("Código no corresponde");
 		}
+	}
+
+	public Docente docenteLogin(String us, String pas) throws Exception {
+		Docente doc = null;
+		try {
+				doc = dao.getUsuarioDocente(us, pas);
+		} catch (Exception e) {
+			throw e;
+		}
+		return doc;
+	}
+	public Docente docenteLogin1(String us, String pas) throws Exception {
+		Docente docv = null;
+		try {
+			docv = dao.getUsuarioDocente(us, pas);
+			if(!docv.getRol().equals("Jefe de Area")) {
+				docv=null;
+			}
+		} catch (Exception e) {
+			throw e;
+		}
+		return docv;
+	}
+
+	public InstalacionRol getdROL() {
+		return dROL;
+	}
+
+	public void setdROL(InstalacionRol dROL) {
+		this.dROL = dROL;
 	}
 }

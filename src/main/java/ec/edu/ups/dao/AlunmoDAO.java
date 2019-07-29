@@ -55,5 +55,30 @@ public class AlunmoDAO {
 		Alumno alumno = (Alumno) q.getSingleResult();
 		return alumno;
 	}
+	
+	public Alumno getUsuarioAlumno(String user,String pass) {
+	Alumno docenteV=null;
+	try {
+		String jpql="SELECT d FROM Alumno d WHERE d.correo =: user AND d.contrasena =: pass";
+		Query q = manager.createQuery(jpql,Alumno.class);
+		q.setParameter("user", user);
+		q.setParameter("pass", pass);
+		List<Alumno> docenteLista = q.getResultList();
+		if(!docenteLista.isEmpty()) {
+			docenteV=docenteLista.get(0);
+		}
+	} catch (Exception e) {
+		throw e;
+	}
+	return docenteV;
+	}
+	public Alumno getAlumnoDNI(Alumno alumno) {
+		String jpql = "SELECT d FROM Alumno d WHERE d.cedula =: id";
+		Query q = manager.createQuery(jpql, Alumno.class);
+		q.setParameter("id", alumno.getCedula());
+		Alumno al = (Alumno) q.getSingleResult();
+		System.out.println(alumno.toString());
+		return al;
+	}
 
 }

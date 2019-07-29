@@ -25,6 +25,8 @@ public class Asistencia {
 	private Grupo grupo;
 	private String fecha;
 	private String estado;
+	
+	
 	public int getId() {
 		return id;
 	}
