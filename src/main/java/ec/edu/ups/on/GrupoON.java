@@ -25,7 +25,11 @@ public class GrupoON {
 			throw new Exception("Error al eliminar "+e.getMessage());
 		}
 	}
-	public Grupo getGrupo(int id) {
+	public Grupo getGrupo(Grupo id) {
+		Grupo grupo=grupoDao.getCrupoID(id);
+		return grupo;
+	}
+	public Grupo getGrupoID(int id) {
 		Grupo grupo=grupoDao.read(id);
 		return grupo;
 	}

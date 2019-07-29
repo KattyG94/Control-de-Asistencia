@@ -69,7 +69,7 @@ public class GrupoControler {
 	public void loadData() {
 		if (id == 0)
 			return;
-		grupo = gruoON.getGrupo(id);
+		grupo = gruoON.getGrupoID(id);
 	}
 
 	public String registrarGrupo() {

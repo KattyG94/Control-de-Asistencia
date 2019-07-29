@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="signin.css" />
+	<title>Grupos</title>
+</h:head>
+<body>
+	<ui:composition template="/Sistema.xhtml">
+		<ui:define name="body">
+			<div class="row" style="height: 728px;">
+				<!-- Crear Docente-->
+				<div class="col-5">
+					<div class=" border border-dark m-2 p-2 rounded"
+						style="height: 710px;">
+
+						<h:form>
+							<h:outputLabel value="Registrar Matricula" styleClass="text-info" />
+							<hr style="background-color: #999999;" />							
+							<h:panelGrid style="width: 100%;">
+								<p:row>
+
+									<p:column>Grupo</p:column>
+									<p:column colspan="15">
+										<h:selectOneMenu value="#{matriculaControler.grupo.id}"
+											styleClass="custom-select" style="text-align:center;">
+											<f:selectItem itemValue=""
+												itemLabel="    --Seleccione grupo--    " />
+											<f:selectItems value="#{matriculaControler.grupos}" var="gr"
+												itemValue="#{gr.id}" itemLabel="#{gr.numero}"
+												noSelectionOption="" id="grupo" />
+											<p:ajax event="change"
+												listener="#{matriculaControler.elegirGrupo()}" />
+
+										</h:selectOneMenu>
+									</p:column>
+								</p:row>
+							</h:panelGrid>
+
+							<p:panelGrid style="width: 100%;">
+								<p:row>
+									<p:column>
+										<h:outputLabel value="Alumno" />
+									</p:column>
+									<p:column>
+										<h:inputText size="20"
+											value="#{matriculaControler.alumno.cedula}"
+											id="txtTipoTelefono" styleClass="form-control"
+											a:placeholder="Digite la cedula" required="true"
+											requiredMessage="Digite la cedula del Alumno" />
+									</p:column>
+									<p:column>
+										<p:commandButton value="Buscar" icon="ui-icon-search"
+											actionListener="#{matriculaControler.getAlumnoCedula()}"
+											update="alumno" />
+									</p:column>
+								</p:row>
+								<p:row>
+									<p:column colspan="20" style="text-align:center;">
+										<h:outputLabel id="alumno"
+											value="#{matriculaControler.alumno.nombres}" />
+									</p:column>
+
+								</p:row>
+
+							</p:panelGrid>
+							<p:panelGrid style="width: 100%;margin-top:80%;">
+								<p:row>
+									<p:column rowspan="6">
+										<h:commandButton value="REGISTRAR"
+											action="#{matriculaControler.registrarMatricula()}"
+											styleClass="btn btn-lg btn-success btn-block" />
+									</p:column>
+									<p:column rowspan="6">
+										<h:commandButton value="CANCELAR"
+											action="#{matriculaControler.nuevo()}"
+											styleClass="btn btn-lg btn-danger btn-block" />
+									</p:column>
+								</p:row>
+							</p:panelGrid>
+						</h:form>
+					</div>
+				</div>
+				<!-- Listar Docentes -->
+				<div class="col-7">
+					<div class=" border border-dark m-2 p-2 rounded"
+						style="height: 710px;">
+
+						<h:form>
+							<h:outputLabel value="Lista de Grupos" styleClass="text-info" />
+							<hr style="background-color: #999999;" />
+							<p:dataTable var="car"
+								value="#{matriculaControler.listaMatriculas}" rows="10"
+								paginator="true"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								rowsPerPageTemplate="5,10,15">
+
+								<p:column headerText="Grupo">
+									<h:outputText value="#{car.grupo.id}" />
+								</p:column>
+
+								<p:column headerText="Alumno">
+									<h:outputText value="#{car.alumno.nombres}" />
+								</p:column>
+
+								<p:column headerText="Periodo">
+									<h:outputText value="#{car.grupo.periodo.periodo}" />
+								</p:column>
+								<p:column headerText="Carrera">
+									<h:outputText value="#{car.grupo.carrera.nombre}" />
+								</p:column>
+								<p:column headerText="Asignatura">
+									<h:outputText value="#{car.grupo.asignatura.nombre}" />
+								</p:column>
+							</p:dataTable>
+
+
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+	<h:outputScript library="js" name="jquery-3.4.1.min.js" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
+</body>
+</html>

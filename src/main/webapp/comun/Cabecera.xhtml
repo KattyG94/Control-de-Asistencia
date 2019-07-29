@@ -1,7 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:rich="http://richfaces.org/rich"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:body>
 	<ui:composition>
@@ -12,11 +18,11 @@
 			<div class="col-9"></div>
 			<div class="col-1">
 				<ul class="navbar-nav px-3">
-					<li class="nav-item text-nowrap"><a class="nav-link" href="#">Salir</a>
+					<li class="nav-item text-nowrap">
+					<p:commandButton actionListener="#{plantillaControler.serrarSesion()}" icon="ui-icon-power" value="Salir" action="/index.xhtml?faces-redirect=true"/>
 					</li>
 				</ul>
 			</div>
-
 		</div>
 	</ui:composition>
 

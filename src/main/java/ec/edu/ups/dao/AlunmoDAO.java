@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import ec.edu.ups.modelo.Alumno;
+import ec.edu.ups.modelo.Docente;
 
 @Stateless
 public class AlunmoDAO {
@@ -70,6 +71,14 @@ public class AlunmoDAO {
 		throw e;
 	}
 	return docenteV;
+	}
+	public Alumno getAlumnoDNI(Alumno alumno) {
+		String jpql = "SELECT d FROM Alumno d WHERE d.cedula =: id";
+		Query q = manager.createQuery(jpql, Alumno.class);
+		q.setParameter("id", alumno.getCedula());
+		Alumno al = (Alumno) q.getSingleResult();
+		System.out.println(alumno.toString());
+		return al;
 	}
 
 }
