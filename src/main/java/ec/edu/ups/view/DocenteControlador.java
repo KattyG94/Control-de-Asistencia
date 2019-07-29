@@ -121,8 +121,9 @@ public class DocenteControlador {
 		boolean doc;
 		String redireccion=null;
 		try {
-			if (doc=dON.docenteLogin(docente.getCorreo(),docente.getContrasena())!=null) {
+			if (doc=dON.docenteLogin1(docente.getCorreo(),docente.getContrasena())!=null) {
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", doc);
+				
 				redireccion="Sistema";
 			}else {
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Aviso","Usuario Incorrecto"));

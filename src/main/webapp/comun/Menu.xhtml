@@ -1,10 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:rich="http://richfaces.org/rich"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:b="http://java.sun.com/jsf/html">
+	xmlns:b="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -13,25 +16,28 @@
 <h:body>
 	<ui:composition>
 		<h:form>
-		<h:graphicImage value="/img/logoAsistencia.png" alt="Logo" style="width:200px;" />
+			<h:graphicImage value="/img/logoAsistencia.png" alt="Logo"
+				style="width:200px;" />
 			<ul class="nav flex-column">
-			 
+
 				<li class="nav-item"><h:commandLink action="Docentes"
-						value="Docentes" styleClass="nav-link" /></li>
+						value="Docentes" styleClass="nav-link" style="color:white;font-weight: bold; font-size: 20px;"/></li>
 				<li class="nav-item"><h:commandLink action="Alumnos"
-						value="Alumnos" styleClass="nav-link" /></li>
+						value="Alumnos" styleClass="nav-link" style="color:white;font-weight: bold; font-size: 20px;" /></li>
 				<li class="nav-item"><h:commandLink action="Carreras"
-						value="Carreras" styleClass="nav-link" /></li>
+						value="Carreras" styleClass="nav-link" style="color:white;font-weight: bold; font-size: 20px;" /></li>
 				<li class="nav-item"><h:commandLink action="Asignaturas"
-						value="Asignaturas" styleClass="nav-link" /></li>
-				<li class="nav-item"><h:commandLink action="Grupos"
-						value="Grupos" styleClass="nav-link" /></li>
+						value="Asignaturas" styleClass="nav-link" style="color:white;font-weight: bold; font-size: 20px;"/></li>
 				<li class="nav-item"><h:commandLink action="Periodos"
-						value="Periodos" styleClass="nav-link" /></li>
+						value="Periodos" styleClass="nav-link" style="color:white;font-weight: bold; font-size: 20px;"/></li>
+				<li class="nav-item"><h:commandLink action="Grupos"
+						value="Grupos" styleClass="nav-link" style="color:white;font-weight: bold; font-size: 20px;"/></li>
+				<li class="nav-item"><h:commandLink action="Matricula"
+						value="Matriculas" styleClass="nav-link" style="color:white;font-weight: bold; font-size: 20px;" /></li>
 				<li class="nav-item"><h:commandLink action="Roles"
-						value="Roles" styleClass="nav-link" /></li>
+						value="Roles" styleClass="nav-link" style="color:white;font-weight: bold; font-size: 20px;" /></li>
 				<li class="nav-item"><h:commandLink action="Asistencias"
-						value="Registro de Asistencia" styleClass="nav-link" /></li>
+						value="Registro de Asistencia" styleClass="nav-link" style="color:white;font-weight: bold; font-size: 20px;"/></li>
 			</ul>
 
 		</h:form>

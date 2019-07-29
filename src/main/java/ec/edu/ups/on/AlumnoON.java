@@ -44,4 +44,8 @@ public class AlumnoON {
 	}
 	return alumno;
 }
+	public Alumno getAlumnoCedula(Alumno alumno) {
+		Alumno alumnos=dao.getAlumnoDNI(alumno);
+		return alumnos;
+	}
 }

@@ -1,12 +1,16 @@
 package ec.edu.ups.modelo;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
@@ -40,6 +44,8 @@ public class Grupo implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "perido_codigo")
 	private Periodo periodo;
+	@OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Matricula> matricula;
 	
 	public int getId() {
 		return id;
@@ -91,6 +97,13 @@ public class Grupo implements Serializable {
 	}
 	public void setPeriodo(Periodo periodo) {
 		this.periodo = periodo;
+	}
+	
+	public List<Matricula> getMatricula() {
+		return matricula;
+	}
+	public void setMatricula(List<Matricula> matricula) {
+		this.matricula = matricula;
 	}
 	@Override
 	public String toString() {

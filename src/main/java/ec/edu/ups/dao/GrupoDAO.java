@@ -13,12 +13,12 @@ public class GrupoDAO {
 	@Inject
 	private EntityManager manager;
 	
-//	public void crearGrupo(Grupo grupo) {
-//		if(this.read(grupo.getId())!=null)
-//			this.update(grupo);
-//		else
-//			this.create(grupo);
-//	}
+	public void crearGrupo(Grupo grupo) {
+		if(this.read(grupo.getId())!=null)
+			this.update(grupo);
+		else
+			this.create(grupo);
+	}
 	public void create(Grupo p) {
 		manager.persist(p);
 	}
@@ -37,6 +37,13 @@ public class GrupoDAO {
 		Query query=manager.createQuery(jpql,Grupo.class);
 		List<Grupo>listaPeriodo=query.getResultList();
 		return listaPeriodo;
+	}
+	public Grupo getCrupoID(Grupo id){
+		String jpql="SELECT g FROM Grupo g WHERE g.id =: id";
+		Query query=manager.createQuery(jpql,Grupo.class);
+		query.setParameter("id", id.getId());
+		Grupo grupo=(Grupo)query.getSingleResult();
+		return grupo;
 	}
 
 }

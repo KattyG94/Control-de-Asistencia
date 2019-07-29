@@ -86,6 +86,18 @@ public class DocenteON {
 		}
 		return doc;
 	}
+	public Docente docenteLogin1(String us, String pas) throws Exception {
+		Docente docv = null;
+		try {
+			docv = dao.getUsuarioDocente(us, pas);
+			if(!docv.getRol().equals("Jefe de Area")) {
+				docv=null;
+			}
+		} catch (Exception e) {
+			throw e;
+		}
+		return docv;
+	}
 
 	public InstalacionRol getdROL() {
 		return dROL;
