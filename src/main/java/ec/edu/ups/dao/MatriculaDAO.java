@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import ec.edu.ups.modelo.Alumno;
 import ec.edu.ups.modelo.Matricula;
 
 @Stateless
@@ -33,9 +34,11 @@ public class MatriculaDAO {
 		Matricula p=read(id);
 		manager.remove(p);
 	}
-	public List<Matricula> getMatriculas(){
-		String jpql="SELECT p FROM Matricula p";
+	//String jpql="SELECT a FROM Alumno a JOIN a.matricula pmc where pmc.grupo.id = ?1";
+	public List<Matricula> getMatriculas(int codigo){
+		String jpql="SELECT m FROM Matricula m JOIN m.grupo gmc where gmc.id = ?1";
 		Query query=manager.createQuery(jpql,Matricula.class);
+		query.setParameter(1, codigo);
 		List<Matricula>listaMatriculas=query.getResultList();
 		return listaMatriculas;
 	}
