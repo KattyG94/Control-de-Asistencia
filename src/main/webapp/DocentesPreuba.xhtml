@@ -8,25 +8,10 @@
 <h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
 
 <h:head>
-	<f:metadata>
-		<f:viewParam name="id" value="#{docenteControlador.id}"></f:viewParam>
-		<f:viewAction action="#{docenteControlador.loadData()}" />
-	</f:metadata>
 </h:head>
 <h:body>
 	<b:form>
 		<b:panelGrid columns="3">
-			<!--         <p:selectOneMenu id="rol" value="#{rolControlador.rol.codigo}"  style="width: 470px !important;"> -->
-
-			<!--             <f:selectItems value="#{rolControlador.roles}" /> -->
-			<!--             <f:ajax execute="rol" render="selecionado"></f:ajax> -->
-			<!--         </p:selectOneMenu> -->
-			<!--         <p:outputLabel id="selecionado" value="#{rolControlador.rol.codigo}"></p:outputLabel> -->
-
-
-			<!--         <b:inputText value="#{rolControlador.rol.codigo}" label="id" disabled="true"/> -->
-
-			<!--         https://showcase.bootsfaces.net/forms/selectOneMenu.jsf -->
 
 
 			<h:selectOneMenu id="country" required="true"
