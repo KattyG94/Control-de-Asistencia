@@ -12,7 +12,6 @@ import ec.edu.ups.modelo.Docente;
 @SessionScoped
 public class PlantillaControler implements Serializable{
 
-	private String nombre;
 	private static final long serialVersionUID = 1L;
 	
 	public void verificarSesion() {
@@ -20,7 +19,6 @@ public class PlantillaControler implements Serializable{
 			FacesContext context=FacesContext.getCurrentInstance();
 			Docente doc=(Docente) context.getExternalContext().getSessionMap().get("usuario");
 			if(doc!=null) {
-				nombre=doc.getNombres();
 			}else {
 				context.getExternalContext().redirect("index.xhtml");
 			}
@@ -29,13 +27,11 @@ public class PlantillaControler implements Serializable{
 		}
 	}
 	public void serrarSesion() {
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		} catch (Exception e) {
+			
+		}
 	}
 
 	

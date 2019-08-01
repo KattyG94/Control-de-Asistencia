@@ -11,16 +11,19 @@
 </h:head>
 <h:body>
 	<b:form>
-		<b:panelGrid columns="3">
-
-
-			<h:selectOneMenu id="country" required="true"
-				value="#{rolControlador.rol.codigo}">
-				<f:selectItems value="#{rolControlador.roles}" />
-				<p:ajax event="change" partialSubmit="true" update="city"
-					actionListener="#{AccountManager.countrySelected}" />
-			</h:selectOneMenu>
-		</b:panelGrid>
+	<h:form> 
+    <p:growl id="growl" life="2000" />
+     
+    <p:commandButton value="Ajax Submit" id="ajax" update="growl" action="#{facesMessage.delete()}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+ 
+    <p:commandButton value="Non-Ajax Submit" id="nonAjax" action="#{facesMessage.error()}" style="margin-right:20px;" ajax="false" />
+ 
+    <p:commandButton value="With Icon" id="withIcon" action="#{facesMessage.buttonAction()}" update="growl" style="margin-right:20px;" icon="pi pi-save" />
+ 
+    <p:commandButton action="#{facesMessage.fatal()}" id="iconOnly" update="growl" style="margin-right:20px;" icon="pi pi-save" title="Icon Only" />
+ 
+    <p:commandButton value="Disabled" id="disabled" style="margin-right:20px;" disabled="true" />   
+</h:form>
 	</b:form>
 </h:body>
 </html>

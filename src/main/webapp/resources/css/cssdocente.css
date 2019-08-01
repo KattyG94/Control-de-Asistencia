@@ -1,28 +1,38 @@
 body {
 	margin: 0;
 	padding: 0;
+
+}
+
+#cabecera {
+margin: 0 auto;
+width: 100% !important;	
 	font-family: sans-serif;
-	background: green; 
+	background: green !important; 
 	background-repeat : no-repeat;
 	background-size: cover;
 	width: 100%;
 	height: 100%;
 	background-repeat: no-repeat;
 }
-
-#cabecera {
-	background: #829900;
-	color: #fff;
-	padding: 5px;
-	height: 100px;
-	width: 79%;
-	margin-top: 5px;
-	margin-right: auto;
-	margin-bottom: 5px;
-	margin-left: 20%;
-	box-sizing: border-box;
-	border: 1px solid rgba(0, 0, 0, .1);
-	box-shadow: 0 5px 10px rgba(0, 0, 0, .2)
+.ui-button-text-only .ui-corner-all .ui-state-default .ui-widget .ui-button 
+ {
+    -moz-box-shadow:inset 0px 1px 0px 0px #c1ed9c;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #c1ed9c;
+	box-shadow:inset 0px 1px 0px 0px #c1ed9c;
+	background-color:#9dce2c;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #83c41a;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Trebuchet MS;
+	font-size:15px;
+	font-weight:bold;
+	padding:10px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #689324;
 }
 
 .contenedor {
@@ -39,21 +49,8 @@ body {
 	border: 1px solid rgba(0, 0, 0, .1);
 	box-shadow: 0 5px 10px rgba(0, 0, 0, .2)
 }
-#formulario{
-    background: #ffffff;
-	color: #400040;
-	padding: 2px;
-	height: 530px;
-	width: 40%;
-	margin-top: 5px;
-	margin-right: auto;
-	margin-bottom: 5px;
-	margin-left: 10px;
-	display: inline-block;
-	border: 1px solid #4800ff;
-	box-sizing: border-box;
-	border: 1px solid rgba(0, 0, 0, .1);
-	box-shadow: 0 5px 10px rgba(0, 0, 0, .2)
+#formularios{
+
 }
 
 .text-input {

@@ -14,7 +14,7 @@ import ec.edu.ups.on.AlumnoON;
 @ManagedBean
 @ViewScoped
 public class AlunmoControlador {
-
+ 
 	private Alumno alumno;
 	private List<Alumno> listaAlumnos;
 
@@ -79,12 +79,6 @@ public class AlunmoControlador {
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	public String listadoDocentes() {
-		System.out.println("Hola");
-		return "ListarDocente";
-
 	}
 
 	public int getId() {

@@ -20,15 +20,15 @@ public class MatriculaRest  extends Application{
 	@Inject
 	private MatriculaON mON;
 	
-	@GET
-	@Path("listadoMatricula")
-	@Produces("application/json")
-	public List<Matricula>getMatriculas(@QueryParam("id")int id){
-		List<Matricula> listaMatricula=mON.getMatriculas(id);
-		System.out.println(listaMatricula.size()  +"Numero de lis");
-		
-		return listaMatricula;
-		
-	}
+//	@GET
+//	@Path("listadoMatricula")
+//	@Produces("application/json")
+//	public List<Matricula>getMatriculas(@QueryParam("id")int id){
+//		List<Matricula> listaMatricula=mON.getMatriculas(id);
+//		System.out.println(listaMatricula.size()  +"Numero de lis");
+//		
+//		return listaMatricula;
+//		
+//	}
 	
 }

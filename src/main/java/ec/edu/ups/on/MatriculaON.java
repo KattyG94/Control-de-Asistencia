@@ -28,8 +28,8 @@ public class MatriculaON {
 		Matricula matr=matriculaON.read(id);
 		return matr;
 	}
-	public List<Matricula> getMatriculas(int codigo){
-		List<Matricula> listaP=matriculaON.getMatriculas(codigo);
+	public List<Matricula> getMatriculas(){
+		List<Matricula> listaP=matriculaON.getMatriculas();
 		return listaP;
 	}
 

@@ -8,70 +8,74 @@
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
 
-	<f:metadata>
+		
+<f:metadata>
 		<f:viewParam name="id" value="#{docenteControlador.id}"></f:viewParam>
 		<f:viewAction action="#{docenteControlador.loadData()}" />
 	</f:metadata>
 </h:head>
+
 <body>
-	<ui:composition template="./Sistema.xhtml">
+	<ui:composition template="/Sistema.xhtml">
 		<ui:define name="body">
-			<div class="row" style="height: 728px;">
-				<!-- Crear Docente-->
-				<div class="col-5">
+			<div class="row" style="min-height: 728px;">
+				<!-- Crear Alumno-->
+				<div class="col-4">
 					<div class=" border border-dark m-2 p-2 rounded"
-						style="height: 710px;">
-						<h:form id="form1">
+						style="min-height: 710px;">
+						
+						<h:form>
+						<f:event listener="#{docenteControlador.nuevo()}" type="preRenderView" />
+						<p:growl id="growl" life="5000" />
 							<h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
-							<h:outputLabel value="Agregar Docente" styleClass="text-info" />
+							<h:outputLabel value="Agregar Alumno" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
-							<h:panelGrid columns="3" cellpadding="5">
+							<h:panelGrid columns="3" cellpadding="5" >
 
 								<h:outputLabel value="Nombres:" />
-								<h:inputText value="#{docenteControlador.docente.nombres}"
+								<h:inputText value="#{docenteControlador.docente.nombres}" required="true" requiredMessage="Nombre es bligatorio"
 									id="txtNombre" styleClass="form-control" a:placeholder="Nobres" />
-								<h:message for="txtNombre" />
+								<h:message for="txtNombrdde" style = "color:red;margin:5px;" />
 
 								<h:outputLabel value="Apellidos:" />
-								<h:inputText value="#{docenteControlador.docente.apellidos}"
+								<h:inputText value="#{docenteControlador.docente.apellidos}" required="true" requiredMessage="Apellido obligatorio"
 									id="txtApe" styleClass="form-control" a:placeholder="Apellidos" />
-								<h:message for="txtApe" />
+								<h:message for="txstApe" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel value="Cedula:" />
-								<h:inputText value="#{docenteControlador.docente.cedula}"
+								<h:inputText value="#{docenteControlador.docente.cedula}" required="true" requiredMessage="Obligatorio"
 									id="txtCedula" styleClass="form-control" a:placeholder="Cedula" />
-								<h:message for="txtCedula" />
+								<h:message for="txtCedula" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel for="fNaci" value="Fec. Nacimiento" />
 								<p:calendar id="fNaci"
-									requiredMessage="Fecha de nacimiento requerida"
+									requiredMessage="Obligatorio"
 									value="#{docenteControlador.docente.fechaNac}" locale="es"
 									required="true" />
-
-								<p:message for="fNaci" />
+								<p:message for="fNaci" style = "color:red;margin:5px;"/>
 
 
 								<h:outputLabel value="Sexo:" />
-								<h:selectOneMenu value="#{docenteControlador.docente.genero}"
+								<h:selectOneMenu value="#{docenteControlador.docente.genero}" required="true" requiredMessage="Obligatorio" style="text-align:center;"
 									id="txtgenero" styleClass="custom-select">
 									<f:selectItem itemValue="" itemLabel="    --Seleccione--    " />
 									<f:selectItem itemValue="Masculino" itemLabel="Masculino" />
 									<f:selectItem itemValue="Femenino" itemLabel="Femenino" />
 								</h:selectOneMenu>
-								<h:message for="txtgenero" />
+								<h:message for="txtgenero" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel value="Telefono:" />
-								<h:inputText value="#{docenteControlador.docente.telefono}"
+								<h:inputText value="#{docenteControlador.docente.telefono}" required="true" requiredMessage="Obligatorio"
 									id="txtTel" styleClass="form-control" a:placeholder="Telefono" />
-								<h:message for="txtTel" />
+								<h:message for="txtTel" style = "color:red;margin:5px;" />
 
 								<h:outputLabel value="Direccion:" />
-								<h:inputText value="#{docenteControlador.docente.direccion}"
+								<h:inputText value="#{docenteControlador.docente.direccion}" required="true" requiredMessage="Obligatorio"
 									id="txtDir" styleClass="form-control" a:placeholder="Direccion" />
-								<h:message for="txtDir" />
+								<h:message for="txtDir" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel value="Profesion:" />
-								<h:selectOneMenu value="#{docenteControlador.docente.profesion}"
+								<h:selectOneMenu value="#{docenteControlador.docente.profesion}" required="true" requiredMessage="Obligatorio" style="text-align:center;"
 									id="txtProf" styleClass="custom-select">
 									<f:selectItem itemValue="" itemLabel="--Seleccione--" />
 									<f:selectItem itemValue="Arquitecto" itemLabel="Arquitecto" />
@@ -86,63 +90,60 @@
 									<f:selectItem itemValue="Psicólogo/a" itemLabel="Psicólogo/a" />
 									<f:selectItem itemValue="Cirujano" itemLabel="Cirujano" />
 								</h:selectOneMenu>
-								<h:message for="txtProf" />
+								<h:message for="txtProf" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel value="Correo:" />
-								<h:inputText value="#{docenteControlador.docente.correo}"
+								<h:inputText value="#{docenteControlador.docente.correo}" required="true" requiredMessage="Obligatorio"
 									id="txtUsr" styleClass="form-control" a:placeholder="Correo" />
-								<h:message for="txtUsr" />
+								<h:message for="txtUsr" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel value="Contraseña:" />
-								<h:inputText value="#{docenteControlador.docente.contrasena}"
+								<h:inputText value="#{docenteControlador.docente.contrasena}" required="true" requiredMessage="Obligatorio"
 									id="txtPass" styleClass="form-control"
 									a:placeholder="Contraseña" />
-								<h:message for="txtPass" />
-								
+								<h:message for="txtPass" style = "color:red;margin:5px;"/>
+
 								<h:outputLabel value="Rol" />
-								<h:selectOneMenu value="#{docenteControlador.docente.rol}"
+								<h:selectOneMenu value="#{docenteControlador.docente.rol}" required="true" requiredMessage="Obligatorio" style="text-align:center;"
 									id="txtRol" styleClass="custom-select">
 									<f:selectItem itemValue="" itemLabel="--Seleccione--" />
 									<f:selectItem itemValue="Docente" itemLabel="Docente" />
 									<f:selectItem itemValue="Jefe de Area" itemLabel="Jefe de Area" />
 								</h:selectOneMenu>
-								<h:message for="txtRol" />
+								<h:message for="txtRol" style = "color:red;margin:5px;"/>
 
 							</h:panelGrid>
-							<p:panelGrid style="width: 100%;margin-top:30px;">
+							<p:panelGrid style="width: 100%;margin-top:auto;">
 								<p:row>
 									<p:column rowspan="6">
 										<h:commandButton value="REGISTRAR"
-											action="#{docenteControlador.cargarDatos()}"
+											action="#{docenteControlador.cargarDatos()}" update="growl"
 											styleClass="btn btn-lg btn-success btn-block" />
 									</p:column>
 									<p:column rowspan="6">
 										<h:commandButton value="CANCELAR"
 											action="#{docenteControlador.nuevo()}"
-											styleClass="btn btn-lg btn-danger btn-block" />
+											immediate="true" styleClass="btn btn-lg btn-danger btn-block" />
 									</p:column>
 
 								</p:row>
 							</p:panelGrid>
-							
-
-
 						</h:form>
 					</div>
 				</div>
-				<!-- Listar Docentes -->
-				<div class="col-7">
-					<div class=" border border-dark m-2 p-2 rounded"
+				<!-- Listar Alumnos -->
+				<div class="col-8">
+					<div class="border border-dark m-2 p-2 rounded"
 						style="height: 710px;">
 
 						<h:form>
-							<h:outputLabel value="Lista de Docentes" styleClass="text-info" />
+							<h:outputLabel value="Lista de Alumnos" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
 
 							<p:dataTable var="car" value="#{docenteControlador.listaDocente}"
-								rows="10" paginator="true"
 								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-								rowsPerPageTemplate="5,10,15">
+                				rowsPerPageTemplate="5,10,15"
+								paginatorPosition="top" >
 
 								<p:column headerText="Nombre">
 									<h:outputText value="#{car.nombres}" />
@@ -166,15 +167,16 @@
 								</p:column>
 								<p:column>
 									<f:facet name="header">Acciones</f:facet>
-									<h:commandButton action="#{docenteControlador.editar(car.id)}"
-										immediate="true" value="Editar" styleClass="btn btn-primary"/>
-									<h:commandButton action="#{docenteControlador.borrar(car.id)}"
-										immediate="true" value="Borrar" styleClass="btn btn-danger" />
+									<p:commandButton style="background-color:green" action="#{docenteControlador.editar(car.id)}" 
+										immediate="true" icon="ui-icon-document"  title="Editar" ajax="false"/>
+									<p:commandButton style="background-color:red" 
+										action="#{docenteControlador.borrar(car.id)}"
+										immediate="true" icon="ui-icon-trash"
+										title="Eliminar" ajax="false" />
+
 
 								</p:column>
 							</p:dataTable>
-
-
 						</h:form>
 					</div>
 				</div>
@@ -183,6 +185,5 @@
 	</ui:composition>
 	<h:outputScript library="js" name="jquery-3.4.1.min.js" />
 	<h:outputScript library="js" name="bootstrap.min.js" />
-
 </body>
 </html>

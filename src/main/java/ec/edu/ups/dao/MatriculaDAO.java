@@ -35,10 +35,9 @@ public class MatriculaDAO {
 		manager.remove(p);
 	}
 	//String jpql="SELECT a FROM Alumno a JOIN a.matricula pmc where pmc.grupo.id = ?1";
-	public List<Matricula> getMatriculas(int codigo){
-		String jpql="SELECT m FROM Matricula m JOIN m.grupo gmc where gmc.id = ?1";
+	public List<Matricula> getMatriculas(){
+		String jpql="SELECT m FROM Matricula m";
 		Query query=manager.createQuery(jpql,Matricula.class);
-		query.setParameter(1, codigo);
 		List<Matricula>listaMatriculas=query.getResultList();
 		return listaMatriculas;
 	}
