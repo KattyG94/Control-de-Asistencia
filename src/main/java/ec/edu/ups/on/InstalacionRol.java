@@ -23,19 +23,19 @@ public class InstalacionRol {
 	
 	@PostConstruct
 	public void init() {
-//		Docente d=new Docente();
-//		d.setNombres("Juan");
-//		d.setApellidos("Perez");
-//		d.setCedula("1900790681");
-//		d.setCorreo("admin@gmail.com");
-//		d.setContrasena("admin");
-//		d.setDireccion("Cuenca");
-//		d.setProfesion("Abogado/a");
-//		d.setRol("Jefe de Area");
-//		d.setTelefono("0987654321");
-//		d.setGenero("Masculino");
-//		d.setFechaNac(new java.util.Date());
-//		dao.create(d);
+		Docente d=new Docente();
+		d.setNombres("Juan");
+		d.setApellidos("Perez");
+		d.setCedula("1900790681");
+		d.setCorreo("admin@gmail.com");
+		d.setContrasena("admin");
+		d.setDireccion("Cuenca");
+		d.setProfesion("Abogado/a");
+		d.setRol("Jefe de Area");
+		d.setTelefono("0987654321");
+		d.setGenero("Masculino");
+		d.setFechaNac(new java.util.Date());
+		dao.create(d);
 		
 	}
 

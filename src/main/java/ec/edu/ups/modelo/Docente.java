@@ -1,6 +1,7 @@
 package ec.edu.ups.modelo;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,13 @@ import javax.validation.constraints.NotNull;
 //Prueba de funcionamiento
 
 @Entity
-public class Docente extends Usuario {
+public class Docente extends Usuario implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@NotNull
 	@Column(name = "profesion")
 	private String profesion;

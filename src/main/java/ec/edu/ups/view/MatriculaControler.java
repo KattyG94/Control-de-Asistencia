@@ -45,7 +45,7 @@ public class MatriculaControler {
 		
 		grupos=grupoON.getGrupos();
 		alumnos=alumnoON.getAlumnos();
-//		listaMatriculas=matriculaON.getMatriculas();
+		listaMatriculas=matriculaON.getMatriculas();
 		
 	}
 	public void loadData() {

@@ -45,7 +45,7 @@ public class GrupoRest extends Application{
 			grupo.setDocente(null);
 			grupo.setMatricula(null);
 			grupo.setPeriodo(null);
-			listaGrupoAsignatura.add(new SoloGrupoAsignatura(grupo.getNumero(), grupo.getAsignatura().getNombre()));
+			listaGrupoAsignatura.add(new SoloGrupoAsignatura(grupo.getId(),grupo.getNumero(), grupo.getAsignatura().getNombre()));
 			
 		}
 		return listaGrupoAsignatura;
