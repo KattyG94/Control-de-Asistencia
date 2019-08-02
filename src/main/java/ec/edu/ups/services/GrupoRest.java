@@ -12,9 +12,12 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Application;
 
 import ec.edu.ups.fachadaNegocio.ListaSoloAsignatura;
+import ec.edu.ups.fachadaNegocio.ListadoAlumnoNombreApellido;
 import ec.edu.ups.fachadaNegocio.SoloGrupoAsignatura;
+import ec.edu.ups.modelo.Alumno;
 import ec.edu.ups.modelo.Asignatura;
 import ec.edu.ups.modelo.Grupo;
+import ec.edu.ups.on.AlumnoON;
 import ec.edu.ups.on.GrupoON;
 
 @Path("/MyResult")
@@ -22,6 +25,8 @@ import ec.edu.ups.on.GrupoON;
 public class GrupoRest extends Application{
     @Inject
 	private GrupoON grupoON;
+    @Inject
+    private AlumnoON lisaON;
 	
 	@GET
 	@Path("listadoCarreraByDocenteId")
@@ -50,7 +55,19 @@ public class GrupoRest extends Application{
 		}
 		return listaGrupoAsignatura;
 	}
-    
+	@GET
+	@Path("listadoAlumnoByIdGroupo")
+	@Produces("application/json")
+	public List<ListadoAlumnoNombreApellido> getAlumno(@QueryParam("id") int id){
+		List<ListadoAlumnoNombreApellido> listadoAlumno=new ArrayList<>();
+		List<Alumno> listado = lisaON.getListarAlumnosByGrupoId(id);
+		for (Alumno alumno : listado) {
+			alumno.setMatricula(null);
+			listadoAlumno.add(new ListadoAlumnoNombreApellido(alumno.getNombres(), alumno.getApellidos()));
+			
+		}
+		return listadoAlumno;
+	}
     
 	@GET
 	@Path("listadoGrupo")
