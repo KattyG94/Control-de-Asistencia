@@ -1,8 +1,7 @@
 package ec.edu.ups.modelo;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,10 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Asignatura {
@@ -27,6 +26,10 @@ public class Asignatura {
 
 	@OneToMany(mappedBy = "asignatura", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Grupo> grupos;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name="asig_codigo")
+	private List<Silabo> silabos;
 	@ManyToOne
 	@JoinColumn(name = "periodo_codigo")
 	private Periodo periodo;
@@ -54,18 +57,34 @@ public class Asignatura {
 	public void setPeriodo(Periodo periodo) {
 		this.periodo = periodo;
 	}
-
+	
 	public List<Grupo> getGrupos() {
 		return grupos;
 	}
 	public void setGrupos(List<Grupo> grupos) {
 		this.grupos = grupos;
 	}
+	
+	public List<Silabo> getSilabos() {
+		return silabos;
+	}
+	public void setSilabos(List<Silabo> silabos) {
+		this.silabos = silabos;
+	}
+	public void addSilabos(Silabo silabo) {
+		if(silabos==null) {
+			silabos=new ArrayList<>();
+			
+		}
+		this.silabos.add(silabo);
+	}
 	@Override
 	public String toString() {
 		return "Asignatura [id=" + id + ", nombre=" + nombre + ", num_creditos=" + num_creditos + ", grupos=" + grupos
-				+ ", periodo=" + periodo + "]";
+				+ ", silabos=" + silabos + ", periodo=" + periodo + "]";
 	}
+
+
 	
 	
 	

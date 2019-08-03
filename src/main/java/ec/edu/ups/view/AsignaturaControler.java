@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import ec.edu.ups.modelo.Asignatura;
+import ec.edu.ups.modelo.Silabo;
 import ec.edu.ups.on.AsingnaturaON;
 
 
@@ -64,6 +65,9 @@ private Asignatura asignatura;
 			e.printStackTrace();
 		}
 		return null;
+	}
+	public void addSilabos() {
+		asignatura.addSilabos(new Silabo());
 	}
 	
 	

@@ -17,8 +17,11 @@ import ec.edu.ups.fachadaNegocio.SoloGrupoAsignatura;
 import ec.edu.ups.modelo.Alumno;
 import ec.edu.ups.modelo.Asignatura;
 import ec.edu.ups.modelo.Grupo;
+import ec.edu.ups.modelo.Silabo;
 import ec.edu.ups.on.AlumnoON;
+import ec.edu.ups.on.AsingnaturaON;
 import ec.edu.ups.on.GrupoON;
+import ec.edu.ups.on.SilaboON;
 
 @Path("/MyResult")
 @ApplicationPath("/resources")
@@ -27,6 +30,8 @@ public class GrupoRest extends Application{
 	private GrupoON grupoON;
     @Inject
     private AlumnoON lisaON;
+    @Inject
+    private AsingnaturaON asignaturaON;
 	
 	@GET
 	@Path("listadoCarreraByDocenteId")
@@ -50,7 +55,7 @@ public class GrupoRest extends Application{
 			grupo.setDocente(null);
 			grupo.setMatricula(null);
 			grupo.setPeriodo(null);
-			listaGrupoAsignatura.add(new SoloGrupoAsignatura(grupo.getId(),grupo.getNumero(), grupo.getAsignatura().getNombre()));
+			listaGrupoAsignatura.add(new SoloGrupoAsignatura(grupo.getId(),grupo.getNumero(), grupo.getAsignatura().getNombre(),grupo.getAsignatura().getId()));
 			
 		}
 		return listaGrupoAsignatura;
@@ -66,6 +71,14 @@ public class GrupoRest extends Application{
 			listadoAlumno.add(new ListadoAlumnoNombreApellido(alumno.getNombres(), alumno.getApellidos()));
 			
 		}
+		return listadoAlumno;
+	}
+	@GET
+	@Path("listadoSilaboByIdAsignatura")
+	@Produces("application/json")
+	public List<Silabo> getSilabo(@QueryParam("id") int id){
+		List<Silabo> listadoAlumno=asignaturaON.listaSilaboByAsignaturId(id);
+		System.out.println(listadoAlumno.size()+"Tamanio");
 		return listadoAlumno;
 	}
     

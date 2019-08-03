@@ -16,13 +16,11 @@ public class Periodo {
 	@Id
 	@GeneratedValue
 	private int id;
-	private String periodo;
+	private int periodo;
 	@NotNull
 	private Date inicio;
 	@NotNull
 	private Date fin;
-//	@OneToMany(mappedBy = "periodo", cascade = CascadeType.ALL)
-//	private List<Asignatura> asignaturas;
 	
 	@OneToMany(mappedBy = "periodo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Grupo> grupos;
@@ -33,10 +31,10 @@ public class Periodo {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getPeriodo() {
+	public int getPeriodo() {
 		return periodo;
 	}
-	public void setPeriodo(String periodo) {
+	public void setPeriodo(int periodo) {
 		this.periodo = periodo;
 	}
 	public Date getInicio() {

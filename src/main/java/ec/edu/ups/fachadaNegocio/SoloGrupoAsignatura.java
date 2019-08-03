@@ -4,11 +4,14 @@ public class SoloGrupoAsignatura {
 	private int codigoGrupo;
 	private int numero;
 	private String asignatura;
+	private int asignaturaID;
 	
-	public SoloGrupoAsignatura(int codigoGrupo, int numero, String asignatura) {
+	
+	public SoloGrupoAsignatura(int codigoGrupo, int numero, String asignatura, int asignaturaID) {
 		this.codigoGrupo = codigoGrupo;
 		this.numero = numero;
 		this.asignatura = asignatura;
+		this.asignaturaID = asignaturaID;
 	}
 	public int getNumero() {
 		return numero;
@@ -27,6 +30,12 @@ public class SoloGrupoAsignatura {
 	}
 	public void setCodigoGrupo(int codigoGrupo) {
 		this.codigoGrupo = codigoGrupo;
+	}
+	public int getAsignaturaID() {
+		return asignaturaID;
+	}
+	public void setAsignaturaID(int asignaturaID) {
+		this.asignaturaID = asignaturaID;
 	}
 	
 	
