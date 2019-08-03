@@ -45,8 +45,22 @@
 								<h:message for="number" />
 
 							</h:panelGrid>
+							<h:outputLabel value="Silabos" />
+							<h:dataTable value="#{asignaturaControler.asignatura.silabos}" var="silabos">
+								<h:column>
+									<f:facet name="header">Codigo</f:facet>
+									<h:outputLabel value="#{silabos.id}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Descripcion</f:facet>
+									<h:inputText value="#{silabos.descripcion}" />
+								</h:column>
 
-							<p:panelGrid style="width: 100%;margin-top:450px;">
+							</h:dataTable>
+							<h:commandButton action="#{asignaturaControler.addSilabos()}" value="+ Silabos" />
+	
+
+							<p:panelGrid style="width: 100%;margin-top:auto;">
 								<p:row>
 									<p:column rowspan="6">
 										<h:commandButton value="REGISTRAR"
@@ -76,8 +90,9 @@
 								styleClass="text-info" />
 							<hr style="background-color: #999999;" />
 
-							<p:dataTable var="car" value="#{asignaturaControler.listaAsignatura}"
-								rows="10" paginator="true"
+							<p:dataTable var="car"
+								value="#{asignaturaControler.listaAsignatura}" rows="10"
+								paginator="true"
 								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 								rowsPerPageTemplate="5,10,15">
 
