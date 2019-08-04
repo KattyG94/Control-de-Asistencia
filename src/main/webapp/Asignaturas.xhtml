@@ -45,22 +45,19 @@
 								<h:message for="number" />
 
 							</h:panelGrid>
-							<h:outputLabel value="Silabos" />
 							<h:dataTable value="#{asignaturaControler.asignatura.silabos}" var="silabos">
 								<h:column>
-									<f:facet name="header">Codigo</f:facet>
-									<h:outputLabel value="#{silabos.id}" />
-								</h:column>
-								<h:column>
-									<f:facet name="header">Descripcion</f:facet>
-									<h:inputText value="#{silabos.descripcion}" />
+									<f:facet name="header">Silabos</f:facet>
+									<h:inputText value="#{silabos.descripcion}" styleClass="form-control"
+									a:placeholder="Descripsion del silabo" style="width:520px;" />
 								</h:column>
 
 							</h:dataTable>
-							<h:commandButton action="#{asignaturaControler.addSilabos()}" value="+ Silabos" />
+							<p:commandButton style="background-color:green;" action="#{asignaturaControler.addSilabos()}"
+							 value="Silabos" icon="ui-icon-plusthick" title="Editar" ajax="false" />
 	
 
-							<p:panelGrid style="width: 100%;margin-top:auto;">
+							<p:panelGrid style="width: 100%;margin-top:10%;">
 								<p:row>
 									<p:column rowspan="6">
 										<h:commandButton value="REGISTRAR"

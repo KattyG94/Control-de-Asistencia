@@ -1,15 +1,13 @@
 package ec.edu.ups.modelo;
 
-import java.util.List;
+import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Asistencia {
@@ -17,50 +15,34 @@ public class Asistencia {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "silabo_codigo")
-	private List<Silabo> silabos;
-	@OneToOne
-	@JoinColumn(name="grupo_codigo")
-	private Grupo grupo;
-	private String fecha;
-	private String estado;
-	
-	
+	@ManyToOne
+	@JoinColumn(name = "cod_matricula")
+	private Matricula matricula;
+	private Date fecha;
+	private boolean estado;
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public List<Silabo> getSilabos() {
-		return silabos;
+	public Matricula getMatricula() {
+		return matricula;
 	}
-	public void setSilabos(List<Silabo> silabos) {
-		this.silabos = silabos;
+	public void setMatricula(Matricula matricula) {
+		this.matricula = matricula;
 	}
-	public Grupo getGrupo() {
-		return grupo;
-	}
-	public void setGrupo(Grupo grupo) {
-		this.grupo = grupo;
-	}
-	public String getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
-	public void setFecha(String fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	public String getEstado() {
+	public boolean isEstado() {
 		return estado;
 	}
-	public void setEstado(String estado) {
+	public void setEstado(boolean estado) {
 		this.estado = estado;
-	}
-	@Override
-	public String toString() {
-		return "Asistencia [id=" + id + ", silabos=" + silabos + ", grupo=" + grupo + ", fecha=" + fecha + ", estado="
-				+ estado + "]";
 	}
 	
 	
