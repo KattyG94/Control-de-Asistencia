@@ -1,10 +1,15 @@
 package ec.edu.ups.modelo;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Matricula {
@@ -17,6 +22,9 @@ public class Matricula {
 	@ManyToOne
 	@JoinColumn(name = "codigo_alumno")
 	private Alumno alumno;
+	@OneToMany(mappedBy = "matricula", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Asistencia> asistencia;
+	
 	public int getCodigo() {
 		return codigo;
 	}
@@ -35,10 +43,18 @@ public class Matricula {
 	public void setAlumno(Alumno alumno) {
 		this.alumno = alumno;
 	}
+	public List<Asistencia> getAsistencia() {
+		return asistencia;
+	}
+	public void setAsistencia(List<Asistencia> asistencia) {
+		this.asistencia = asistencia;
+	}
 	@Override
 	public String toString() {
-		return "Matricula [codigo=" + codigo + ", grupo=" + grupo + ", alumno=" + alumno + "]";
+		return "Matricula [codigo=" + codigo + ", grupo=" + grupo + ", alumno=" + alumno + ", asistencia=" + asistencia
+				+ "]";
 	}
+	
 	
 	
 

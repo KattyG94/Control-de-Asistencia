@@ -17,6 +17,7 @@ import ec.edu.ups.fachadaNegocio.SoloGrupoAsignatura;
 import ec.edu.ups.modelo.Alumno;
 import ec.edu.ups.modelo.Asignatura;
 import ec.edu.ups.modelo.Grupo;
+import ec.edu.ups.modelo.Matricula;
 import ec.edu.ups.modelo.Silabo;
 import ec.edu.ups.on.AlumnoON;
 import ec.edu.ups.on.AsingnaturaON;
@@ -67,8 +68,12 @@ public class GrupoRest extends Application{
 		List<ListadoAlumnoNombreApellido> listadoAlumno=new ArrayList<>();
 		List<Alumno> listado = lisaON.getListarAlumnosByGrupoId(id);
 		for (Alumno alumno : listado) {
-			alumno.setMatricula(null);
-			listadoAlumno.add(new ListadoAlumnoNombreApellido(alumno.getNombres(), alumno.getApellidos()));
+			List<Matricula>lista=alumno.getMatricula();
+			for (Matricula matricula : lista) {
+				alumno.setMatricula(null);
+				listadoAlumno.add(new ListadoAlumnoNombreApellido(matricula.getCodigo(),alumno.getNombres(), alumno.getApellidos()));
+				
+			}
 			
 		}
 		return listadoAlumno;
