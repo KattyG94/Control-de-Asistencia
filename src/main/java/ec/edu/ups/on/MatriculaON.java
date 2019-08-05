@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.persistence.Query;
 
 import ec.edu.ups.dao.MatriculaDAO;
 import ec.edu.ups.modelo.Alumno;
@@ -28,6 +29,12 @@ public class MatriculaON {
 		Matricula matr=matriculaON.read(id);
 		return matr;
 	}
+
+	public List<Matricula> getMatriculaId (int id){
+		List<Matricula> listaP=matriculaON.getMatriculaId(id);
+		return listaP;
+	}
+
 	public List<Matricula> getMatriculas(){
 		List<Matricula> listaP=matriculaON.getMatriculas();
 		return listaP;
