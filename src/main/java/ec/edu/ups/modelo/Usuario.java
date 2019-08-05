@@ -21,9 +21,7 @@ public class Usuario {
 	@Id
 	@GeneratedValue
 	private int id;
-	
-	@Size(min = 1, max = 10)
-	@Column(unique = true)
+	@Column(unique = true,length = 10)
 	private String cedula;
 	@NotNull
 	@NotEmpty

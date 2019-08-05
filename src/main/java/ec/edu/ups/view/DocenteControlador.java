@@ -15,6 +15,7 @@ import ec.edu.ups.modelo.DocenteRol;
 import ec.edu.ups.modelo.Rol;
 import ec.edu.ups.on.DocenteON;
 import ec.edu.ups.utils.VaidarCedula;
+import ec.edu.ups.utils.ValidarCorreo;
 
 @ManagedBean
 @ViewScoped
@@ -24,6 +25,7 @@ public class DocenteControlador {
 	private List<Docente> listaDocente;
 	private FacesMessages facesMsg;
 	private VaidarCedula vailidar;
+	private ValidarCorreo validarCorreo;
 
 	@Inject
 	private DocenteON dON;
@@ -41,6 +43,7 @@ public class DocenteControlador {
 		vailidar=new VaidarCedula();
 		listaDocente=dON.getListaDocentes();
 		facesMsg=new FacesMessages();
+		validarCorreo=new ValidarCorreo();
 	}
 
 	public void loadData() {
@@ -69,9 +72,13 @@ public class DocenteControlador {
 	public String cargarDatos() {
 		try {
 			if(vailidar.validarCed(docente.getCedula())) {
+				if (validarCorreo.validarCorreo(docente.getCorreo())) {
 				dON.guardar(docente);
 				facesMsg.infoMessage("Datos guardado correctamente");
 				init();
+				}else {
+					facesMsg.errorMessage("Correo incorrecto");
+				}
 			}else {
 				facesMsg.errorMessage("La Cédula ingresada es Incorrecta");
 			}
@@ -122,18 +129,6 @@ public class DocenteControlador {
 		return null;
 	}
 
-//	public List<SelectItem> getSelectOneItemRol(){
-//		this.selectOneItemRol=new ArrayList<>();
-//		List<Rol>roles=listaRoles;
-//		for (Rol rol : roles) {
-//			SelectItem selectItem=new SelectItem(rol.getCodigo(), rol.getNombreRol());
-//			Rol rol1 = dON.getRol(this.getIdRolTemp());
-//			DocenteRol drol=new DocenteRol();
-//			drol.setRol(rol1);
-//			this.selectOneItemRol.add(selectItem);
-//		}
-//		return selectOneItemRol;
-//	}
 	public String buscarRolCodigo(DocenteRol drol) {
 		try {
 			Rol rol = dON.getRol(drol.getCodigoTemRol());
@@ -149,15 +144,6 @@ public class DocenteControlador {
 	public List<Docente> getListaDocente() {
 		return listaDocente;
 	}
-
-
-//	public List<Rol> getListaRoles() {
-//		return listaRoles;
-//	}
-//
-//	public void setListaRoles(List<Rol> listaRoles) {
-//		this.listaRoles = listaRoles;
-//	}
 
 	public int getIdRolTemp() {
 		return idRolTemp;

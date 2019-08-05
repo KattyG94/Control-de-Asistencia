@@ -29,7 +29,7 @@
 							<h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
 							<h:outputLabel value="Agregar Alumno" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
-							<h:panelGrid columns="3" cellpadding="5" >
+							<h:panelGrid columns="3" cellpadding="1" >
 
 								<h:outputLabel value="Nombres:" />
 								<h:inputText value="#{docenteControlador.docente.nombres}" required="true" requiredMessage="Nombre es bligatorio"
@@ -39,19 +39,19 @@
 								<h:outputLabel value="Apellidos:" />
 								<h:inputText value="#{docenteControlador.docente.apellidos}" required="true" requiredMessage="Apellido obligatorio"
 									id="txtApe" styleClass="form-control" a:placeholder="Apellidos" />
-								<h:message for="txstApe" style = "color:red;margin:5px;"/>
+								<h:message for="txstAped" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel value="Cedula:" />
 								<h:inputText value="#{docenteControlador.docente.cedula}" required="true" requiredMessage="La cedula es obligatorio"
 									id="txtCedula" styleClass="form-control" a:placeholder="Cedula" />
-								<h:message for="txtCedula" style = "color:red;margin:5px;"/>
+								<h:message for="txtCedulad" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel for="fNaci" value="Fec. Nacimiento" />
 								<p:calendar id="fNaci"
 									requiredMessage="Fecha de nacimiento es obligatorio"
 									value="#{docenteControlador.docente.fechaNac}" locale="es"
 									required="true" />
-								<p:message for="fNaci" style = "color:red;margin:5px;"/>
+								<p:outputLabel></p:outputLabel>
 
 
 								<h:outputLabel value="Sexo:" />
@@ -61,17 +61,17 @@
 									<f:selectItem itemValue="Masculino" itemLabel="Masculino" />
 									<f:selectItem itemValue="Femenino" itemLabel="Femenino" />
 								</h:selectOneMenu>
-								<h:message for="txtgenero" style = "color:red;margin:5px;"/>
+								<h:message for="txtgenerod" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel value="Telefono:" />
 								<h:inputText value="#{docenteControlador.docente.telefono}" required="true" requiredMessage="El telefono es obligatorio"
 									id="txtTel" styleClass="form-control" a:placeholder="Telefono" />
-								<h:message for="txtTel" style = "color:red;margin:5px;" />
+								<h:message for="txtTeld" style = "color:red;margin:5px;" />
 
 								<h:outputLabel value="Direccion:" />
 								<h:inputText value="#{docenteControlador.docente.direccion}" required="true" requiredMessage="La direccion es obligatorio"
 									id="txtDir" styleClass="form-control" a:placeholder="Direccion" />
-								<h:message for="txtDir" style = "color:red;margin:5px;"/>
+								<h:message for="txtDird" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel value="Profesion:" />
 								<h:selectOneMenu value="#{docenteControlador.docente.profesion}" required="true" requiredMessage="La profesion es obligatorio" style="text-align:center;"
@@ -94,13 +94,13 @@
 								<h:outputLabel value="Correo:" />
 								<h:inputText value="#{docenteControlador.docente.correo}" required="true" requiredMessage="Correo electronico es obligatorio"
 									id="txtUsr" styleClass="form-control" a:placeholder="Correo" />
-								<h:message for="txtUsr" style = "color:red;margin:5px;"/>
+								<h:message for="txtUsrd" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel value="Contraseña:" />
 								<h:inputText value="#{docenteControlador.docente.contrasena}" required="true" requiredMessage="La contraseña es obligatorio"
 									id="txtPass" styleClass="form-control"
 									a:placeholder="Contraseña" />
-								<h:message for="txtPass" style = "color:red;margin:5px;"/>
+								<h:message for="txtPassd" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel value="Rol" />
 								<h:selectOneMenu value="#{docenteControlador.docente.rol}" required="true" requiredMessage="El rol es obligatorio" style="text-align:center;"
@@ -109,10 +109,10 @@
 									<f:selectItem itemValue="Docente" itemLabel="Docente" />
 									<f:selectItem itemValue="Jefe de Area" itemLabel="Jefe de Area" />
 								</h:selectOneMenu>
-								<h:message for="txtRol" style = "color:red;margin:5px;"/>
+								<h:message for="txtRold" style = "color:red;margin:5px;"/>
 
 							</h:panelGrid>
-							<p:panelGrid style="width: 100%;margin-top:auto;">
+							<p:panelGrid style="width: 100%;margin-top:100px;">
 								<p:row>
 									<p:column rowspan="6">
 										<h:commandButton value="REGISTRAR"
@@ -140,9 +140,11 @@
 							<hr style="background-color: #999999;" />
 
 							<p:dataTable var="car" value="#{docenteControlador.listaDocente}"
+								rows="15"
+								paginator="true"
 								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                				rowsPerPageTemplate="5,10,15"
-								paginatorPosition="top" >
+								rowsPerPageTemplate="5,10,15" paginatorPosition="top"
+								styleClass="table table-hover table-bordered" >
 
 								<p:column headerText="Nombre">
 									<h:outputText value="#{car.nombres}" />

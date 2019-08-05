@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import ec.edu.ups.modelo.Alumno;
 import ec.edu.ups.on.AlumnoON;
 import ec.edu.ups.utils.VaidarCedula;
+import ec.edu.ups.utils.ValidarCorreo;
 
 @ManagedBean
 @ViewScoped
@@ -19,7 +20,8 @@ public class AlunmoControlador {
 	private Alumno alumno;
 	private List<Alumno> listaAlumnos;
 	private FacesMessages facesMsg;
-	private VaidarCedula vailidar;
+	private VaidarCedula validar;
+	private ValidarCorreo validarCorreo;
 	
 
 	@Inject
@@ -33,7 +35,8 @@ public class AlunmoControlador {
 	@PostConstruct
 	public void init() {
 		alumno = new Alumno();
-		vailidar=new VaidarCedula();
+		validar=new VaidarCedula();
+		validarCorreo=new ValidarCorreo();
 		listaAlumnos = alON.getAlumnos();
 		facesMsg=new FacesMessages();
 	}
@@ -64,10 +67,14 @@ public class AlunmoControlador {
 
 	public String cargarDatos() {
 		try {
-			if(vailidar.validarCed(alumno.getCedula())) {
-				alON.guardar(alumno);
-				facesMsg.infoMessage("Datos guardado correctamente");
-				init();
+			if(validar.validarCed(alumno.getCedula())) {
+				if (validarCorreo.validarCorreo(alumno.getCorreo())) {
+					alON.guardar(alumno);
+					facesMsg.infoMessage("Datos guardado correctamente");
+					init();
+				}else {
+					facesMsg.errorMessage("Correo incorrecto");
+				}
 			}else {
 				facesMsg.errorMessage("La Cédula ingresada es Incorrecta");
 			}
