@@ -23,20 +23,19 @@
 		<h1 class="h3 mb-3 font-weight-normal">Iniciar Sesión</h1>
 	
 		<h:outputLabel value="Usuario" for="txtUsuario" styleClass="sr-only" />
-		<h:inputText value="#{docenteControlador.docente.correo}" id="txtUsuario" styleClass="form-control"
+		<h:inputText value="#{loginControler.docente.correo}" id="txtUsuario" styleClass="form-control"
 			a:placeholder="Usuario" required="true"/>
 		<h:outputLabel value="Usuario" for="txtContasena" styleClass="sr-only" />
-		<h:inputSecret value="#{docenteControlador.docente.contrasena}" id="txtContasena" styleClass="form-control"
+		<h:inputSecret value="#{loginControler.docente.contrasena}" id="txtContasena" styleClass="form-control"
 			a:placeholder="Contaseña" required="true"/>
 		<div class="checkbox mb-3">
 			<h:selectBooleanCheckbox value="Recordar Contraseña" />
 			<h:outputLabel value="Recordar Contraseña" styleClass="ml-2" />
 		</div>
-		<h:commandButton value="Ingresar" action="#{docenteControlador.iniciarSesion()}" id="ajax" update="growl"
+		<h:commandButton value="Ingresar" action="#{loginControler.iniciarSesion()}" id="ajax" update="growl"
 			styleClass="btn btn-lg btn-primary btn-block"/>
 		
 			
-<!-- 			<p:commandButton value="Ingresar" id="ajax" update="growl" action="#{docenteControlador.iniciarSesion()}" styleClass="btn btn-lg btn-primary btn-block" /> -->
 			<h:outputLabel value="Aplicaciones Distribuidas"
 			styleClass="mt-5 mb-3 text-muted" />
 	</h:form>

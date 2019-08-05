@@ -25,7 +25,6 @@
 						style="min-height: 710px;">
 						
 						<h:form>
-						<f:event listener="#{docenteControlador.nuevo()}" type="preRenderView" />
 						<p:growl id="growl" life="5000" />
 							<h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
 							<h:outputLabel value="Agregar Alumno" styleClass="text-info" />
@@ -43,20 +42,20 @@
 								<h:message for="txstApe" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel value="Cedula:" />
-								<h:inputText value="#{docenteControlador.docente.cedula}" required="true" requiredMessage="Obligatorio"
+								<h:inputText value="#{docenteControlador.docente.cedula}" required="true" requiredMessage="La cedula es obligatorio"
 									id="txtCedula" styleClass="form-control" a:placeholder="Cedula" />
 								<h:message for="txtCedula" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel for="fNaci" value="Fec. Nacimiento" />
 								<p:calendar id="fNaci"
-									requiredMessage="Obligatorio"
+									requiredMessage="Fecha de nacimiento es obligatorio"
 									value="#{docenteControlador.docente.fechaNac}" locale="es"
 									required="true" />
 								<p:message for="fNaci" style = "color:red;margin:5px;"/>
 
 
 								<h:outputLabel value="Sexo:" />
-								<h:selectOneMenu value="#{docenteControlador.docente.genero}" required="true" requiredMessage="Obligatorio" style="text-align:center;"
+								<h:selectOneMenu value="#{docenteControlador.docente.genero}" required="true" requiredMessage="El genero es obligatorio" style="text-align:center;"
 									id="txtgenero" styleClass="custom-select">
 									<f:selectItem itemValue="" itemLabel="    --Seleccione--    " />
 									<f:selectItem itemValue="Masculino" itemLabel="Masculino" />
@@ -65,17 +64,17 @@
 								<h:message for="txtgenero" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel value="Telefono:" />
-								<h:inputText value="#{docenteControlador.docente.telefono}" required="true" requiredMessage="Obligatorio"
+								<h:inputText value="#{docenteControlador.docente.telefono}" required="true" requiredMessage="El telefono es obligatorio"
 									id="txtTel" styleClass="form-control" a:placeholder="Telefono" />
 								<h:message for="txtTel" style = "color:red;margin:5px;" />
 
 								<h:outputLabel value="Direccion:" />
-								<h:inputText value="#{docenteControlador.docente.direccion}" required="true" requiredMessage="Obligatorio"
+								<h:inputText value="#{docenteControlador.docente.direccion}" required="true" requiredMessage="La direccion es obligatorio"
 									id="txtDir" styleClass="form-control" a:placeholder="Direccion" />
 								<h:message for="txtDir" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel value="Profesion:" />
-								<h:selectOneMenu value="#{docenteControlador.docente.profesion}" required="true" requiredMessage="Obligatorio" style="text-align:center;"
+								<h:selectOneMenu value="#{docenteControlador.docente.profesion}" required="true" requiredMessage="La profesion es obligatorio" style="text-align:center;"
 									id="txtProf" styleClass="custom-select">
 									<f:selectItem itemValue="" itemLabel="--Seleccione--" />
 									<f:selectItem itemValue="Arquitecto" itemLabel="Arquitecto" />
@@ -93,18 +92,18 @@
 								<h:message for="txtProf" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel value="Correo:" />
-								<h:inputText value="#{docenteControlador.docente.correo}" required="true" requiredMessage="Obligatorio"
+								<h:inputText value="#{docenteControlador.docente.correo}" required="true" requiredMessage="Correo electronico es obligatorio"
 									id="txtUsr" styleClass="form-control" a:placeholder="Correo" />
 								<h:message for="txtUsr" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel value="Contraseña:" />
-								<h:inputText value="#{docenteControlador.docente.contrasena}" required="true" requiredMessage="Obligatorio"
+								<h:inputText value="#{docenteControlador.docente.contrasena}" required="true" requiredMessage="La contraseña es obligatorio"
 									id="txtPass" styleClass="form-control"
 									a:placeholder="Contraseña" />
 								<h:message for="txtPass" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel value="Rol" />
-								<h:selectOneMenu value="#{docenteControlador.docente.rol}" required="true" requiredMessage="Obligatorio" style="text-align:center;"
+								<h:selectOneMenu value="#{docenteControlador.docente.rol}" required="true" requiredMessage="El rol es obligatorio" style="text-align:center;"
 									id="txtRol" styleClass="custom-select">
 									<f:selectItem itemValue="" itemLabel="--Seleccione--" />
 									<f:selectItem itemValue="Docente" itemLabel="Docente" />
@@ -167,14 +166,11 @@
 								</p:column>
 								<p:column>
 									<f:facet name="header">Acciones</f:facet>
-									<p:commandButton style="background-color:green" action="#{docenteControlador.editar(car.id)}" 
-										immediate="true" icon="ui-icon-document"  title="Editar" ajax="false"/>
-									<p:commandButton style="background-color:red" 
-										action="#{docenteControlador.borrar(car.id)}"
+									<p:commandButton style="background-color:green;" action="#{docenteControlador.editar(car.id)}"
+										immediate="true" icon="ui-icon-document"  title="Editar" ajax="false" />
+									<p:commandButton style="background-color:red;" action="#{docenteControlador.borrar(car.id)}"
 										immediate="true" icon="ui-icon-trash"
-										title="Eliminar" ajax="false" />
-
-
+										title="Eliminar" ajax="false"/>
 								</p:column>
 							</p:dataTable>
 						</h:form>

@@ -22,6 +22,7 @@
 					<div class=" border border-dark m-2 p-2 rounded"
 						style="min-height: 710px;">
 						<h:form>
+						<p:growl id="growl" life="7000" />
 							<h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
 							<h:outputLabel value="Agregar Alumno" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
@@ -29,7 +30,7 @@
 								<h:outputLabel value="Nombres:" />
 								<h:inputText value="#{alunmoControlador.alumno.nombres}" required="true" requiredMessage="Obligatorio"
 									id="txtNombre" placeholder="Nombres" styleClass="form-control" />
-								<h:message for="txtNombre" style = "color:red;margin:5px;" />
+								<h:message for="txtNombrexd" style = "color:red;margin:5px;" />
 
 								<h:outputLabel value="Apellidos:" />
 								<h:inputText value="#{alunmoControlador.alumno.apellidos}" required="true" requiredMessage="Obligatorio"
@@ -81,7 +82,7 @@
 							<p:panelGrid style="width: 100%;margin-top:auto;">
 								<p:row>
 									<p:column rowspan="6">
-								<h:commandButton action="#{alunmoControlador.cargarDatos()}"
+								<h:commandButton action="#{alunmoControlador.cargarDatos()}" update="growl"
 									value="REGISTRAR" styleClass="btn btn-lg btn-success btn-block" />
 									</p:column>
 									<p:column rowspan="6">

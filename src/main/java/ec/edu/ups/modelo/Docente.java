@@ -1,27 +1,15 @@
 package ec.edu.ups.modelo;
 
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 //Prueba de funcionamiento
 
 @Entity
-public class Docente extends Usuario implements Serializable{
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Docente extends Usuario{
+
 
 	@NotNull
 	@Column(name = "profesion")

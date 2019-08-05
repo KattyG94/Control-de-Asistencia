@@ -7,10 +7,10 @@ import javax.inject.Inject;
 
 import ec.edu.ups.dao.AlunmoDAO;
 import ec.edu.ups.modelo.Alumno;
+import ec.edu.ups.view.FacesMessages;
 
 @Stateless
 public class AlumnoON {
-
 	@Inject
 	private AlunmoDAO dao;
 
@@ -52,4 +52,5 @@ public class AlumnoON {
 		List<Alumno>listaAlumno=dao.getListarAlumnosByGrupoId(id);
 		return listaAlumno;
 	}
+	
 }
