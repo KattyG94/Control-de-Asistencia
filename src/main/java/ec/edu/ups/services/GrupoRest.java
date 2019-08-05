@@ -22,6 +22,7 @@ import ec.edu.ups.modelo.Silabo;
 import ec.edu.ups.on.AlumnoON;
 import ec.edu.ups.on.AsingnaturaON;
 import ec.edu.ups.on.GrupoON;
+import ec.edu.ups.on.MatriculaON;
 import ec.edu.ups.on.SilaboON;
 
 @Path("/MyResult")
@@ -33,6 +34,8 @@ public class GrupoRest extends Application{
     private AlumnoON lisaON;
     @Inject
     private AsingnaturaON asignaturaON;
+    @Inject
+    private MatriculaON matON;
 	
 	@GET
 	@Path("listadoCarreraByDocenteId")
@@ -77,6 +80,20 @@ public class GrupoRest extends Application{
 			
 		}
 		return listadoAlumno;
+	}
+	@GET
+	@Path("listadoMatriculaById")
+	@Produces("application/json")
+	public List<Matricula> getMatricula(@QueryParam("id") int id){
+//		List<ec.edu.ups.fachadaNegocio.Matricula> listaMat=new ArrayList<>();
+		List<Matricula> lista=matON.getMatriculaId(id);
+//		for (Matricula matricula : lista) {
+//			listaMat.add(new ec.edu.ups.fachadaNegocio.Matricula(matricula.getCodigo(), matricula.getGrupo().getId(), matricula.getAlumno().getId()));;
+//			matricula.setAlumno(null);
+//			matricula.setAsistencia(null);
+//			matricula.setGrupo(null);
+//		}
+		return lista;
 	}
 	@GET
 	@Path("listadoSilaboByIdAsignatura")
