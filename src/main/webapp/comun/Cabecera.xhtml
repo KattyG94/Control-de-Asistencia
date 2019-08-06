@@ -17,14 +17,17 @@
 			</div>
 			<div class="col-3"></div>
 			<div class="col-3">
-			    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="Sistema.xhtml">Bienvenido: #{docenteControlador.nombreUsuario} </a>
+				<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="Sistema.xhtml">Bienvenido:
+					#{docenteControlador.nombreUsuario} </a>
 			</div>
 			<div class="col-3"></div>
 			<div class="col-1">
 				<ul class="navbar-nav px-3">
-					<li class="nav-item text-nowrap">
-					<p:commandButton actionListener="#{plantillaControler.serrarSesion()}" icon="ui-icon-power" value="Salir" action="/index.xhtml?faces-redirect=true"/>
-					</li>
+					<li class="nav-item text-nowrap"><p:commandButton
+							actionListener="#{plantillaControler.serrarSesion()}"
+							icon="ui-icon-power" value="Salir"
+							action="/index.xhtml?faces-redirect=true"
+							styleClass="btn btn-danger" /></li>
 				</ul>
 			</div>
 		</div>
