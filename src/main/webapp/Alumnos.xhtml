@@ -14,16 +14,11 @@
 	</f:metadata>
 </h:head>
 <body>
-	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:ui="http://java.sun.com/jsf/facelets"
-		xmlns:f="http://java.sun.com/jsf/core"
-		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:p="http://primefaces.org/ui"
-		xmlns:b="http://java.sun.com/jsf/html" template="/Sistema.xhtml">
+	<ui:composition template="/Sistema.xhtml">
 		<ui:define name="body">
 			<div class="row" style="min-height: 728px;">
 				<!-- Crear Alumno-->
-				<div class="col-5">
+				<div class="col-4">
 					<div class=" border border-dark m-2 p-2 rounded"
 						style="min-height: 710px;">
 						<h:form>
@@ -31,61 +26,59 @@
 							<h:outputLabel value="Agregar Alumno" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
 							<h:panelGrid columns="3" cellpadding="5">
-								<p:outputLabel value="Nombres:" />
-								<p:inputText value="#{alunmoControlador.alumno.nombres}"
+								<h:outputLabel value="Nombres:" />
+								<h:inputText value="#{alunmoControlador.alumno.nombres}" required="true" requiredMessage="Obligatorio"
 									id="txtNombre" placeholder="Nombres" styleClass="form-control" />
-								<p:message for="txtNombre" />
+								<h:message for="txtNombre" style = "color:red;margin:5px;" />
 
-								<p:outputLabel value="Apellidos:" />
-								<p:inputText value="#{alunmoControlador.alumno.apellidos}"
+								<h:outputLabel value="Apellidos:" />
+								<h:inputText value="#{alunmoControlador.alumno.apellidos}" required="true" requiredMessage="Obligatorio"
 									id="txtApe" placeholder="Apellidos" styleClass="form-control" />
-								<p:message for="txtApe" />
+								<h:message for="txtApe" style = "color:red;margin:5px;"/>
 
-								<p:outputLabel value="Cedula:" />
-								<p:inputText value="#{alunmoControlador.alumno.cedula}"
+								<h:outputLabel value="Cedula:" />
+								<h:inputText value="#{alunmoControlador.alumno.cedula}" required="true" requiredMessage="Obligatorio"
 									id="txtCedula" placeholder="Cedula" styleClass="form-control" />
-								<p:message for="txtCedula" />
+								<h:message for="txtCedula" style = "color:red;margin:5px;"/>
 
-								<p:outputLabel for="fNaci" value="Fec. Nacimiento" />
+								<h:outputLabel for="fNaci" value="Fec. Nacimiento" />
 								<p:calendar id="fNaci"
-									requiredMessage="Fecha de nacimiento requerida"
+									requiredMessage="Obligatorio"
 									value="#{alunmoControlador.alumno.fechaNac}" locale="es"
 									required="true" />
-								<p:message for="fNaci" />
+								<h:message for="fNaci" style = "color:red;margin:5px;"/>
 
-								<p:outputLabel value="Sexo:" />
-								<h:selectOneMenu value="#{alunmoControlador.alumno.genero}"
+								<h:outputLabel value="Sexo:" />
+								<h:selectOneMenu value="#{alunmoControlador.alumno.genero}" required="true" requiredMessage="Obligatorio" style="text-align:center;"
 									id="txtgenero" styleClass="custom-select">
-									<f:selectItem itemValue="" itemLabel="    --Seleccione--    " />
+									<f:selectItem itemValue="" itemLabel=" --Seleccione--" />
 									<f:selectItem itemValue="Masculino" itemLabel="Masculino" />
 									<f:selectItem itemValue="Femenino" itemLabel="Femenino" />
 								</h:selectOneMenu>
-								<p:message for="txtgenero" />
+								<h:message for="txtgenero" style = "color:red;margin:5px;"/>
 
-								<p:outputLabel value="Telefono:" />
-								<p:inputText value="#{alunmoControlador.alumno.telefono}"
+								<h:outputLabel value="Telefono:" />
+								<h:inputText value="#{alunmoControlador.alumno.telefono}" required="true" requiredMessage="Obligatorio"
 									id="txtTel" placeholder="Telefono" styleClass="form-control" />
-								<p:message for="txtTel" />
+								<h:message for="txtTel" style = "color:red;margin:5px;"/>
 
-								<p:outputLabel value="Direccion:" />
-								<p:inputText value="#{alunmoControlador.alumno.direccion}"
+								<h:outputLabel value="Direccion:" />
+								<h:inputText value="#{alunmoControlador.alumno.direccion}" required="true" requiredMessage="Obligatorio"
 									id="txtDir" placeholder="Direccion" styleClass="form-control" />
-								<p:message for="txtDir" />
+								<h:message for="txtDir" style = "color:red;margin:5px;" />
 
-								<p:outputLabel value="Usuario:" />
-								<p:inputText value="#{alunmoControlador.alumno.correo}"
+								<h:outputLabel value="Usuario:" />
+								<h:inputText value="#{alunmoControlador.alumno.correo}" required="true" requiredMessage="Obligatorio"
 									id="txtUsr" placeholder="Usuario" styleClass="form-control" />
-								<p:message for="txtUsr" />
+								<h:message for="txtUsr" style = "color:red;margin:5px;"/>
 
-								<p:outputLabel value="Contrasenia:" />
-								<p:inputText  value="#{alunmoControlador.alumno.contrasena}"
+								<h:outputLabel value="Contrasenia:" />
+								<h:inputText  value="#{alunmoControlador.alumno.contrasena}" required="true" requiredMessage="Obligatorio"
 									id="txtPass" a:placeholder="Contraseña"
 									styleClass="form-control" />
-								<p:message for="txtPass" />
+								<h:message for="txtPass" style = "color:red;margin:5px;"/>
 							</h:panelGrid>
-
-
-							<p:panelGrid style="width: 100%;margin-top:120px;">
+							<p:panelGrid style="width: 100%;margin-top:auto;">
 								<p:row>
 									<p:column rowspan="6">
 								<h:commandButton action="#{alunmoControlador.cargarDatos()}"
@@ -95,7 +88,6 @@
 								<h:commandButton action="#{alunmoControlador.nuevo()}"
 									value="CANCELAR" immediate="true" styleClass="btn btn-lg btn-danger btn-block" />
 									</p:column>
-
 								</p:row>
 							</p:panelGrid>
 
@@ -104,7 +96,7 @@
 					</div>
 				</div>
 				<!-- Listar Alumnos -->
-				<div class="col-7">
+				<div class="col-8">
 					<div class="border border-dark m-2 p-2 rounded"
 						style="height: 710px;">
 
@@ -113,10 +105,8 @@
 							<hr style="background-color: #999999;" />
 
 							<p:dataTable var="car" value="#{alunmoControlador.listaAlumnos}"
-								rows="10" paginator="true"
 								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-								rowsPerPageTemplate="5,10,15"
-								styleClass="table table-hover table-bordered">
+                				 rowsPerPageTemplate="5,10,15">
 
 								<p:column headerText="Nombre">
 									<h:outputText value="#{car.nombres}" />
@@ -138,15 +128,13 @@
 								</p:column>
 								<p:column>
 									<f:facet name="header">Acciones</f:facet>
-									<h:commandButton action="#{alunmoControlador.editar(car.id)}"
-										immediate="true" value="Editar" styleClass="btn btn-primary" />
-									<h:commandButton action="#{alunmoControlador.borrar(car.id)}"
-										immediate="true" value="Borrar" styleClass="btn btn-danger" />
-
+									<p:commandButton style="background-color:green;" action="#{alunmoControlador.editar(car.id)}"
+										immediate="true" icon="ui-icon-document"  title="Editar" ajax="false" />
+									<p:commandButton style="background-color:red;" action="#{alunmoControlador.borrar(car.id)}"
+										immediate="true" icon="ui-icon-trash"
+										title="Eliminar" ajax="false"/>
 								</p:column>
 							</p:dataTable>
-
-
 						</h:form>
 					</div>
 				</div>

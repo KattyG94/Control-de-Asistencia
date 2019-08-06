@@ -6,7 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
@@ -16,12 +16,13 @@ import ec.edu.ups.modelo.Rol;
 import ec.edu.ups.on.DocenteON;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class DocenteControlador {
 
 	private Docente docente;
 	private List<Docente> listaDocente;
-//	private List<Rol>listaRoles;
+	private String nombreUsuario;
+	private FacesMessages facesMsg;
 
 	@Inject
 	private DocenteON dON;
@@ -37,13 +38,17 @@ public class DocenteControlador {
 	public void init() {
 		docente=new Docente();
 		listaDocente=dON.getListaDocentes();
+		facesMsg=new FacesMessages();
 //		listaRoles=dON.getRoles();
 	}
 
 	public void loadData() {
-		if (id == 0)
+		if (id == 0) {
 			return;
-		docente = dON.getDocente(id);
+		} else {
+			docente = dON.getDocente(id);
+		}
+		
 	}
 
 	public void mostrarData(int ids) {
@@ -63,6 +68,7 @@ public class DocenteControlador {
 	public String cargarDatos() {
 		try {
 			dON.guardar(docente);
+			facesMsg.infoMessage("Datos guardado correctamente");
 			init();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -84,12 +90,6 @@ public class DocenteControlador {
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	public String listadoDocentes() {
-		System.out.println("Hola");
-		return "ListarDocente";
-
 	}
 
 	public int getId() {
@@ -117,20 +117,22 @@ public class DocenteControlador {
 
 		return null;
 	}
-	public String iniciarSesion() throws Exception {
-		boolean doc;
+	public String iniciarSesion(){
+		boolean doc=false;
+		
 		String redireccion=null;
 		try {
-			if (doc=dON.docenteLogin1(docente.getCorreo(),docente.getContrasena())!=null) {
+			Docente docenete=dON.docenteLogin1(docente.getCorreo(),docente.getContrasena());
+			if (docenete!=null) {
+				doc=true;
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", doc);
-				
+				setNombreUsuario(docenete.getNombres()+" "+docenete.getApellidos());
 				redireccion="Sistema";
-			}else {
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Aviso","Usuario Incorrecto"));
+			}else{
+				facesMsg.errorMessage("Usuario o clave incorrecta");
 			}
-			
 		} catch (Exception e) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Aviso","Error"));
+			facesMsg.errorMessage("Usuario o clave incorrecta");
 		}
 		return redireccion;
 	}
@@ -174,5 +176,13 @@ public class DocenteControlador {
 
 	public int getIdRolTemp() {
 		return idRolTemp;
+	}
+
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
 	}
 }

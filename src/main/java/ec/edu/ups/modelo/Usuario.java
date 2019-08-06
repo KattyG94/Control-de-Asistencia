@@ -4,6 +4,7 @@ package ec.edu.ups.modelo;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -20,7 +21,9 @@ public class Usuario {
 	@Id
 	@GeneratedValue
 	private int id;
+	
 	@Size(min = 1, max = 10)
+	@Column(unique = true)
 	private String cedula;
 	@NotNull
 	@NotEmpty
@@ -39,6 +42,7 @@ public class Usuario {
 	@NotNull
 	@NotEmpty
 	private String direccion;
+	@Column(unique = true)
 	@NotNull
 	@NotEmpty
 	private String correo;

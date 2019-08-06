@@ -29,6 +29,10 @@ public class Alumno extends Usuario {
 	public List<Matricula> getMatricula() {
 		return matricula;
 	}
+	
+//	public void setGrupos(List<Grupo> grupos) {
+//		this.grupos = grupos;
+//	}
 	public void setMatricula(List<Matricula> matricula) {
 		this.matricula = matricula;
 	}

@@ -2,6 +2,7 @@ package ec.edu.ups.on;
 
 import java.util.List;
 
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -86,15 +87,17 @@ public class DocenteON {
 		}
 		return doc;
 	}
-	public Docente docenteLogin1(String us, String pas) throws Exception {
+	public Docente docenteLogin1(String us, String pas) {
 		Docente docv = null;
 		try {
 			docv = dao.getUsuarioDocente(us, pas);
 			if(!docv.getRol().equals("Jefe de Area")) {
 				docv=null;
 			}
-		} catch (Exception e) {
-			throw e;
+		} catch (java.lang.NullPointerException e) {
+			
+		}catch (Exception e) {
+			// TODO: handle exception
 		}
 		return docv;
 	}

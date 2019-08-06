@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import ec.edu.ups.modelo.Asignatura;
+import ec.edu.ups.modelo.Silabo;
 import ec.edu.ups.on.AsingnaturaON;
 
 
@@ -29,6 +30,7 @@ private Asignatura asignatura;
 	@PostConstruct
 	public void init() {
 		asignatura=new Asignatura();
+		asignatura.addSilabos(new Silabo());
 		listaAsignatura=asignaturaON.getAsignatura();
 		
 		
@@ -37,6 +39,12 @@ private Asignatura asignatura;
 		if (id == 0)
 			return;
 		asignatura = asignaturaON.getAsignatura(id);
+		asignatura.getSilabos().size();
+		System.out.println(asignatura.getNombre() );
+		System.out.println(asignatura.getSilabos().size());
+		for (Silabo t : asignatura.getSilabos()) {
+			System.out.println("\t"+t);
+		}
 	}
 	public String registrarAsignatura() {
 		try {
@@ -64,6 +72,9 @@ private Asignatura asignatura;
 			e.printStackTrace();
 		}
 		return null;
+	}
+	public void addSilabos() {
+		asignatura.addSilabos(new Silabo());
 	}
 	
 	

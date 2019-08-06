@@ -82,7 +82,7 @@ public class DocenteDAO {
 	
 	public Docente getUsuarioDocente(String user,String pass) {
 	Docente docenteV=null;
-	try {
+
 		String jpql="SELECT d FROM Docente d WHERE d.correo =: user AND d.contrasena =: pass";
 		Query q = manager.createQuery(jpql,Docente.class);
 		q.setParameter("user", user);
@@ -90,10 +90,9 @@ public class DocenteDAO {
 		List<Docente> docenteLista = q.getResultList();
 		if(!docenteLista.isEmpty()) {
 			docenteV=docenteLista.get(0);
+		}else {
+			docenteV=null;
 		}
-	} catch (Exception e) {
-		throw e;
-	}
 	return docenteV;
 	}
 

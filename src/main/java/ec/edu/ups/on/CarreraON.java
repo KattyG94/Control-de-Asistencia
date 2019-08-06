@@ -1,10 +1,8 @@
 package ec.edu.ups.on;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import ec.edu.ups.dao.CarreraDAO;
@@ -15,7 +13,6 @@ public class CarreraON {
 
 	@Inject
 	private CarreraDAO dao;
-	
 	public void guardar(Carrera c) {
 		dao.save(c);
 	}
@@ -36,5 +33,4 @@ public class CarreraON {
 			throw new Exception("Error al borrar " + e.getMessage());
 		}
 	}
-	
 }

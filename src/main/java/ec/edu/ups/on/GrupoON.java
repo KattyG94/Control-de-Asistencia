@@ -6,6 +6,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import ec.edu.ups.dao.GrupoDAO;
+import ec.edu.ups.modelo.Asignatura;
+import ec.edu.ups.modelo.Carrera;
 import ec.edu.ups.modelo.Grupo;
 
 
@@ -36,5 +38,17 @@ public class GrupoON {
 	public List<Grupo> getGrupos(){
 		List<Grupo> listaP=grupoDao.getGrupos();
 		return listaP;
+	}
+	public List<Grupo> getGruposIdDocente(int id){
+		List<Grupo> listaP=grupoDao.getlistaGrupoIdDocente(id);
+		return listaP;
+	}
+	public List<Asignatura> getGruposAsignatura(int id){
+		List<Asignatura> listaP=grupoDao.getlistaGrupoAsignatura(id);
+		return listaP;
+	}
+	public List<Grupo> getlistaGrupoAsignatura(int id){
+		List<Grupo> listag=grupoDao.getlistaGrupoNumAsignatura(id);
+		return listag;
 	}
 }

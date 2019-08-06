@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import ec.edu.ups.modelo.Alumno;
 import ec.edu.ups.modelo.Docente;
+import ec.edu.ups.modelo.Grupo;
 
 @Stateless
 public class AlunmoDAO {
@@ -72,6 +73,7 @@ public class AlunmoDAO {
 	}
 	return docenteV;
 	}
+
 	public Alumno getAlumnoDNI(Alumno alumno) {
 		String jpql = "SELECT d FROM Alumno d WHERE d.cedula =: id";
 		Query q = manager.createQuery(jpql, Alumno.class);
@@ -80,5 +82,14 @@ public class AlunmoDAO {
 		System.out.println(alumno.toString());
 		return al;
 	}
+	public List<Alumno> getListarAlumnosByGrupoId(int id){
+		String jpql="SELECT d FROM Alumno d JOIN d.matricula mat where mat.grupo.id = ?1";
+		Query query=manager.createQuery(jpql,Alumno.class);
+		query.setParameter(1, id);
+		List<Alumno>listado=query.getResultList();	
+		return listado;
+		
+	}
+
 
 }

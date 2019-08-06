@@ -48,4 +48,8 @@ public class AlumnoON {
 		Alumno alumnos=dao.getAlumnoDNI(alumno);
 		return alumnos;
 	}
+	public List<Alumno>getListarAlumnosByGrupoId(int id){
+		List<Alumno>listaAlumno=dao.getListarAlumnosByGrupoId(id);
+		return listaAlumno;
+	}
 }
