@@ -18,28 +18,44 @@
 		<h:form>
 			<h:graphicImage value="/img/logoAsistencia.png" alt="Logo"
 				style="width:200px;" />
-			<ul class="nav flex-column">
-
-				<li class="nav-item"><h:commandLink action="Docentes"
-						value="Docentes" styleClass="nav-link" style="color:white;font-weight: bold; font-size: 20px;"/></li>
-				<li class="nav-item"><h:commandLink action="Alumnos"
-						value="Alumnos" styleClass="nav-link" style="color:white;font-weight: bold; font-size: 20px;" /></li>
-				<li class="nav-item"><h:commandLink action="Carreras"
-						value="Carreras" styleClass="nav-link" style="color:white;font-weight: bold; font-size: 20px;" /></li>
-				<li class="nav-item"><h:commandLink action="Asignaturas"
-						value="Asignaturas" styleClass="nav-link" style="color:white;font-weight: bold; font-size: 20px;"/></li>
-				<li class="nav-item"><h:commandLink action="Periodos"
-						value="Periodos" styleClass="nav-link" style="color:white;font-weight: bold; font-size: 20px;"/></li>
-				<li class="nav-item"><h:commandLink action="Grupos"
-						value="Grupos" styleClass="nav-link" style="color:white;font-weight: bold; font-size: 20px;"/></li>
-				<li class="nav-item"><h:commandLink action="Matricula"
-						value="Matriculas" styleClass="nav-link" style="color:white;font-weight: bold; font-size: 20px;" /></li>
-				<li class="nav-item"><h:commandLink action="Silabo"
-						value="Crear silabo" styleClass="nav-link" style="color:white;font-weight: bold; font-size: 20px;" /></li>
-				<li class="nav-item"><h:commandLink action="Asistencias"
-						value="Registro de Asistencia" styleClass="nav-link" style="color:white;font-weight: bold; font-size: 20px;"/></li>
-			</ul>
-
+			<hr />
+			<h:panelGrid columns="2">
+				<h:graphicImage value="/img/docentes.png" alt="docentes" />
+				<h:commandLink action="Docentes" value="Docentes"
+					styleClass="nav-link"
+					style="color:white;font-weight: bold; font-size: 20px;" />
+				<h:graphicImage value="/img/estudiantes.png" alt="alumnos" />
+				<h:commandLink action="Alumnos" value="Alumnos"
+					styleClass="nav-link"
+					style="color:white;font-weight: bold; font-size: 20px;" />
+				<h:graphicImage value="/img/carreras.png" alt="carreas" />
+				<h:commandLink action="Carreras" value="Carreras"
+					styleClass="nav-link"
+					style="color:white;font-weight: bold; font-size: 20px;" />
+				<h:graphicImage value="/img/asignaturas.png" alt="asignaturas" />
+				<h:commandLink action="Asignaturas" value="Asignaturas"
+					styleClass="nav-link"
+					style="color:white;font-weight: bold; font-size: 20px;" />
+				<h:graphicImage value="/img/periodo.png" alt="periodos" />
+				<h:commandLink action="Periodos" value="Periodos"
+					styleClass="nav-link"
+					style="color:white;font-weight: bold; font-size: 20px;" />
+				<h:graphicImage value="/img/grupos.png" alt="grupos" />
+				<h:commandLink action="Grupos" value="Grupos" styleClass="nav-link"
+					style="color:white;font-weight: bold; font-size: 20px;" />
+				<h:graphicImage value="/img/matriculas.png" alt="grupos" />
+				<h:commandLink action="Matricula" value="Matriculas"
+					styleClass="nav-link"
+					style="color:white;font-weight: bold; font-size: 20px;" />
+				<h:graphicImage value="/img/silabo.png" alt="grupos" />
+				<h:commandLink action="Silabo" value="Crear silabo"
+					styleClass="nav-link"
+					style="color:white;font-weight: bold; font-size: 20px;" />
+				<h:graphicImage value="/img/asistencias.png" alt="grupos" />
+				<h:commandLink action="Asistencias" value="Registro de Asistencia"
+					styleClass="nav-link"
+					style="color:white;font-weight: bold; font-size: 20px;" />
+			</h:panelGrid>
 		</h:form>
 	</ui:composition>
 </h:body>
