@@ -22,8 +22,7 @@ public class Matricula {
 	@ManyToOne
 	@JoinColumn(name = "codigo_alumno")
 	private Alumno alumno;
-	@OneToMany(mappedBy = "matricula", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Asistencia> asistencia;
+	
 	@OneToMany(mappedBy = "matriculaC", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comentarios> comentario;
 	@OneToMany(mappedBy = "matriculaE", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -47,16 +46,10 @@ public class Matricula {
 	public void setAlumno(Alumno alumno) {
 		this.alumno = alumno;
 	}
-	public List<Asistencia> getAsistencia() {
-		return asistencia;
-	}
-	public void setAsistencia(List<Asistencia> asistencia) {
-		this.asistencia = asistencia;
-	}
+	
 	@Override
 	public String toString() {
-		return "Matricula [codigo=" + codigo + ", grupo=" + grupo + ", alumno=" + alumno + ", asistencia=" + asistencia
-				+ "]";
+		return "Matricula [codigo=" + codigo + ", grupo=" + grupo + ", alumno=" + alumno +  "]";
 	}
 	
 	
