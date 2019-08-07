@@ -20,10 +20,10 @@ public class LoginDocente  extends Application{
 	@GET
 	@Path("/loginDocente")
 	@Produces("application/json")
-	public Docente inisiarSesion(@QueryParam("usr") String usr,@QueryParam("passw") String passw) {
+	public Docente loginDocente(@QueryParam("correo") String correo,@QueryParam("contrasena") String contrasena) {
 		Docente validar=null;
 		try {
-			validar=dON.docenteLogin(usr,passw);
+			validar=dON.docenteLogin(correo,contrasena);
 			if(validar!=null) {
 				//Docente logueado satisfactoriamente
 			}
@@ -33,22 +33,7 @@ public class LoginDocente  extends Application{
 		return validar;
 		
 	}
-	@GET
-	@Path("/loginDocente1")
-	@Produces("application/json")
-	public boolean inisiarSesion1(@QueryParam("usr") String usr,@QueryParam("passw") String passw) {
-		boolean bandera=false;
-		Docente docente=null;
-		try {
-			docente=dON.docenteLogin(usr,passw);
-			System.out.println(docente.toString());
-			if(docente.getRol().equals("Docente")) {
-				bandera=true;
-			}
-		} catch (Exception e) {
-			bandera =false;
-		}
-		return bandera;
+
 		
-	}
+	
 }

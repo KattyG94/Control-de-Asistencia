@@ -14,11 +14,13 @@ import javax.inject.Inject;
 import ec.edu.ups.modelo.Asignatura;
 import ec.edu.ups.modelo.Carrera;
 import ec.edu.ups.modelo.Docente;
+import ec.edu.ups.modelo.Encuesta;
 import ec.edu.ups.modelo.Grupo;
 import ec.edu.ups.modelo.Periodo;
 import ec.edu.ups.on.AsingnaturaON;
 import ec.edu.ups.on.CarreraON;
 import ec.edu.ups.on.DocenteON;
+import ec.edu.ups.on.EncuestaON;
 import ec.edu.ups.on.GrupoON;
 import ec.edu.ups.on.PeriodoON;
 
@@ -29,6 +31,7 @@ public class GrupoControler {
 	private Docente docente;
 	private Carrera carrera;
 	private Asignatura asignatura;
+	private Encuesta encuesta;
 	private Periodo periodo;
 
 	private int id;
@@ -37,6 +40,7 @@ public class GrupoControler {
 	private List<SelectItem> selectOneItemRol;
 	private List<Carrera> listaCarrera;
 	private List<Asignatura> listaAsignatura;
+	private List<Encuesta> listaEncuesta;
 	private List<Periodo> listaPeriodo;
 	@Inject
 	private GrupoON gruoON;
@@ -46,6 +50,8 @@ public class GrupoControler {
 	private CarreraON carreraON;
 	@Inject
 	private AsingnaturaON asignaturaON;
+	@Inject
+	private EncuestaON encuestaON;
 	@Inject
 	private PeriodoON periodoON;
 	@Inject

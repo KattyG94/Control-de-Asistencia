@@ -1,14 +1,17 @@
 package ec.edu.ups.dao;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJBTransactionRolledbackException;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import ec.edu.ups.modelo.Encuesta;
+import ec.edu.ups.modelo.Opcion;
 
 @Stateless
 public class EncuestaDAO implements Serializable {
@@ -50,6 +53,19 @@ public class EncuestaDAO implements Serializable {
 		List<Encuesta> docentes = q.getResultList();
 		return docentes;
 
+	}
+
+	public List<Opcion> listaOpcionesByEncuesta(int id){
+		List<Opcion> listaOpciones = new ArrayList<Opcion>();
+		try {
+			String jpql = "SELECT op FROM Opcion op JOIN op.encuesta en WHERE en.id =: id";
+			Query query=manager.createQuery(jpql,Opcion.class);
+			query.setParameter("id", id);
+			listaOpciones = query.getResultList();
+		} catch (EJBTransactionRolledbackException e) {
+			// TODO: handle exception
+		}
+		return listaOpciones;		
 	}
 
 	public Encuesta getEncuesta(int id) {

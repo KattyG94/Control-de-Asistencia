@@ -4,7 +4,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:b="http://java.sun.com/jsf/html">
+	xmlns:b="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 
@@ -32,19 +33,27 @@
 							<hr style="background-color: #999999;" />
 							<h:panelGrid columns="3" cellpadding="5">
 								<p:outputLabel value="Nombre:" />
-								<p:inputText value="#{carreraControlador.carrera.nombre}"
-									id="txN" placeholder="Nombre" />
+								<h:inputText value="#{carreraControlador.carrera.nombre}"
+									 required="true" requiredMessage="Nombre es bligatorio"
+									id="txN" styleClass="form-control" a:placeholder="Nobre dela carrera" />
 								<p:message for="txN" />
 							</h:panelGrid>
 
+							<p:panelGrid style="width: 100%;margin-top:500px;">
+								<p:row>
+									<p:column rowspan="6">
+										<h:commandButton value="REGISTRAR"
+											action="#{carreraControlador.cargarDatos()}" update="growl"
+											styleClass="btn btn-lg btn-success btn-block" />
+									</p:column>
+									<p:column rowspan="6">
+										<h:commandButton value="CANCELAR"
+											action="#{carreraControlador.nuevo()}" immediate="true"
+											styleClass="btn btn-lg btn-danger btn-block" />
+									</p:column>
 
-							<h:panelGrid columns="2">
-								<h:commandButton action="#{carreraControlador.cargarDatos()}"
-									value="GUARDAR" styleClass="btn btn-success" />
-								<h:commandButton action="#{carreraControlador.nuevo()}"
-									value="CANCELAR" immediate="true" styleClass="btn btn-danger" />
-							</h:panelGrid>
-
+								</p:row>
+							</p:panelGrid>
 
 						</h:form>
 					</div>
@@ -62,20 +71,24 @@
 								value="#{carreraControlador.listaCarreras}" rows="10"
 								paginator="true"
 								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-								rowsPerPageTemplate="5,10,15"
+								rowsPerPageTemplate="5,10,15" paginatorPosition="top"
 								styleClass="table table-hover table-bordered">
 
+								<p:column headerText="Codigo">
+									<h:outputText value="#{car.id}" />
+								</p:column>
 								<p:column headerText="Nombre">
 									<h:outputText value="#{car.nombre}" />
 								</p:column>
 
 								<p:column>
 									<f:facet name="header">Acciones</f:facet>
-
-									<h:commandButton action="#{carreraControlador.editar(car.id)}"
-										immediate="true" value="Editar" styleClass="btn btn-primary" />
-									<h:commandButton action="#{carreraControlador.borrar(car.id)}"
-										immediate="true" value="Borrar" styleClass="btn btn-danger" />
+									<p:commandButton style="background-color:green;"
+										action="#{carreraControlador.editar(car.id)}" immediate="true"
+										icon="ui-icon-document" title="Editar" ajax="false" />
+									<p:commandButton style="background-color:red;"
+										action="#{carreraControlador.borrar(car.id)}" immediate="true"
+										icon="ui-icon-trash" title="Eliminar" ajax="false" />
 								</p:column>
 							</p:dataTable>
 

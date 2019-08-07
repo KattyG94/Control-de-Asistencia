@@ -49,6 +49,10 @@ public class Usuario {
 	@NotNull
 	@NotEmpty
 	private String contrasena;
+	private double latitud;
+	private double longitud;
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -109,11 +113,26 @@ public class Usuario {
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
+	
+	
+	public double getLatitud() {
+		return latitud;
+	}
+	public void setLatitud(double latitud) {
+		this.latitud = latitud;
+	}
+	public double getLongitud() {
+		return longitud;
+	}
+	public void setLongitud(double longitud) {
+		this.longitud = longitud;
+	}
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", cedula=" + cedula + ", nombres=" + nombres + ", apellidos=" + apellidos
 				+ ", fechaNac=" + fechaNac + ", genero=" + genero + ", telefono=" + telefono + ", direccion="
-				+ direccion + ", correo=" + correo + ", contrasena=" + contrasena + "]";
+				+ direccion + ", correo=" + correo + ", contrasena=" + contrasena + ", latitud=" + latitud
+				+ ", longitud=" + longitud + "]";
 	}
 	
 	

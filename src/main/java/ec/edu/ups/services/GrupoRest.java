@@ -74,7 +74,7 @@ public class GrupoRest extends Application{
 			List<Matricula>lista=alumno.getMatricula();
 			for (Matricula matricula : lista) {
 				alumno.setMatricula(null);
-				listadoAlumno.add(new ListadoAlumnoNombreApellido(matricula.getCodigo(),alumno.getNombres(), alumno.getApellidos()));
+				listadoAlumno.add(new ListadoAlumnoNombreApellido(matricula.getCodigo(),alumno.getNombres(), alumno.getApellidos(),alumno.getId()));
 				
 			}
 			

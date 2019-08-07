@@ -22,66 +22,67 @@
 					<div class=" border border-dark m-2 p-2 rounded"
 						style="min-height: 710px;">
 						<h:form>
+						<p:growl id="growl" life="7000" />
 							<h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
 							<h:outputLabel value="Agregar Alumno" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
-							<h:panelGrid columns="3" cellpadding="5">
+							<h:panelGrid columns="3" cellpadding="1">
 								<h:outputLabel value="Nombres:" />
-								<h:inputText value="#{alunmoControlador.alumno.nombres}" required="true" requiredMessage="Obligatorio"
+								<h:inputText value="#{alunmoControlador.alumno.nombres}" required="true" requiredMessage="Nombre obligatorio"
 									id="txtNombre" placeholder="Nombres" styleClass="form-control" />
-								<h:message for="txtNombre" style = "color:red;margin:5px;" />
+								<h:message for="txtNombrexd" style = "color:red;margin:5px;" />
 
 								<h:outputLabel value="Apellidos:" />
-								<h:inputText value="#{alunmoControlador.alumno.apellidos}" required="true" requiredMessage="Obligatorio"
+								<h:inputText value="#{alunmoControlador.alumno.apellidos}" required="true" requiredMessage="Apellido obligatorio"
 									id="txtApe" placeholder="Apellidos" styleClass="form-control" />
-								<h:message for="txtApe" style = "color:red;margin:5px;"/>
+								<h:message for="txtAped" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel value="Cedula:" />
-								<h:inputText value="#{alunmoControlador.alumno.cedula}" required="true" requiredMessage="Obligatorio"
+								<h:inputText value="#{alunmoControlador.alumno.cedula}" required="true" requiredMessage="Cedula obligatorio"
 									id="txtCedula" placeholder="Cedula" styleClass="form-control" />
-								<h:message for="txtCedula" style = "color:red;margin:5px;"/>
+								<h:message for="txtCedulad" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel for="fNaci" value="Fec. Nacimiento" />
 								<p:calendar id="fNaci"
-									requiredMessage="Obligatorio"
+									requiredMessage="Fecha de nacimiento obligatorio"
 									value="#{alunmoControlador.alumno.fechaNac}" locale="es"
 									required="true" />
-								<h:message for="fNaci" style = "color:red;margin:5px;"/>
+								<h:message for="fNacid" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel value="Sexo:" />
-								<h:selectOneMenu value="#{alunmoControlador.alumno.genero}" required="true" requiredMessage="Obligatorio" style="text-align:center;"
+								<h:selectOneMenu value="#{alunmoControlador.alumno.genero}" required="true" requiredMessage="Genero obligatorio" style="text-align:center;"
 									id="txtgenero" styleClass="custom-select">
 									<f:selectItem itemValue="" itemLabel=" --Seleccione--" />
 									<f:selectItem itemValue="Masculino" itemLabel="Masculino" />
 									<f:selectItem itemValue="Femenino" itemLabel="Femenino" />
 								</h:selectOneMenu>
-								<h:message for="txtgenero" style = "color:red;margin:5px;"/>
+								<h:message for="txtgenerod" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel value="Telefono:" />
-								<h:inputText value="#{alunmoControlador.alumno.telefono}" required="true" requiredMessage="Obligatorio"
+								<h:inputText value="#{alunmoControlador.alumno.telefono}" required="true" requiredMessage="Telefono bligatorio"
 									id="txtTel" placeholder="Telefono" styleClass="form-control" />
-								<h:message for="txtTel" style = "color:red;margin:5px;"/>
+								<h:message for="txtTeld" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel value="Direccion:" />
-								<h:inputText value="#{alunmoControlador.alumno.direccion}" required="true" requiredMessage="Obligatorio"
+								<h:inputText value="#{alunmoControlador.alumno.direccion}" required="true" requiredMessage="Direccion obligatorio"
 									id="txtDir" placeholder="Direccion" styleClass="form-control" />
-								<h:message for="txtDir" style = "color:red;margin:5px;" />
+								<h:message for="txtDird" style = "color:red;margin:5px;" />
 
-								<h:outputLabel value="Usuario:" />
-								<h:inputText value="#{alunmoControlador.alumno.correo}" required="true" requiredMessage="Obligatorio"
+								<h:outputLabel value="Correo:" />
+								<h:inputText value="#{alunmoControlador.alumno.correo}" required="true" requiredMessage="Correo obligatorio"
 									id="txtUsr" placeholder="Usuario" styleClass="form-control" />
-								<h:message for="txtUsr" style = "color:red;margin:5px;"/>
+								<h:message for="txtUsrd" style = "color:red;margin:5px;"/>
 
 								<h:outputLabel value="Contrasenia:" />
-								<h:inputText  value="#{alunmoControlador.alumno.contrasena}" required="true" requiredMessage="Obligatorio"
+								<h:inputText  value="#{alunmoControlador.alumno.contrasena}" required="true" requiredMessage="Contraseña obligatorio"
 									id="txtPass" a:placeholder="Contraseña"
 									styleClass="form-control" />
-								<h:message for="txtPass" style = "color:red;margin:5px;"/>
+								<h:message for="txtPassd" style = "color:red;margin:5px;"/>
 							</h:panelGrid>
-							<p:panelGrid style="width: 100%;margin-top:auto;">
+							<p:panelGrid style="width: 100%;margin-top:180px;">
 								<p:row>
 									<p:column rowspan="6">
-								<h:commandButton action="#{alunmoControlador.cargarDatos()}"
+								<h:commandButton action="#{alunmoControlador.cargarDatos()}" update="growl"
 									value="REGISTRAR" styleClass="btn btn-lg btn-success btn-block" />
 									</p:column>
 									<p:column rowspan="6">
@@ -105,8 +106,11 @@
 							<hr style="background-color: #999999;" />
 
 							<p:dataTable var="car" value="#{alunmoControlador.listaAlumnos}"
+								rows="15"
+								paginator="true"
 								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                				 rowsPerPageTemplate="5,10,15">
+								rowsPerPageTemplate="5,10,15" paginatorPosition="top"
+								styleClass="table table-hover table-bordered">
 
 								<p:column headerText="Nombre">
 									<h:outputText value="#{car.nombres}" />

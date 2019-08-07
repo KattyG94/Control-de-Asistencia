@@ -9,63 +9,77 @@
 
 <h:head>
 	<f:metadata>
-		<f:viewParam name="id" value="#{asignaturaControler.id}"></f:viewParam>
-		<f:viewAction action="#{asignaturaControler.loadData()}" />
+		<f:viewParam name="id" value="#{encuestaControler.id}"></f:viewParam>
+		<f:viewAction action="#{encuestaControler.loadData()}" />
 	</f:metadata>
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="signin.css" />
-	<title>Asignaturas</title>
+	<title>Encuestas</title>
 </h:head>
 <body>
 	<ui:composition template="/Sistema.xhtml">
 		<ui:define name="body">
 			<div class="row" style="height: 728px;">
-				<!-- Crear Docente-->
+				<!-- Crear Encuesta-->
 				<div class="col-5">
 					<div class=" border border-dark m-2 p-2 rounded"
 						style="height: 710px;">
 
 						<h:form>
-							<h:outputLabel value="Agregar Asignatura" styleClass="text-info" />
+							<h:outputLabel value="Agregar Encuesta" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
+							<h:panelGrid style="width: 100%;">
+								<p:row>
+
+									<p:column>Grupo</p:column>
+									<p:column colspan="15">
+										<h:selectOneMenu value="#{encuestaControler.grupo.id}"
+											styleClass="custom-select" style="text-align:center;">
+											<f:selectItem itemValue=""
+												itemLabel="    --Seleccione Asignatura--    " />
+											<f:selectItems value="#{encuestaControler.grupos}" var="gr"
+												itemValue="#{gr.id}" itemLabel="#{gr.asignatura.nombre} Grupo #{gr.numero}"
+												noSelectionOption="" id="grupo" />
+											<p:ajax event="change"
+												listener="#{encuestaControler.elegirGrupo()}" />
+
+										</h:selectOneMenu>
+									</p:column>
+								</p:row>
+							</h:panelGrid>
 							<h:panelGrid columns="3">
-								<h:outputLabel value="Nombre Asignatura" />
-								<h:inputText value="#{asignaturaControler.asignatura.nombre}"
-									id="name" styleClass="form-control" a:placeholder="Asignatura" />
+								<h:outputLabel value="Pregunta:" />
+								<h:inputText value="#{encuestaControler.encuesta.pregunta}"
+									id="name" styleClass="form-control" a:placeholder="Pregunta" />
 								<h:message for="name" />
 
-
-								<h:outputLabel value="Numeo de creditos" />
-								<h:inputText
-									value="#{asignaturaControler.asignatura.num_creditos}"
-									id="number" styleClass="form-control"
-									a:placeholder="Descripsion" />
-								<h:message for="number" />
-
 							</h:panelGrid>
-							<h:dataTable value="#{asignaturaControler.asignatura.silabos}" var="silabos">
+							<h:dataTable value="#{encuestaControler.encuesta.opciones}"
+								var="silabos">
 								<h:column>
-									<f:facet name="header">Silabos</f:facet>
-									<h:inputText value="#{silabos.descripcion}" styleClass="form-control"
-									a:placeholder="Descripsion del silabo" style="width:520px;" />
+									<f:facet name="header">Opciones</f:facet>
+									<h:inputText value="#{silabos.opcion}"
+										styleClass="form-control"
+										a:placeholder="Opcion para la pregunta" style="width:520px;" />
 								</h:column>
 
 							</h:dataTable>
-							<p:commandButton style="background-color:green;" action="#{asignaturaControler.addSilabos()}"
-							 value="Silabos" icon="ui-icon-plusthick" title="Editar" ajax="false" />
+							<p:commandButton style="background-color:green;"
+								action="#{encuestaControler.addOpciones()}" value="Opciones"
+								icon="ui-icon-plusthick" title="Editar" ajax="false" />
 							<p:panelGrid style="width: 100%;margin-top:100px;">
 								<p:row>
 									<p:column rowspan="6">
 										<h:commandButton value="REGISTRAR"
-											action="#{asignaturaControler.registrarAsignatura()}" update="growl"
-											styleClass="btn btn-lg btn-success btn-block" />
+											action="#{encuestaControler.registrarEncuesta()}"
+											update="growl" styleClass="btn btn-lg btn-success btn-block" />
 									</p:column>
 									<p:column rowspan="6">
 										<h:commandButton value="CANCELAR"
-											action="#{asignaturaControler.nuevo()}"
-											immediate="true" styleClass="btn btn-lg btn-danger btn-block" />
+											action="#{encuestaControler.nuevo()}" immediate="true"
+											styleClass="btn btn-lg btn-danger btn-block" />
 									</p:column>
 
 								</p:row>
@@ -75,19 +89,17 @@
 						</h:form>
 					</div>
 				</div>
-				<!-- Listar Docentes -->
+				<!-- Listar Encuestas -->
 				<div class="col-7">
 					<div class=" border border-dark m-2 p-2 rounded"
 						style="height: 710px;">
 
 						<h:form>
-							<h:outputLabel value="Lista de Asignaturas"
-								styleClass="text-info" />
+							<h:outputLabel value="Lista de Encuestas" styleClass="text-info" />
 							<hr style="background-color: #999999;" />
 
-							<p:dataTable var="car"
-								value="#{asignaturaControler.listaAsignatura}" rows="10"
-								paginator="true"
+							<p:dataTable var="car" value="#{encuestaControler.listaEncuesta}"
+								rows="10" paginator="true"
 								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 								rowsPerPageTemplate="5,10,15">
 
@@ -95,20 +107,17 @@
 									<h:outputText value="#{car.id}" />
 								</p:column>
 
-								<p:column headerText="Nombre">
-									<h:outputText value="#{car.nombre}" />
+								<p:column headerText="Pregunta">
+									<h:outputText value="#{car.pregunta}" />
 								</p:column>
 
-								<p:column headerText="Credito">
-									<h:outputText value="#{car.num_creditos}" />
-								</p:column>
 								<p:column>
 									<f:facet name="header">Acciones</f:facet>
 									<p:commandButton style="background-color:green;"
-										action="#{asignaturaControler.editar(car.id)}" immediate="true"
+										action="#{encuestaControler.editar(car.id)}" immediate="true"
 										icon="ui-icon-document" title="Editar" ajax="false" />
 									<p:commandButton style="background-color:red;"
-										action="#{asignaturaControler.borrar(car.id)}" immediate="true"
+										action="#{encuestaControler.borrar(car.id)}" immediate="true"
 										icon="ui-icon-trash" title="Eliminar" ajax="false" />
 								</p:column>
 							</p:dataTable>

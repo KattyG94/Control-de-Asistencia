@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import ec.edu.ups.dao.EncuestaDAO;
 import ec.edu.ups.modelo.Encuesta;
+import ec.edu.ups.modelo.Opcion;
 
 @Stateless
 public class EncuestaON {
@@ -37,5 +38,10 @@ public class EncuestaON {
 	public List<Encuesta>getListarEncuesta(){
 		List<Encuesta>lista=dao.getEncuesta();
 		return lista;
+	}
+	
+	public List<Opcion> listaOpcionesByEncuestaId(int id){
+		List<Opcion> listaOp=dao.listaOpcionesByEncuesta(id);
+		return listaOp;
 	}
 }

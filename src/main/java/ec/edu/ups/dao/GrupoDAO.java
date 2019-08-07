@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import ec.edu.ups.modelo.Asignatura;
 import ec.edu.ups.modelo.Carrera;
+import ec.edu.ups.modelo.Encuesta;
 import ec.edu.ups.modelo.Grupo;
 @Stateless
 public class GrupoDAO {
@@ -69,6 +70,16 @@ public class GrupoDAO {
 		return listado;
 		
 	}
+	
+	public List<Encuesta> getlistaGrupoEncuesta(int id){
+		String jpql="SELECT en FROM Encuesta en JOIN en.grupo_encuesta gen where gen.id = ?1";
+		Query query=manager.createQuery(jpql,Encuesta.class);
+		query.setParameter(1, id);
+		List<Encuesta>listado=query.getResultList();	
+		return listado;
+		
+	}
+	
 	public List<Grupo> getlistaGrupoNumAsignatura(int id){
 		String jpql="SELECT g FROM Grupo g JOIN g.docente gmc where gmc.id = ?1";
 		Query query=manager.createQuery(jpql,Grupo.class);

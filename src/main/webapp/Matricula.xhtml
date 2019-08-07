@@ -14,7 +14,7 @@
 		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="signin.css" />
-	<title>Grupos</title>
+	<title>Matricula</title>
 </h:head>
 <body>
 	<ui:composition template="/Sistema.xhtml">
@@ -38,7 +38,7 @@
 											<f:selectItem itemValue=""
 												itemLabel="    --Seleccione grupo--    " />
 											<f:selectItems value="#{matriculaControler.grupos}" var="gr"
-												itemValue="#{gr.id}" itemLabel="#{gr.numero}"
+												itemValue="#{gr.id}" itemLabel="#{gr.asignatura.nombre} Grupo #{gr.numero}"
 												noSelectionOption="" id="grupo" />
 											<p:ajax event="change"
 												listener="#{matriculaControler.elegirGrupo()}" />
