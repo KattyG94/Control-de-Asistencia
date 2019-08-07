@@ -18,29 +18,41 @@
 		<ui:define name="body">
 			<div class="row" style="height: 728px;">
 				<!-- Crear Docente-->
-				<div class="col-5">
+				<div class="col-12">
 					<div class=" border border-dark m-2 p-2 rounded"
 						style="height: 710px;">
 
 						<h:form>
-							<h:outputLabel value="Agregar Asistentencia" styleClass="text-info" />
+							<h:outputLabel value="Agregar Asistentenciasss"
+								styleClass="text-info" />
 							<hr style="background-color: #999999;" />
 
+							<p:dataTable var="car"
+								value="#{asistenciaControler.listaAsistencia}" rows="15"
+								paginator="true"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								rowsPerPageTemplate="5,10,15" paginatorPosition="top"
+								styleClass="table table-hover table-bordered">
 
+								<p:column headerText="Nombre">
+									<h:outputText value="#{car.alumno.nombres}" />
+								</p:column>
 
-						</h:form>
-					</div>
-				</div>
-				<!-- Listar Docentes -->
-				<div class="col-7">
-					<div class=" border border-dark m-2 p-2 rounded"
-						style="height: 710px;">
+								<p:column headerText="Apellido">
+									<h:outputText value="#{car.alumno.apellidos}" />
+								</p:column>
 
-						<h:form>
-							<h:outputLabel value="Lista de Asistrencias" styleClass="text-info" />
-							<hr style="background-color: #999999;" />
+								<p:column headerText="Cedula">
+									<h:outputText value="#{car.estado}" />
+								</p:column>
 
-
+								<p:column headerText="Usuario">
+									<h:outputText value="#{car.fecha}" />
+								</p:column>
+								<p:column headerText="Password">
+									<h:outputText value="#{car.grupo.asignatura}" />
+								</p:column>
+							</p:dataTable>
 
 						</h:form>
 					</div>

@@ -1,6 +1,7 @@
 package ec.edu.ups.services;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -11,16 +12,19 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Application;
 
+import ec.edu.ups.fachadaNegocio.AlumnoNombreApellido;
 import ec.edu.ups.fachadaNegocio.ListaSoloAsignatura;
 import ec.edu.ups.fachadaNegocio.ListadoAlumnoNombreApellido;
 import ec.edu.ups.fachadaNegocio.SoloGrupoAsignatura;
 import ec.edu.ups.modelo.Alumno;
 import ec.edu.ups.modelo.Asignatura;
+import ec.edu.ups.modelo.Asistencia;
 import ec.edu.ups.modelo.Grupo;
 import ec.edu.ups.modelo.Matricula;
 import ec.edu.ups.modelo.Silabo;
 import ec.edu.ups.on.AlumnoON;
 import ec.edu.ups.on.AsingnaturaON;
+import ec.edu.ups.on.AsistenciaON;
 import ec.edu.ups.on.GrupoON;
 import ec.edu.ups.on.MatriculaON;
 import ec.edu.ups.on.SilaboON;
@@ -36,6 +40,8 @@ public class GrupoRest extends Application{
     private AsingnaturaON asignaturaON;
     @Inject
     private MatriculaON matON;
+    @Inject
+    private AsistenciaON asisOn;
 	
 	@GET
 	@Path("listadoCarreraByDocenteId")
@@ -118,6 +124,21 @@ public class GrupoRest extends Application{
 	public List<Silabo> getSilabo(@QueryParam("id") int id){
 		List<Silabo> listadoAlumno=asignaturaON.listaSilaboByAsignaturId(id);
 		System.out.println(listadoAlumno.size()+"Tamanio");
+		return listadoAlumno;
+	}
+	@GET
+	@Path("listadoAsistenciaByFechaGrupoId")
+	@Produces("application/json")
+	public List<AlumnoNombreApellido>getAsistencia(@QueryParam("date") String date,@QueryParam("id") int id){
+		List<AlumnoNombreApellido> listadoAlumno=new ArrayList<>();
+		List<Asistencia> listadoAsistencia=asisOn.getListadoAsistencia(date,id);
+		for (Asistencia asistencia : listadoAsistencia) {
+			asistencia.setSilabos(null);
+			asistencia.setGrupo(null);
+			asistencia.setFecha(null);
+			asistencia.setEstado(null);
+			listadoAlumno.add(new AlumnoNombreApellido(asistencia.getAlumno().getNombres(), asistencia.getAlumno().getApellidos()));
+		}
 		return listadoAlumno;
 	}
 	

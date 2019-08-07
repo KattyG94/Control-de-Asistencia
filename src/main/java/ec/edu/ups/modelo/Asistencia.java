@@ -65,6 +65,11 @@ public class Asistencia {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+	@Override
+	public String toString() {
+		return "Asistencia [id=" + id + ", fecha=" + fecha + ", estado=" + estado + ", alumno=" + alumno + ", silabos="
+				+ silabos + ", grupo=" + grupo + "]";
+	}
 	
 	
 	
