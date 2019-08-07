@@ -10,28 +10,36 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import ec.edu.ups.modelo.Asignatura;
+import ec.edu.ups.modelo.Asistencia;
 import ec.edu.ups.modelo.Silabo;
 import ec.edu.ups.on.AsingnaturaON;
+import ec.edu.ups.on.AsistenciaON;
 
 
 @ManagedBean
 @ViewScoped
 public class AsignaturaControler {
 private Asignatura asignatura;
+
 	
 	private int id;
 	
 	private List<Asignatura>listaAsignatura;
+
 	@Inject
 	private AsingnaturaON asignaturaON;
+	
 	@Inject
 	private FacesContext fc;
+	
 	
 	@PostConstruct
 	public void init() {
 		asignatura=new Asignatura();
+		
 		asignatura.addSilabos(new Silabo());
 		listaAsignatura=asignaturaON.getAsignatura();
+		
 		
 		
 	}

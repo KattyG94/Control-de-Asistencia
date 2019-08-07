@@ -77,6 +77,14 @@ public class GrupoDAO {
 		return listado;
 		
 	}
+	public List<Grupo> getlistaGrupoByEstudianteId(int id){
+		String jpql="SELECT g FROM Grupo g JOIN g.matricula mat where mat.alumno.id = ?1";
+		Query query=manager.createQuery(jpql,Grupo.class);
+		query.setParameter(1, id);
+		List<Grupo>listado=query.getResultList();	
+		return listado;
+		
+	}
 	public List<Grupo> getlistaGrupo(int id){
 		String jpql="SELECT g FROM Grupo g WHERE g.id =: cod";
 		Query query=manager.createQuery(jpql,Grupo.class);

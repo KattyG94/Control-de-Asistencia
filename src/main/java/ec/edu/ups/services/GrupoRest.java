@@ -1,6 +1,7 @@
 package ec.edu.ups.services;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -11,16 +12,19 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Application;
 
+import ec.edu.ups.fachadaNegocio.AlumnoNombreApellido;
 import ec.edu.ups.fachadaNegocio.ListaSoloAsignatura;
 import ec.edu.ups.fachadaNegocio.ListadoAlumnoNombreApellido;
 import ec.edu.ups.fachadaNegocio.SoloGrupoAsignatura;
 import ec.edu.ups.modelo.Alumno;
 import ec.edu.ups.modelo.Asignatura;
+import ec.edu.ups.modelo.Asistencia;
 import ec.edu.ups.modelo.Grupo;
 import ec.edu.ups.modelo.Matricula;
 import ec.edu.ups.modelo.Silabo;
 import ec.edu.ups.on.AlumnoON;
 import ec.edu.ups.on.AsingnaturaON;
+import ec.edu.ups.on.AsistenciaON;
 import ec.edu.ups.on.GrupoON;
 import ec.edu.ups.on.MatriculaON;
 import ec.edu.ups.on.SilaboON;
@@ -36,6 +40,8 @@ public class GrupoRest extends Application{
     private AsingnaturaON asignaturaON;
     @Inject
     private MatriculaON matON;
+    @Inject
+    private AsistenciaON asisOn;
 	
 	@GET
 	@Path("listadoCarreraByDocenteId")
@@ -54,6 +60,23 @@ public class GrupoRest extends Application{
 	public List<SoloGrupoAsignatura> getGrupoAsignatura(@QueryParam("id") int id){
 		List<SoloGrupoAsignatura> listaGrupoAsignatura=new ArrayList<>();
 		List<Grupo> listado = grupoON.getlistaGrupoAsignatura(id);
+		for (Grupo grupo : listado) {
+			grupo.setCarrera(null);
+			grupo.setDocente(null);
+			grupo.setMatricula(null);
+			grupo.setPeriodo(null);
+			listaGrupoAsignatura.add(new SoloGrupoAsignatura(grupo.getId(),grupo.getNumero(), grupo.getAsignatura().getNombre(),grupo.getAsignatura().getId()));
+			
+		}
+		return listaGrupoAsignatura;
+	}
+	@GET
+	@Path("listadoGrupoAsignaturaByAlumnoId")
+	@Produces("application/json")
+	public List<SoloGrupoAsignatura> getGrupoAsignaturaAlumnoId(@QueryParam("id") int id){
+		List<SoloGrupoAsignatura> listaGrupoAsignatura=new ArrayList<>();
+		List<Grupo> listado = grupoON.getlistaGrupoAsignaturaAlumnoId(id);
+		System.out.println(listado.size()+" Tamaño de lista");
 		for (Grupo grupo : listado) {
 			grupo.setCarrera(null);
 			grupo.setDocente(null);
@@ -103,6 +126,22 @@ public class GrupoRest extends Application{
 		System.out.println(listadoAlumno.size()+"Tamanio");
 		return listadoAlumno;
 	}
+	@GET
+	@Path("listadoAsistenciaByFechaGrupoId")
+	@Produces("application/json")
+	public List<AlumnoNombreApellido>getAsistencia(@QueryParam("date") String date,@QueryParam("id") int id){
+		List<AlumnoNombreApellido> listadoAlumno=new ArrayList<>();
+		List<Asistencia> listadoAsistencia=asisOn.getListadoAsistencia(date,id);
+		for (Asistencia asistencia : listadoAsistencia) {
+			asistencia.setSilabos(null);
+			asistencia.setGrupo(null);
+			asistencia.setFecha(null);
+			asistencia.setEstado(null);
+			listadoAlumno.add(new AlumnoNombreApellido(asistencia.getAlumno().getNombres(), asistencia.getAlumno().getApellidos()));
+		}
+		return listadoAlumno;
+	}
+	
     
 	@GET
 	@Path("listadoGrupo")

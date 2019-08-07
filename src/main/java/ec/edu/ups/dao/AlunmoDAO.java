@@ -2,17 +2,24 @@ package ec.edu.ups.dao;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionManagement;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import ec.edu.ups.modelo.Alumno;
-import ec.edu.ups.modelo.Docente;
-import ec.edu.ups.modelo.Grupo;
-
+@TransactionManagement
 @Stateless
+
 public class AlunmoDAO {
+
+	@Resource
+	private SessionContext sessionContext;
 
 	@Inject
 	private EntityManager manager;
@@ -89,6 +96,26 @@ public class AlunmoDAO {
 		List<Alumno>listado=query.getResultList();	
 		return listado;
 		
+	}
+	public void actualizarUbicacion(int id, double latitud, double longitud) {
+
+		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("primary");
+		EntityManager entitymanager = emfactory.createEntityManager();
+		entitymanager.getTransaction().begin();
+		Alumno alumno = manager.find(Alumno.class, id);
+
+		// before update
+		System.out.println(alumno.getLatitud());
+		alumno.setLatitud(latitud);
+		alumno.setLongitud(longitud);
+
+		entitymanager.getTransaction().commit();
+
+		// after update
+		System.out.println(alumno.getLatitud());
+		entitymanager.close();
+		emfactory.close();
+
 	}
 
 

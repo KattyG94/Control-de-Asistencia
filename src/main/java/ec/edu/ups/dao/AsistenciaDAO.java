@@ -1,5 +1,6 @@
 package ec.edu.ups.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -8,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import ec.edu.ups.modelo.Asistencia;
+import ec.edu.ups.modelo.Grupo;
 
 @Stateless
 public class AsistenciaDAO {
@@ -34,9 +36,18 @@ public class AsistenciaDAO {
 		manager.remove(p);
 	}
 	public List<Asistencia> getAsistencia(){
-		String jpql="SELECT a FROM Aistencia a";
+		String jpql="SELECT a FROM Asistencia a";
 		Query query=manager.createQuery(jpql,Asistencia.class);
 		List<Asistencia>listado=query.getResultList();
 		return listado;
+	}
+	public List<Asistencia> getlistadoAsistencia(String fecha, int id){
+		String jpql="SELECT a FROM Asistencia a where a.fecha = ?1 and a.grupo.id = ?2";
+		Query query=manager.createQuery(jpql,Asistencia.class);
+		query.setParameter(1, fecha);
+		query.setParameter(2, id);
+		List<Asistencia>listado=query.getResultList();	
+		return listado;
+		
 	}
 }

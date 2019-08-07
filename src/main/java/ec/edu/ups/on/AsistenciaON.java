@@ -31,4 +31,8 @@ public class AsistenciaON {
 		List<Asistencia> listaP=asistenciaDao.getAsistencia();
 		return listaP;
 	}
+	public List<Asistencia> getListadoAsistencia(String date, int id){
+		List<Asistencia> lista=asistenciaDao.getlistadoAsistencia(date, id);
+		return lista;
+	}
 }
