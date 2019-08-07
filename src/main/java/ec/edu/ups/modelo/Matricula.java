@@ -25,8 +25,6 @@ public class Matricula {
 	
 	@OneToMany(mappedBy = "matriculaC", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comentarios> comentario;
-	@OneToMany(mappedBy = "matriculaE", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Encuesta> encuesta;
 	
 	public int getCodigo() {
 		return codigo;

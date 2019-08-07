@@ -108,14 +108,7 @@ public class GrupoRest extends Application{
 	@Path("listadoMatriculaById")
 	@Produces("application/json")
 	public List<Matricula> getMatricula(@QueryParam("id") int id){
-//		List<ec.edu.ups.fachadaNegocio.Matricula> listaMat=new ArrayList<>();
 		List<Matricula> lista=matON.getMatriculaId(id);
-//		for (Matricula matricula : lista) {
-//			listaMat.add(new ec.edu.ups.fachadaNegocio.Matricula(matricula.getCodigo(), matricula.getGrupo().getId(), matricula.getAlumno().getId()));;
-//			matricula.setAlumno(null);
-//			matricula.setAsistencia(null);
-//			matricula.setGrupo(null);
-//		}
 		return lista;
 	}
 	@GET
@@ -155,16 +148,4 @@ public class GrupoRest extends Application{
 		}
 		return listado;
 	}
-//	@GET
-//	@Path("listadoMaterias")
-//	@Produces("application/json")
-//	public List<Grupo> getGrupoAsignatura(@QueryParam("id") int id){
-//		List<Grupo> listado=null;
-//		try {
-//		      listado = grupoON.getGruposAsignatura(id);
-//		} catch (Exception e) {
-//			System.out.println(e.getMessage());
-//		}
-//		return listado;
-//	}
 }

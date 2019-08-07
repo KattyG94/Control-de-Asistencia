@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{encuestaControler.id}"></f:viewParam>
+		<f:viewAction action="#{encuestaControler.loadData()}" />
+	</f:metadata>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="signin.css" />
+	<title>Encuestas</title>
+</h:head>
+<body>
+	<ui:composition template="/Sistema.xhtml">
+		<ui:define name="body">
+			<div class="row" style="height: 728px;">
+				<!-- Crear Encuesta-->
+				<div class="col-5">
+					<div class=" border border-dark m-2 p-2 rounded"
+						style="height: 710px;">
+
+						<h:form>
+							<h:outputLabel value="Agregar Encuesta" styleClass="text-info" />
+							<hr style="background-color: #999999;" />
+							<h:panelGrid style="width: 100%;">
+								<p:row>
+
+									<p:column>Grupo</p:column>
+									<p:column colspan="15">
+										<h:selectOneMenu value="#{encuestaControler.grupo.id}"
+											styleClass="custom-select" style="text-align:center;">
+											<f:selectItem itemValue=""
+												itemLabel="    --Seleccione Grupo--    " />
+											<f:selectItems value="#{encuestaControler.grupos}" var="gr"
+												itemValue="#{gr.id}"
+												itemLabel="#{gr.asignatura.nombre} Grupo #{gr.numero}"
+												noSelectionOption="" id="grupo" />
+											<p:ajax event="change"
+												listener="#{encuestaControler.elegirGrupo()}" />
+
+										</h:selectOneMenu>
+									</p:column>
+								</p:row>
+							</h:panelGrid>
+							<h:panelGrid columns="3">
+								<h:outputLabel value="Pregunta:" />
+								<h:inputText value="#{encuestaControler.encuesta.pregunta}"
+									id="name" styleClass="form-control" a:placeholder="Pregunta" />
+								<h:message for="name" />
+
+							</h:panelGrid>
+							<h:dataTable value="#{encuestaControler.encuesta.opciones}"
+								var="silabos">
+								<h:column>
+									<f:facet name="header">Opciones</f:facet>
+									<h:inputText value="#{silabos.opcion}"
+										styleClass="form-control"
+										a:placeholder="Opcion para la pregunta" style="width:520px;" />
+								</h:column>
+
+							</h:dataTable>
+							<p:commandButton style="background-color:green;"
+								action="#{encuestaControler.addOpciones()}" value="Opciones"
+								icon="ui-icon-plusthick" title="Editar" ajax="false" />
+							<p:panelGrid style="width: 100%;margin-top:100px;">
+								<p:row>
+									<p:column rowspan="6">
+										<h:commandButton value="REGISTRAR"
+											action="#{encuestaControler.registrarEncuesta()}"
+											update="growl" styleClass="btn btn-lg btn-success btn-block" />
+									</p:column>
+									<p:column rowspan="6">
+										<h:commandButton value="CANCELAR"
+											action="#{encuestaControler.nuevo()}" immediate="true"
+											styleClass="btn btn-lg btn-danger btn-block" />
+									</p:column>
+
+								</p:row>
+							</p:panelGrid>
+
+
+						</h:form>
+					</div>
+				</div>
+				<!-- Listar Encuestas -->
+				<div class="col-7">
+					<div class=" border border-dark m-2 p-2 rounded"
+						style="height: 710px;">
+
+						<h:form>
+
+
+							<h:outputLabel value="Resultado de Encuestas"
+								styleClass="text-info" />
+							<hr style="background-color: #999999;" />
+							<h:panelGrid style="width: 100%;">
+								<p:row>
+
+									<p:column>Selecciones una pregunta</p:column>
+									<p:column colspan="15">
+										<h:selectOneMenu value="#{encuestaControler.id2}"
+											styleClass="custom-select" style="text-align:center;">
+											<f:selectItem itemValue=""
+												itemLabel="    --Seleccione una pegrunta--    " />
+											<f:selectItems value="#{encuestaControler.listaEncuesta}"
+												var="gr" itemValue="#{gr.id}" itemLabel="#{gr.pregunta}"
+												noSelectionOption="" id="grupo" />
+											<p:ajax event="change"
+												listener="#{encuestaControler.mostrarRespuestas()}" update="respuestas"/>
+
+										</h:selectOneMenu>
+									</p:column>
+								</p:row>
+							</h:panelGrid>
+							<hr style="background-color: #999999;" />
+							<p:dataTable id="respuestas" var="car"
+								value="#{encuestaControler.respuestas}" rows="10"
+								paginator="true"
+								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								rowsPerPageTemplate="5,10,15">
+
+								<p:column headerText="id">
+									<h:outputText value="#{car.id}" />
+								</p:column>
+
+								<p:column headerText="Opcion">
+									<h:outputText value="#{car.opcion.opcion}" />
+								</p:column>
+								
+							</p:dataTable>
+
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+
+	<h:outputScript library="js" name="jquery-3.4.1.min.js" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
+</body>
+</html>

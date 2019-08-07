@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import ec.edu.ups.dao.GrupoDAO;
 import ec.edu.ups.modelo.Asignatura;
 import ec.edu.ups.modelo.Carrera;
+import ec.edu.ups.modelo.Encuesta;
 import ec.edu.ups.modelo.Grupo;
 
 
@@ -47,6 +48,11 @@ public class GrupoON {
 		List<Asignatura> listaP=grupoDao.getlistaGrupoAsignatura(id);
 		return listaP;
 	}
+	public List<Encuesta> getGruposEncuesta(int id){
+		List<Encuesta> listaP=grupoDao.getlistaGrupoEncuesta(id);
+		return listaP;
+	}
+	
 	public List<Grupo> getlistaGrupoAsignatura(int id){
 		List<Grupo> listag=grupoDao.getlistaGrupoNumAsignatura(id);
 		return listag;

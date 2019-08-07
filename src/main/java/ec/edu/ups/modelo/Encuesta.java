@@ -1,43 +1,83 @@
 package ec.edu.ups.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 @Entity
 public class Encuesta {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
+	private String pregunta;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "opcion_codigo")
+	private List<Opcion> opciones;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "encuesta_resultado")
+	private List<Resultado_Encuesta> resultados;
+
 	@ManyToOne
-	@JoinColumn(name = "codigo_matricula")
-	private Matricula matriculaE;
-	private String encuesta;
+	@JoinColumn(name = "grupo_codigo")
+	private Grupo grupo_encuesta;
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public String getEncuesta() {
-		return encuesta;
+
+	public String getPregunta() {
+		return pregunta;
 	}
-	public void setEncuesta(String encuesta) {
-		this.encuesta = encuesta;
+
+	public void setPregunta(String pregunta) {
+		this.pregunta = pregunta;
 	}
-	public Matricula getMatriculaE() {
-		return matriculaE;
+
+	public List<Opcion> getOpciones() {
+		return opciones;
 	}
-	public void setMatriculaE(Matricula matriculaE) {
-		this.matriculaE = matriculaE;
+
+	public void setOpciones(List<Opcion> opciones) {
+		this.opciones = opciones;
 	}
+
+	public Grupo getGrupo_encuesta() {
+		return grupo_encuesta;
+	}
+
+	public void setGrupo_encuesta(Grupo grupo_encuesta) {
+		this.grupo_encuesta = grupo_encuesta;
+	}
+
+	public void addOpciones(Opcion opcion) {
+		if (opciones == null) {
+			opciones = new ArrayList<Opcion>();
+		} else {
+			this.opciones.add(opcion);
+		}
+	}
+
 	@Override
 	public String toString() {
-		return "Encuesta [id=" + id + ", matriculaE=" + matriculaE + ", encuesta=" + encuesta + "]";
+		return "Encuesta [id=" + id + ", pregunta=" + pregunta + ", opciones=" + opciones + ", grupo_encuesta="
+				+ grupo_encuesta + "]";
 	}
-	
-	
+
 }
