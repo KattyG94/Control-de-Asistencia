@@ -25,14 +25,14 @@ public class Encuesta {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "opcion_codigo")
 	private List<Opcion> opciones;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "encuesta_resultado")
+	private List<Resultado_Encuesta> resultados;
 
 	@ManyToOne
 	@JoinColumn(name = "grupo_codigo")
 	private Grupo grupo_encuesta;
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "resultado_codigo")
-	private List<Resultado_Encuesta> resultados;
 
 	public int getId() {
 		return id;
@@ -66,14 +66,6 @@ public class Encuesta {
 		this.grupo_encuesta = grupo_encuesta;
 	}
 
-	public List<Resultado_Encuesta> getResultados() {
-		return resultados;
-	}
-
-	public void setResultados(List<Resultado_Encuesta> resultados) {
-		this.resultados = resultados;
-	}
-
 	public void addOpciones(Opcion opcion) {
 		if (opciones == null) {
 			opciones = new ArrayList<Opcion>();
@@ -85,7 +77,7 @@ public class Encuesta {
 	@Override
 	public String toString() {
 		return "Encuesta [id=" + id + ", pregunta=" + pregunta + ", opciones=" + opciones + ", grupo_encuesta="
-				+ grupo_encuesta + ", resultados=" + resultados + "]";
+				+ grupo_encuesta + "]";
 	}
 
 }

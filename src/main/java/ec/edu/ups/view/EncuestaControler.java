@@ -1,5 +1,6 @@
 package ec.edu.ups.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,6 +13,7 @@ import javax.inject.Inject;
 import ec.edu.ups.modelo.Encuesta;
 import ec.edu.ups.modelo.Grupo;
 import ec.edu.ups.modelo.Opcion;
+import ec.edu.ups.modelo.Resultado_Encuesta;
 import ec.edu.ups.modelo.Silabo;
 import ec.edu.ups.on.EncuestaON;
 import ec.edu.ups.on.GrupoON;
@@ -22,9 +24,12 @@ public class EncuestaControler {
 
 	private Encuesta encuesta;
 	private int id;
+	private int id2;
 	private Grupo grupo;
+	private Resultado_Encuesta res_en;
 	private List<Encuesta> listaEncuesta;
 	private List<Grupo> grupos;
+	private List<Resultado_Encuesta> respuestas;
 	@Inject
 	private EncuestaON encuestaON;
 	@Inject
@@ -34,11 +39,14 @@ public class EncuestaControler {
 
 	@PostConstruct
 	public void init() {
+		respuestas = new ArrayList<Resultado_Encuesta>();
 		encuesta = new Encuesta();
 		grupo = new Grupo();
+		res_en = new Resultado_Encuesta();
 		encuesta.addOpciones(new Opcion());
 		listaEncuesta = encuestaON.getEncuesta();
 		grupos = grupoON.getGrupos();
+
 	}
 
 	public void loadData() {
@@ -94,7 +102,18 @@ public class EncuestaControler {
 		try {
 			System.out.println(grupo.toString());
 			grupo = grupoON.getGrupo(grupo);
-			System.out.println("Hola amigos "+grupo.getId());
+			System.out.println("Grupo ID " + grupo.getId());
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public void mostrarRespuestas() {
+		try {
+			System.out.println(id2);
+			respuestas = encuestaON.getResultadoEncuesta(id2);
+//			System.out.println("Uncuesta ID " + encuesta.getId());
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -140,5 +159,31 @@ public class EncuestaControler {
 	public void setGrupos(List<Grupo> grupos) {
 		this.grupos = grupos;
 	}
+
+	public int getId2() {
+		return id2;
+	}
+
+	public void setId2(int id2) {
+		this.id2 = id2;
+	}
+
+	public Resultado_Encuesta getRes_en() {
+		return res_en;
+	}
+
+	public void setRes_en(Resultado_Encuesta res_en) {
+		this.res_en = res_en;
+	}
+
+	public List<Resultado_Encuesta> getRespuestas() {
+		return respuestas;
+	}
+
+	public void setRespuestas(List<Resultado_Encuesta> respuestas) {
+		this.respuestas = respuestas;
+	}
+	
+	
 
 }

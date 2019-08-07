@@ -2,6 +2,7 @@ package ec.edu.ups.modelo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -15,15 +16,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Resultado_Encuesta {
 
 	@Id
-	@GeneratedValue // (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@NotNull
-	@NotEmpty
-	private String opcion;
-
 	@OneToOne
-	@JoinColumn(name = "resultado_codigo")
+	@JoinColumn(name = "opcion_resultado")
+	@JsonIgnore
+	private Opcion opcion;
+	
+	@OneToOne
+	@JoinColumn(name = "encuesta_resultado")
 	@JsonIgnore
 	private Encuesta encuesta;
 
@@ -35,25 +37,12 @@ public class Resultado_Encuesta {
 		this.id = id;
 	}
 
-	public String getOpcion() {
+	public Opcion getOpcion() {
 		return opcion;
 	}
 
-	public void setOpcion(String opcion) {
+	public void setOpcion(Opcion opcion) {
 		this.opcion = opcion;
-	}
-
-	public Encuesta getEncuesta() {
-		return encuesta;
-	}
-
-	public void setEncuesta(Encuesta encuesta) {
-		this.encuesta = encuesta;
-	}
-
-	@Override
-	public String toString() {
-		return "Resultado_Encuesta [id=" + id + ", opcion=" + opcion + ", encuesta=" + encuesta + "]";
 	}
 
 }

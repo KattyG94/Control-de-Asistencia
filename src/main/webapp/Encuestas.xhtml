@@ -38,9 +38,10 @@
 										<h:selectOneMenu value="#{encuestaControler.grupo.id}"
 											styleClass="custom-select" style="text-align:center;">
 											<f:selectItem itemValue=""
-												itemLabel="    --Seleccione Asignatura--    " />
+												itemLabel="    --Seleccione Grupo--    " />
 											<f:selectItems value="#{encuestaControler.grupos}" var="gr"
-												itemValue="#{gr.id}" itemLabel="#{gr.asignatura.nombre} Grupo #{gr.numero}"
+												itemValue="#{gr.id}"
+												itemLabel="#{gr.asignatura.nombre} Grupo #{gr.numero}"
 												noSelectionOption="" id="grupo" />
 											<p:ajax event="change"
 												listener="#{encuestaControler.elegirGrupo()}" />
@@ -95,34 +96,46 @@
 						style="height: 710px;">
 
 						<h:form>
-							<h:outputLabel value="Lista de Encuestas" styleClass="text-info" />
-							<hr style="background-color: #999999;" />
 
-							<p:dataTable var="car" value="#{encuestaControler.listaEncuesta}"
-								rows="10" paginator="true"
+
+							<h:outputLabel value="Resultado de Encuestas"
+								styleClass="text-info" />
+							<hr style="background-color: #999999;" />
+							<h:panelGrid style="width: 100%;">
+								<p:row>
+
+									<p:column>Selecciones una pregunta</p:column>
+									<p:column colspan="15">
+										<h:selectOneMenu value="#{encuestaControler.id2}"
+											styleClass="custom-select" style="text-align:center;">
+											<f:selectItem itemValue=""
+												itemLabel="    --Seleccione una pegrunta--    " />
+											<f:selectItems value="#{encuestaControler.listaEncuesta}"
+												var="gr" itemValue="#{gr.id}" itemLabel="#{gr.pregunta}"
+												noSelectionOption="" id="grupo" />
+											<p:ajax event="change"
+												listener="#{encuestaControler.mostrarRespuestas()}" update="respuestas"/>
+
+										</h:selectOneMenu>
+									</p:column>
+								</p:row>
+							</h:panelGrid>
+							<hr style="background-color: #999999;" />
+							<p:dataTable id="respuestas" var="car"
+								value="#{encuestaControler.respuestas}" rows="10"
+								paginator="true"
 								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 								rowsPerPageTemplate="5,10,15">
 
-								<p:column headerText="Codigo">
+								<p:column headerText="id">
 									<h:outputText value="#{car.id}" />
 								</p:column>
 
-								<p:column headerText="Pregunta">
-									<h:outputText value="#{car.pregunta}" />
+								<p:column headerText="Opcion">
+									<h:outputText value="#{car.opcion.opcion}" />
 								</p:column>
-
-								<p:column>
-									<f:facet name="header">Acciones</f:facet>
-									<p:commandButton style="background-color:green;"
-										action="#{encuestaControler.editar(car.id)}" immediate="true"
-										icon="ui-icon-document" title="Editar" ajax="false" />
-									<p:commandButton style="background-color:red;"
-										action="#{encuestaControler.borrar(car.id)}" immediate="true"
-										icon="ui-icon-trash" title="Eliminar" ajax="false" />
-								</p:column>
+								
 							</p:dataTable>
-
-
 
 						</h:form>
 					</div>

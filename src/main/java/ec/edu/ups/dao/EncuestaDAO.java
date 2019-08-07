@@ -11,7 +11,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import ec.edu.ups.modelo.Encuesta;
+import ec.edu.ups.modelo.Grupo;
 import ec.edu.ups.modelo.Opcion;
+import ec.edu.ups.modelo.Resultado_Encuesta;
 
 @Stateless
 public class EncuestaDAO implements Serializable {
@@ -54,18 +56,27 @@ public class EncuestaDAO implements Serializable {
 		return docentes;
 
 	}
+	
+	public List<Resultado_Encuesta> getResultadoEncuesta(int id) {
+		String jpql = "SELECT re FROM Resultado_Encuesta re JOIN re.encuesta enc WHERE enc.id = ?1";
+		Query query = manager.createQuery(jpql, Resultado_Encuesta.class);
+		query.setParameter(1, id);
+		List<Resultado_Encuesta> res_encuesta = query.getResultList();
+		return res_encuesta;
 
-	public List<Opcion> listaOpcionesByEncuesta(int id){
+	}
+
+	public List<Opcion> listaOpcionesByEncuesta(int id) {
 		List<Opcion> listaOpciones = new ArrayList<Opcion>();
 		try {
 			String jpql = "SELECT op FROM Opcion op JOIN op.encuesta en WHERE en.id =: id";
-			Query query=manager.createQuery(jpql,Opcion.class);
+			Query query = manager.createQuery(jpql, Opcion.class);
 			query.setParameter("id", id);
 			listaOpciones = query.getResultList();
 		} catch (EJBTransactionRolledbackException e) {
 			// TODO: handle exception
 		}
-		return listaOpciones;		
+		return listaOpciones;
 	}
 
 	public Encuesta getEncuesta(int id) {
