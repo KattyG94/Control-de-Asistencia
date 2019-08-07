@@ -51,4 +51,8 @@ public class GrupoON {
 		List<Grupo> listag=grupoDao.getlistaGrupoNumAsignatura(id);
 		return listag;
 	}
+	public List<Grupo> getlistaGrupoAsignaturaAlumnoId(int id){
+		List<Grupo> listag=grupoDao.getlistaGrupoByEstudianteId(id);
+		return listag;
+	}
 }

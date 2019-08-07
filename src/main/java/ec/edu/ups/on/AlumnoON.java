@@ -52,5 +52,9 @@ public class AlumnoON {
 		List<Alumno>listaAlumno=dao.getListarAlumnosByGrupoId(id);
 		return listaAlumno;
 	}
+	public void actualizarUbicacionAlumno(int id,double latitud,double longitud) {
+		dao.actualizarUbicacion(id, latitud, longitud);
+	}
+
 	
 }

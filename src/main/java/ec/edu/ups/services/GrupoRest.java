@@ -65,6 +65,23 @@ public class GrupoRest extends Application{
 		return listaGrupoAsignatura;
 	}
 	@GET
+	@Path("listadoGrupoAsignaturaByAlumnoId")
+	@Produces("application/json")
+	public List<SoloGrupoAsignatura> getGrupoAsignaturaAlumnoId(@QueryParam("id") int id){
+		List<SoloGrupoAsignatura> listaGrupoAsignatura=new ArrayList<>();
+		List<Grupo> listado = grupoON.getlistaGrupoAsignaturaAlumnoId(id);
+		System.out.println(listado.size()+" Tamaño de lista");
+		for (Grupo grupo : listado) {
+			grupo.setCarrera(null);
+			grupo.setDocente(null);
+			grupo.setMatricula(null);
+			grupo.setPeriodo(null);
+			listaGrupoAsignatura.add(new SoloGrupoAsignatura(grupo.getId(),grupo.getNumero(), grupo.getAsignatura().getNombre(),grupo.getAsignatura().getId()));
+			
+		}
+		return listaGrupoAsignatura;
+	}
+	@GET
 	@Path("listadoAlumnoByIdGroupo")
 	@Produces("application/json")
 	public List<ListadoAlumnoNombreApellido> getAlumno(@QueryParam("id") int id){
@@ -103,6 +120,7 @@ public class GrupoRest extends Application{
 		System.out.println(listadoAlumno.size()+"Tamanio");
 		return listadoAlumno;
 	}
+	
     
 	@GET
 	@Path("listadoGrupo")
